@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(ilspycmd \"D:\\\\Steam\\\\steamapps\\\\common\\\\Slay the Spire 2\\\\data_sts2_windows_x86_64\\\\sts2.dll\" -t \"MegaCrit.Sts2.Core.UI.Visuals.AtlasResourceLoader\")",
+      "Bash(ilspycmd \"D:\\\\Steam\\\\steamapps\\\\common\\\\Slay the Spire 2\\\\data_sts2_windows_x86_64\\\\sts2.dll\")",
+      "Bash(cp \"D:\\\\Steam\\\\steamapps\\\\common\\\\Slay the Spire 2\\\\mods\\\\aiCardMod\\\\ai_card.png\" \"c:\\\\Users\\\\shawn\\\\桌面\\\\sts2-mod\\\\ai-card-mod\\\\images\\\\packed\\\\card_portraits\\\\colorless\\\\aicardmod-ai_card.png\")",
+      "Bash(echo \"Copied: $?\")",
+      "Read(//d/Godot/**)",
+      "Bash(\"/c/Users/shawn/文件/Godot_v4.5.1-stable_mono_win64/Godot_v4.5.1-stable_mono_win64.exe\" --headless --export-pack \"Windows Desktop\" \"D:/Steam/steamapps/common/Slay the Spire 2/mods/aiCardMod/aiCardMod.pck\" --path \"c:/Users/shawn/桌面/sts2-mod/ai-card-mod\")",
+      "Bash(echo \"Exit: $?\")",
+      "Bash(powershell -Command ':*)",
+      "Bash(read f:*)"
+    ]
+  }
+}

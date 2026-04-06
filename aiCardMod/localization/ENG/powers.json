@@ -1,0 +1,9 @@
+{
+  "AICARDMOD-PIETY_POWER.title": "Piety",
+  "AICARDMOD-PIETY_POWER.description": "Fully consumed when the Oracle is played. Higher stacks yield stronger effects.",
+  "AICARDMOD-PIETY_POWER.smartDescription": "Fully consumed when the Oracle is played. Current: [blue]{Amount}[/blue] stacks.",
+
+  "AICARDMOD-DEVOTION_POWER.title": "Devotion",
+  "AICARDMOD-DEVOTION_POWER.description": "Gain Piety at the start of each turn.",
+  "AICARDMOD-DEVOTION_POWER.smartDescription": "Gain [blue]{Amount}[/blue] Piety at the start of each turn."
+}

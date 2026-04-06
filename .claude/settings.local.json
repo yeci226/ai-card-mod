@@ -1,0 +1,27 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:alchyr.github.io)",
+      "Read(//d/Steam/steamapps/common/Slay the Spire 2/data_sts2_windows_x86_64/**)",
+      "Read(//d/Steam/steamapps/common/Slay the Spire 2/mods/**)",
+      "Bash(ilspycmd \"D:/Steam/steamapps/common/Slay the Spire 2/data_sts2_windows_x86_64/sts2.dll\" -t \"MegaCrit.Sts2.Core.Models.CardModel\")",
+      "Bash(dotnet build:*)",
+      "Bash(powershell -Command ':*)",
+      "Bash(pdb\")",
+      "Bash(ilspycmd \"/d/Steam/steamapps/common/Slay the Spire 2/data_sts2_windows_x86_64/sts2.dll\" -t \"MegaCrit.Sts2.Core.Entities.Cards.TargetType\")",
+      "Bash(ilspycmd \"/d/Steam/steamapps/common/Slay the Spire 2/mods/BaseLib/BaseLib.dll\" -t \"BaseLib.Utils.CardPileCmd\")",
+      "Bash(ilspycmd \"/d/Steam/steamapps/common/Slay the Spire 2/mods/BaseLib/BaseLib.dll\" --list-types)",
+      "Bash(ilspycmd \"/d/Steam/steamapps/common/Slay the Spire 2/data_sts2_windows_x86_64/sts2.dll\" --list-types)",
+      "Bash(ilspycmd \"/d/Steam/steamapps/common/Slay the Spire 2/mods/BaseLib/BaseLib.dll\" -p)",
+      "Bash(ilspycmd \"/d/Steam/steamapps/common/Slay the Spire 2/mods/BaseLib/BaseLib.dll\" -t \"BaseLib.Utils.CardPileCmd\" --nested-types)",
+      "Bash(ilspycmd \"/d/Steam/steamapps/common/Slay the Spire 2/mods/BaseLib/BaseLib.dll\")",
+      "Bash(ilspycmd \"/d/Steam/steamapps/common/Slay the Spire 2/data_sts2_windows_x86_64/sts2.dll\" -t \"MegaCrit.Sts2.Core.Commands.CardPileCmd\")",
+      "Bash(ilspycmd \"/d/Steam/steamapps/common/Slay the Spire 2/data_sts2_windows_x86_64/sts2.dll\" -t \"MegaCrit.Sts2.Core.Models.PileType\")",
+      "Bash(ilspycmd \"/d/Steam/steamapps/common/Slay the Spire 2/data_sts2_windows_x86_64/sts2.dll\" -t \"MegaCrit.Sts2.Core.Entities.Cards.CardPilePosition\")",
+      "Bash(ilspycmd \"/d/Steam/steamapps/common/Slay the Spire 2/data_sts2_windows_x86_64/sts2.dll\" -t \"MegaCrit.Sts2.Core.Nodes.PileType\")",
+      "Bash(ilspycmd \"/d/Steam/steamapps/common/Slay the Spire 2/data_sts2_windows_x86_64/sts2.dll\" -t \"MegaCrit.Sts2.Core.Entities.Players.Player\")",
+      "Bash(ilspycmd \"/d/Steam/steamapps/common/Slay the Spire 2/data_sts2_windows_x86_64/sts2.dll\" -t \"MegaCrit.Sts2.Core.Combat.PlayerCombatState\")",
+      "Bash(ilspycmd \"/d/Steam/steamapps/common/Slay the Spire 2/data_sts2_windows_x86_64/sts2.dll\")"
+    ]
+  }
+}

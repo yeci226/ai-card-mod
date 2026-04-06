@@ -1,0 +1,11 @@
+{
+  "id": "aiCardMod",
+  "name": "Ai Card Mod",
+  "author": "Yeci",
+  "description": "A mod that adds AI Oracle card to the game, allowing players to consult an AI for custom card effects.",
+  "version": "1.0",
+  "has_pck": true,
+  "has_dll": true,
+  "dependencies": ["BaseLib"],
+  "affects_gameplay": true
+}

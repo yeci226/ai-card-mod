@@ -1,0 +1,18 @@
+{
+  "AICARDMOD-PRAY_CARD.title": "Prayer",
+  "AICARDMOD-PRAY_CARD.description": "Gain 3 Piety.",
+  "AICARDMOD-PRAY_CARD.upgraded_description": "Gain 5 Piety.",
+
+  "AICARDMOD-DEVOTION_CARD.title": "Devotion",
+  "AICARDMOD-DEVOTION_CARD.description": "Gain 1 Devotion.\n(Gain 1 Piety at the start of each turn.)",
+  "AICARDMOD-DEVOTION_CARD.upgraded_description": "Gain 2 Devotion.\n(Gain 2 Piety at the start of each turn.)",
+
+  "AICARDMOD-AI_CARD.title": "AI Oracle",
+  "AICARDMOD-AI_CARD.description": "Name your desire. The AI grants exactly what you ask — if it is too powerful, a price must be paid.",
+  "AICARDMOD-AI_CARD.upgraded_description": "Name your desire. The AI grants exactly what you ask — if it is too powerful, a price must be paid.",
+  "AICARDMOD-UI_DIALOG.title": "Oracle  —  Name Your Desire",
+  "AICARDMOD-UI_DIALOG.instructions": "What effect do you want? (e.g. \"80 block\", \"draw 3 cards\", \"2 strength\")\nIf the request is too powerful, the AI will add a penalty to balance it.",
+  "AICARDMOD-UI_DIALOG.input_placeholder": "Type your request here...",
+  "AICARDMOD-UI_DIALOG.button": "Transform Card  [Enter]",
+  "AICARDMOD-UI_DIALOG.cancel": "[Esc] Cancel"
+}

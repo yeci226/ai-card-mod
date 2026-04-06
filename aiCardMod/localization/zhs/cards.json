@@ -1,0 +1,18 @@
+{
+  "AICARDMOD-PRAY_CARD.title": "祈禱",
+  "AICARDMOD-PRAY_CARD.description": "獲得 3 層虔誠。",
+  "AICARDMOD-PRAY_CARD.upgraded_description": "獲得 5 層虔誠。",
+
+  "AICARDMOD-DEVOTION_CARD.title": "信仰",
+  "AICARDMOD-DEVOTION_CARD.description": "獲得 1 層信仰。\n（每回合開始獲得 1 層虔誠）",
+  "AICARDMOD-DEVOTION_CARD.upgraded_description": "獲得 2 層信仰。\n（每回合開始獲得 2 層虔誠）",
+
+  "AICARDMOD-AI_CARD.title": "神諭",
+  "AICARDMOD-AI_CARD.description": "道出你的願望。AI將賜予你所求——若太過強力，則必付代價。",
+  "AICARDMOD-AI_CARD.upgraded_description": "道出你的願望。AI將賜予你所求——若太過強力，則必付代價。",
+  "AICARDMOD-UI_DIALOG.title": "神諭  —  許願",
+  "AICARDMOD-UI_DIALOG.instructions": "你想要什麼效果？（例：80格擋、抽3張牌、2力量）\n若需求過強，AI將附加代價以平衡。",
+  "AICARDMOD-UI_DIALOG.input_placeholder": "在此輸入你的需求...",
+  "AICARDMOD-UI_DIALOG.button": "變化卡牌  [Enter]",
+  "AICARDMOD-UI_DIALOG.cancel": "[Esc] 取消"
+}

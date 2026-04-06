@@ -1,0 +1,9 @@
+{
+  "AICARDMOD-PIETY_POWER.title": "虔誠",
+  "AICARDMOD-PIETY_POWER.description": "使用神諭時全數消耗。層數越高，神諭賦予的效果越強大。",
+  "AICARDMOD-PIETY_POWER.smartDescription": "使用神諭時全數消耗。目前: [blue]{Amount}[/blue] 層。",
+
+  "AICARDMOD-DEVOTION_POWER.title": "信仰",
+  "AICARDMOD-DEVOTION_POWER.description": "每回合開始時獲得虔誠。",
+  "AICARDMOD-DEVOTION_POWER.smartDescription": "每回合開始時獲得 [blue]{Amount}[/blue] 層虔誠。"
+}
