@@ -1,0 +1,9 @@
+<!--
+  Copy this file to "Directory.Build.props" (gitignored) if auto-detection fails.
+  Only needed when Steam is not installed in the default location.
+-->
+<Project>
+  <PropertyGroup>
+    <Sts2Dir>C:\Steam\steamapps\common\Slay the Spire 2</Sts2Dir>
+  </PropertyGroup>
+</Project>

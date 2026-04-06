@@ -6,7 +6,10 @@
     <Nullable>enable</Nullable>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 
-    <Sts2Dir>D:\Steam\steamapps\common\Slay the Spire 2</Sts2Dir>
+    <!-- Auto-detect Steam via registry; override by setting Sts2Dir in Directory.Build.props -->
+    <SteamDir Condition="'$(SteamDir)' == ''">$(Registry:HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\Valve\Steam@InstallPath)</SteamDir>
+    <SteamDir Condition="'$(SteamDir)' == ''">$(Registry:HKEY_CURRENT_USER\SOFTWARE\Valve\Steam@SteamPath)</SteamDir>
+    <Sts2Dir Condition="'$(Sts2Dir)' == ''">$(SteamDir)\steamapps\common\Slay the Spire 2</Sts2Dir>
     <Sts2DataDir>$(Sts2Dir)\data_sts2_windows_x86_64</Sts2DataDir>
   </PropertyGroup>
 
