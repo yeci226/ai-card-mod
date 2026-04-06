@@ -1,5 +1,5 @@
 using BaseLib.Abstracts;
-using MegaCrit.Sts2.Core.Models.Powers;
+using MegaCrit.Sts2.Core.Entities.Powers;
 
 namespace AICardMod.Scripts;
 

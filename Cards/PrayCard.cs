@@ -14,15 +14,15 @@ namespace AICardMod.Scripts;
 [Pool(typeof(ColorlessCardPool))]
 public class PrayCard : CustomCardModel
 {
-    private const int EnergyCost = 1;
-    private const CardType Type = CardType.Skill;
-    private const CardRarity Rarity = CardRarity.Common;
-    private const TargetType Target = TargetType.None;
-    private const bool ShowInLibrary = true;
+    private const int energyCost = 1;
+    private const CardType type = CardType.Skill;
+    private const CardRarity rarity = CardRarity.Common;
+    private const TargetType targetType = TargetType.None;
+    private const bool shouldShowInLibrary = true;
 
     private int _pietyGain = 3;
 
-    public PrayCard() : base(EnergyCost, Type, Rarity, Target, ShowInLibrary) { }
+    public PrayCard() : base(energyCost, type, rarity, targetType, shouldShowInLibrary) { }
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {

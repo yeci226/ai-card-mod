@@ -1,8 +1,8 @@
 using BaseLib.Abstracts;
 using MegaCrit.Sts2.Core.Commands;
-using MegaCrit.Sts2.Core.Entities.Creatures;
+using MegaCrit.Sts2.Core.Entities.Players;
+using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.Models.Powers;
 
 namespace AICardMod.Scripts;
 
@@ -18,8 +18,9 @@ public class DevotionPower : CustomPowerModel
     public override string? CustomPackedIconPath => "res://aiCardMod/powers/devotion.png";
     public override string? CustomBigIconPath => "res://aiCardMod/powers/devotion.png";
 
-    public override async Task OnStartOfTurn(PlayerChoiceContext choiceContext)
+    public override async Task AfterPlayerTurnStart(PlayerChoiceContext choiceContext, Player player)
     {
-        await PowerCmd.Apply<PietyPower>(Owner, Amount, Owner, null);
+        if (player.Creature == Owner)
+            await PowerCmd.Apply<PietyPower>(Owner, Amount, Owner, null);
     }
 }
