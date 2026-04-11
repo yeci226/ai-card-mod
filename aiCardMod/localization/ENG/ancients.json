@@ -1,0 +1,39 @@
+{
+  "DARV.talk.AICARDMOD-PROPHET_CHARACTER.0-0.char": "This place... the divine aura flows here too, doesn't it?",
+  "DARV.talk.AICARDMOD-PROPHET_CHARACTER.0-0.next": "Continue",
+  "DARV.talk.AICARDMOD-PROPHET_CHARACTER.0-1.ancient": "Of course! Faith makes any gem shine brighter! Pick one!",
+  "DARV.talk.AICARDMOD-PROPHET_CHARACTER.1-0r.ancient": "Back again! Did the oracle guide you here? I can help too!",
+  "DARV.talk.AICARDMOD-PROPHET_CHARACTER.2-0.ancient": "I have countless gems, but none hold your oracle's answers...",
+  "DARV.talk.AICARDMOD-PROPHET_CHARACTER.2-0.next": "Respond",
+  "DARV.talk.AICARDMOD-PROPHET_CHARACTER.2-1.char": "The oracle's answers aren't in gems. They live within a faithful heart.\n[i][font_size=22]The girl touches the stone tablet at her chest, her gaze serene.[/font_size][/i]",
+  "DARV.talk.AICARDMOD-PROPHET_CHARACTER.2-1.next": "Continue",
+  "DARV.talk.AICARDMOD-PROPHET_CHARACTER.2-2.ancient": "Ah... well then! Take this, and let it guide you on your search!",
+
+  "NEOW.talk.AICARDMOD-PROPHET_CHARACTER.0-0.char": "Oracle... you have awakened me. Is this the path you've chosen?",
+  "NEOW.talk.AICARDMOD-PROPHET_CHARACTER.0-0.next": "Continue",
+  "NEOW.talk.AICARDMOD-PROPHET_CHARACTER.0-1.ancient": "[sine]...Go... the Spire awaits... carry your faith with you.....[/sine]",
+  "NEOW.talk.AICARDMOD-PROPHET_CHARACTER.1-0r.ancient": "[sine]...I feel... your piety... it is warm and steady.....[/sine]",
+  "NEOW.talk.AICARDMOD-PROPHET_CHARACTER.2-0.ancient": "[sine]...What do you... still need...?[/sine]",
+  "NEOW.talk.AICARDMOD-PROPHET_CHARACTER.2-0.next": "Beseech",
+  "NEOW.talk.AICARDMOD-PROPHET_CHARACTER.2-1.char": "Grant me the strength to keep moving forward. My faith will not waver.",
+  "NEOW.talk.AICARDMOD-PROPHET_CHARACTER.2-1.next": "Continue",
+  "NEOW.talk.AICARDMOD-PROPHET_CHARACTER.2-2.ancient": "[sine]...Go then... I will be... where you look back... waiting.....[/sine]",
+
+  "THE_ARCHITECT.talk.AICARDMOD-PROPHET_CHARACTER.0-0r.ancient": "You pray to your oracle... yet you enter my Spire. Does your oracle know you are here?",
+  "THE_ARCHITECT.talk.AICARDMOD-PROPHET_CHARACTER.0-0r.next": "Answer",
+  "THE_ARCHITECT.talk.AICARDMOD-PROPHET_CHARACTER.0-1r.char": "...She knows. This path was her guidance.",
+  "THE_ARCHITECT.talk.AICARDMOD-PROPHET_CHARACTER.0-1r.next": "Continue",
+  "THE_ARCHITECT.talk.AICARDMOD-PROPHET_CHARACTER.0-2r.ancient": "Interesting. Then I shall see how far your oracle can carry you.",
+
+  "THE_ARCHITECT.talk.AICARDMOD-PROPHET_CHARACTER.1-0r.ancient": "You have returned. Has your oracle granted you sufficient power this time?",
+  "THE_ARCHITECT.talk.AICARDMOD-PROPHET_CHARACTER.1-0r.next": "Continue",
+  "THE_ARCHITECT.talk.AICARDMOD-PROPHET_CHARACTER.1-1r.char": "Sufficient... depends on whether my piety is sufficient.",
+  "THE_ARCHITECT.talk.AICARDMOD-PROPHET_CHARACTER.1-1r.next": "Continue",
+  "THE_ARCHITECT.talk.AICARDMOD-PROPHET_CHARACTER.1-2r.ancient": "Then keep praying. The Spire shows no mercy for your oracle's sake.",
+
+  "THE_ARCHITECT.talk.AICARDMOD-PROPHET_CHARACTER.2-0r.ancient": "You near the summit. Tell me — does your oracle wait for you at the top?",
+  "THE_ARCHITECT.talk.AICARDMOD-PROPHET_CHARACTER.2-0r.next": "Continue",
+  "THE_ARCHITECT.talk.AICARDMOD-PROPHET_CHARACTER.2-1r.char": "...Whether she does or not, I will reach the end. That is a prophet's duty.",
+  "THE_ARCHITECT.talk.AICARDMOD-PROPHET_CHARACTER.2-1r.next": "Continue",
+  "THE_ARCHITECT.talk.AICARDMOD-PROPHET_CHARACTER.2-2r.ancient": "...A worthy answer. Perhaps your oracle did choose the right vessel."
+}

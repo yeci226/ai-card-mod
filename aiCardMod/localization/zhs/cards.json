@@ -1,11 +1,22 @@
 {
+  "AICARDMOD-HOLY_STRIKE_CARD.title": "神聖打擊",
+  "AICARDMOD-HOLY_STRIKE_CARD.description": "造成 {Damage} 點傷害。",
+  "AICARDMOD-HOLY_STRIKE_CARD.upgraded_description": "造成 {Damage} 點傷害。",
+
+  "AICARDMOD-PIOUS_DEFEND_CARD.title": "虔誠防禦",
+  "AICARDMOD-PIOUS_DEFEND_CARD.description": "獲得 {Block} 格擋。\n若虔誠 ≥ 2，額外獲得 {BonusBlock} 格擋。",
+  "AICARDMOD-PIOUS_DEFEND_CARD.upgraded_description": "獲得 {Block} 格擋。\n若虔誠 ≥ 2，額外獲得 {BonusBlock} 格擋。",
+
+  "AICARDMOD-ORACLE_TABLET_RELIC.title": "神諭石板",
+  "AICARDMOD-ORACLE_TABLET_RELIC.description": "使用神諭時，若虔誠 = 0，神明將以「不悅」而非「震怒」回應。",
+
   "AICARDMOD-PRAY_CARD.title": "祈禱",
   "AICARDMOD-PRAY_CARD.description": "獲得 3 層虔誠。",
   "AICARDMOD-PRAY_CARD.upgraded_description": "獲得 5 層虔誠。",
 
   "AICARDMOD-DEVOTION_CARD.title": "信仰",
-  "AICARDMOD-DEVOTION_CARD.description": "獲得 1 層信仰。\n（每回合開始獲得 1 層虔誠）",
-  "AICARDMOD-DEVOTION_CARD.upgraded_description": "獲得 2 層信仰。\n（每回合開始獲得 2 層虔誠）",
+  "AICARDMOD-DEVOTION_CARD.description": "每回合開始獲得 1 層虔誠",
+  "AICARDMOD-DEVOTION_CARD.upgraded_description": "每回合開始獲得 2 層虔誠",
 
   "AICARDMOD-AI_CARD.title": "神諭",
   "AICARDMOD-AI_CARD.description": "道出你的願望。AI將賜予你所求——若太過強力，則必付代價。",
@@ -14,5 +25,129 @@
   "AICARDMOD-UI_DIALOG.instructions": "你想要什麼效果？（例：80格擋、抽3張牌、2力量）\n若需求過強，AI將附加代價以平衡。",
   "AICARDMOD-UI_DIALOG.input_placeholder": "在此輸入你的需求...",
   "AICARDMOD-UI_DIALOG.button": "變化卡牌  [Enter]",
-  "AICARDMOD-UI_DIALOG.cancel": "[Esc] 取消"
+  "AICARDMOD-UI_DIALOG.cancel": "[Esc] 取消",
+
+  "AICARDMOD-SACRED_FLAME_CARD.title": "神焰",
+  "AICARDMOD-SACRED_FLAME_CARD.description": "造成 {Damage} 點傷害。若虔誠 ≥ 3，額外造成 {BonusDamage} 點傷害。",
+  "AICARDMOD-SACRED_FLAME_CARD.upgraded_description": "造成 {Damage} 點傷害。若虔誠 ≥ 3，額外造成 {BonusDamage} 點傷害。",
+
+  "AICARDMOD-JUDGMENT_CARD.title": "審判",
+  "AICARDMOD-JUDGMENT_CARD.description": "對目標施加 {VulnAmount} 層易傷。造成 {Damage} 點傷害。",
+  "AICARDMOD-JUDGMENT_CARD.upgraded_description": "對目標施加 {VulnAmount} 層易傷。造成 {Damage} 點傷害。",
+
+  "AICARDMOD-HOLY_WRATH_CARD.title": "神怒",
+  "AICARDMOD-HOLY_WRATH_CARD.description": "對所有敵人造成 {Damage} 點傷害。",
+  "AICARDMOD-HOLY_WRATH_CARD.upgraded_description": "對所有敵人造成 {Damage} 點傷害。",
+
+  "AICARDMOD-DIVINE_PUNISHMENT_CARD.title": "天罰",
+  "AICARDMOD-DIVINE_PUNISHMENT_CARD.description": "造成 {Damage} 點傷害。消耗 3 虔誠，額外造成 {BonusDamage} 點傷害。",
+  "AICARDMOD-DIVINE_PUNISHMENT_CARD.upgraded_description": "造成 {Damage} 點傷害。消耗 3 虔誠，額外造成 {BonusDamage} 點傷害。",
+
+  "AICARDMOD-DIVINE_STRIKE_CARD.title": "神聖衝擊",
+  "AICARDMOD-DIVINE_STRIKE_CARD.description": "造成 {Damage} 點傷害，連擊 {Hits} 次。每次擊中獲得 1 層虔誠。",
+  "AICARDMOD-DIVINE_STRIKE_CARD.upgraded_description": "造成 {Damage} 點傷害，連擊 {Hits} 次。每次擊中獲得 1 層虔誠。",
+
+  "AICARDMOD-MEDITATION_CARD.title": "冥想",
+  "AICARDMOD-MEDITATION_CARD.description": "獲得 {Block} 格擋。獲得 {PietyGain} 層虔誠。",
+  "AICARDMOD-MEDITATION_CARD.upgraded_description": "獲得 {Block} 格擋。獲得 {PietyGain} 層虔誠。",
+
+  "AICARDMOD-HOLY_SHIELD_CARD.title": "聖盾",
+  "AICARDMOD-HOLY_SHIELD_CARD.description": "獲得（基礎 4 + 虔誠）格擋。",
+  "AICARDMOD-HOLY_SHIELD_CARD.upgraded_description": "獲得（基礎 7 + 虔誠）格擋。",
+
+  "AICARDMOD-CONDEMN_CARD.title": "天譴",
+  "AICARDMOD-CONDEMN_CARD.description": "對目標施加 {WeakAmount} 層虛弱和 {VulnAmount} 層易傷。",
+  "AICARDMOD-CONDEMN_CARD.upgraded_description": "對目標施加 {WeakAmount} 層虛弱和 {VulnAmount} 層易傷。",
+
+  "AICARDMOD-PURIFICATION_CARD.title": "淨化",
+  "AICARDMOD-PURIFICATION_CARD.description": "獲得 4 層虔誠。消耗。",
+  "AICARDMOD-PURIFICATION_CARD.upgraded_description": "獲得 6 層虔誠。消耗。",
+
+  "AICARDMOD-ORACLE_INSIGHT_CARD.title": "神諭洞見",
+  "AICARDMOD-ORACLE_INSIGHT_CARD.description": "抽 3 張牌。獲得 2 層虔誠。消耗。",
+  "AICARDMOD-ORACLE_INSIGHT_CARD.upgraded_description": "抽 4 張牌。獲得 3 層虔誠。消耗。",
+
+  "AICARDMOD-DIVINE_LIGHT_CARD.title": "神光",
+  "AICARDMOD-DIVINE_LIGHT_CARD.description": "每回合開始時獲得 3 格擋。",
+  "AICARDMOD-DIVINE_LIGHT_CARD.upgraded_description": "每回合開始時獲得 5 格擋。",
+
+  "AICARDMOD-PROPHET_EYE_CARD.title": "先知之眼",
+  "AICARDMOD-PROPHET_EYE_CARD.description": "每回合開始時，若虔誠 ≥ 5，額外抽 1 張牌。",
+  "AICARDMOD-PROPHET_EYE_CARD.upgraded_description": "每回合開始時，若虔誠 ≥ 3，額外抽 1 張牌。",
+
+  "AICARDMOD-RADIANT_BLADE_CARD.title": "光刃",
+  "AICARDMOD-RADIANT_BLADE_CARD.description": "造成 {Damage} 點傷害。獲得 1 層虔誠。",
+  "AICARDMOD-RADIANT_BLADE_CARD.upgraded_description": "造成 {Damage} 點傷害。獲得 1 層虔誠。",
+
+  "AICARDMOD-SMITE_CARD.title": "天擊",
+  "AICARDMOD-SMITE_CARD.description": "造成 {Damage} 點傷害。對目標施加 {WeakAmount} 層虛弱。",
+  "AICARDMOD-SMITE_CARD.upgraded_description": "造成 {Damage} 點傷害。對目標施加 {WeakAmount} 層虛弱。",
+
+  "AICARDMOD-PIOUS_STRIKE_CARD.title": "虔誠一擊",
+  "AICARDMOD-PIOUS_STRIKE_CARD.description": "造成 {Damage} 點傷害。獲得 {PietyGain} 層虔誠。",
+  "AICARDMOD-PIOUS_STRIKE_CARD.upgraded_description": "造成 {Damage} 點傷害。獲得 {PietyGain} 層虔誠。",
+
+  "AICARDMOD-HOLY_CLEAVE_CARD.title": "聖光劈斬",
+  "AICARDMOD-HOLY_CLEAVE_CARD.description": "對所有敵人造成 {Damage} 點傷害。",
+  "AICARDMOD-HOLY_CLEAVE_CARD.upgraded_description": "對所有敵人造成 {Damage} 點傷害。",
+
+  "AICARDMOD-DIVINE_LANCE_CARD.title": "神之槍",
+  "AICARDMOD-DIVINE_LANCE_CARD.description": "對目標施加 {VulnAmount} 層易傷。造成 {Damage} 點傷害。",
+  "AICARDMOD-DIVINE_LANCE_CARD.upgraded_description": "對目標施加 {VulnAmount} 層易傷。造成 {Damage} 點傷害。",
+
+  "AICARDMOD-ANGELIC_RETRIBUTION_CARD.title": "天使制裁",
+  "AICARDMOD-ANGELIC_RETRIBUTION_CARD.description": "造成 {Damage} 點傷害。對目標施加 {WeakAmount} 層虛弱。",
+  "AICARDMOD-ANGELIC_RETRIBUTION_CARD.upgraded_description": "造成 {Damage} 點傷害。對目標施加 {WeakAmount} 層虛弱。",
+
+  "AICARDMOD-WRATHFUL_JUDGMENT_CARD.title": "震怒審判",
+  "AICARDMOD-WRATHFUL_JUDGMENT_CARD.description": "消耗所有虔誠。造成虔誠 × {Multiplier} 點傷害（最少 {MinDamage}）。",
+  "AICARDMOD-WRATHFUL_JUDGMENT_CARD.upgraded_description": "消耗所有虔誠。造成虔誠 × {Multiplier} 點傷害（最少 {MinDamage}）。",
+
+  "AICARDMOD-HOLY_STORM_CARD.title": "神聖風暴",
+  "AICARDMOD-HOLY_STORM_CARD.description": "對所有敵人造成 {Damage} 點傷害。獲得 {PietyGain} 層虔誠。",
+  "AICARDMOD-HOLY_STORM_CARD.upgraded_description": "對所有敵人造成 {Damage} 點傷害。獲得 {PietyGain} 層虔誠。",
+
+  "AICARDMOD-DEVOUT_BLADE_CARD.title": "虔誠之刃",
+  "AICARDMOD-DEVOUT_BLADE_CARD.description": "造成 {Damage} 點傷害。若虔誠 ≥ 5，額外造成 {BonusDamage} 點傷害。獲得 1 層虔誠。",
+  "AICARDMOD-DEVOUT_BLADE_CARD.upgraded_description": "造成 {Damage} 點傷害。若虔誠 ≥ 5，額外造成 {BonusDamage} 點傷害。獲得 1 層虔誠。",
+
+  "AICARDMOD-SACRED_BARRAGE_CARD.title": "聖光連擊",
+  "AICARDMOD-SACRED_BARRAGE_CARD.description": "造成 {Damage} 點傷害，攻擊（虔誠 + 1）次（最多 {MaxHits} 次）。",
+  "AICARDMOD-SACRED_BARRAGE_CARD.upgraded_description": "造成 {Damage} 點傷害，攻擊（虔誠 + 1）次（最多 {MaxHits} 次）。",
+
+  "AICARDMOD-ATONEMENT_CARD.title": "贖罪",
+  "AICARDMOD-ATONEMENT_CARD.description": "失去 2 層虔誠。獲得 {Block} 格擋。",
+  "AICARDMOD-ATONEMENT_CARD.upgraded_description": "失去 2 層虔誠。獲得 {Block} 格擋。",
+
+  "AICARDMOD-PROPHETIC_SHIELD_CARD.title": "先知護盾",
+  "AICARDMOD-PROPHETIC_SHIELD_CARD.description": "獲得虔誠 × {Multiplier} 格擋。",
+  "AICARDMOD-PROPHETIC_SHIELD_CARD.upgraded_description": "獲得虔誠 × {Multiplier} 格擋。",
+
+  "AICARDMOD-HOLY_RITUAL_CARD.title": "神聖儀式",
+  "AICARDMOD-HOLY_RITUAL_CARD.description": "將當前虔誠翻倍（上限 12）。",
+  "AICARDMOD-HOLY_RITUAL_CARD.upgraded_description": "將當前虔誠翻倍（上限 20）。",
+
+  "AICARDMOD-INNER_PEACE_CARD.title": "內心平靜",
+  "AICARDMOD-INNER_PEACE_CARD.description": "獲得 {Block} 格擋。若虔誠 ≥ {PietyThreshold}，額外抽 1 張牌。",
+  "AICARDMOD-INNER_PEACE_CARD.upgraded_description": "獲得 {Block} 格擋。若虔誠 ≥ {PietyThreshold}，額外抽 1 張牌。",
+
+  "AICARDMOD-DIVINE_GRACE_CARD.title": "神恩降臨",
+  "AICARDMOD-DIVINE_GRACE_CARD.description": "抽 2 張牌。獲得 2 層虔誠。消耗。",
+  "AICARDMOD-DIVINE_GRACE_CARD.upgraded_description": "抽 3 張牌。獲得 3 層虔誠。消耗。",
+
+  "AICARDMOD-DIVINE_FAVOR_CARD.title": "神明眷顧",
+  "AICARDMOD-DIVINE_FAVOR_CARD.description": "每回合開始時獲得 1 層虔誠。",
+  "AICARDMOD-DIVINE_FAVOR_CARD.upgraded_description": "每回合開始時獲得 2 層虔誠。",
+
+  "AICARDMOD-HOLY_RESONANCE_CARD.title": "神聖共鳴",
+  "AICARDMOD-HOLY_RESONANCE_CARD.description": "每回合開始時，若虔誠 ≥ 3，獲得 1 層力量。",
+  "AICARDMOD-HOLY_RESONANCE_CARD.upgraded_description": "每回合開始時，若虔誠 ≥ 1，獲得 1 層力量。",
+
+  "AICARDMOD-BLESSED_ARMOR_CARD.title": "神佑護甲",
+  "AICARDMOD-BLESSED_ARMOR_CARD.description": "每回合開始時，獲得等於虔誠的格擋。",
+  "AICARDMOD-BLESSED_ARMOR_CARD.upgraded_description": "每回合開始時，獲得（虔誠 + {BonusBlock}）格擋。",
+
+  "AICARDMOD-PROPHETIC_AURA_CARD.title": "先知光環",
+  "AICARDMOD-PROPHETIC_AURA_CARD.description": "每回合開始時，對所有敵人施加 1 層易傷。",
+  "AICARDMOD-PROPHETIC_AURA_CARD.upgraded_description": "每回合開始時，對所有敵人施加 2 層易傷。"
 }

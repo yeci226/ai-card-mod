@@ -1,11 +1,22 @@
 {
+  "AICARDMOD-HOLY_STRIKE_CARD.title": "Holy Strike",
+  "AICARDMOD-HOLY_STRIKE_CARD.description": "Deal {Damage} damage.",
+  "AICARDMOD-HOLY_STRIKE_CARD.upgraded_description": "Deal {Damage} damage.",
+
+  "AICARDMOD-PIOUS_DEFEND_CARD.title": "Pious Defend",
+  "AICARDMOD-PIOUS_DEFEND_CARD.description": "Gain {Block} Block.\nIf Piety >= 2, gain {BonusBlock} more Block.",
+  "AICARDMOD-PIOUS_DEFEND_CARD.upgraded_description": "Gain {Block} Block.\nIf Piety >= 2, gain {BonusBlock} more Block.",
+
+  "AICARDMOD-ORACLE_TABLET_RELIC.title": "Oracle Tablet",
+  "AICARDMOD-ORACLE_TABLET_RELIC.description": "When using Oracle at 0 Piety, the oracle responds as DISPLEASED instead of ANGERED.",
+
   "AICARDMOD-PRAY_CARD.title": "Prayer",
   "AICARDMOD-PRAY_CARD.description": "Gain 3 Piety.",
   "AICARDMOD-PRAY_CARD.upgraded_description": "Gain 5 Piety.",
 
   "AICARDMOD-DEVOTION_CARD.title": "Devotion",
-  "AICARDMOD-DEVOTION_CARD.description": "Gain 1 Devotion.\n(Gain 1 Piety at the start of each turn.)",
-  "AICARDMOD-DEVOTION_CARD.upgraded_description": "Gain 2 Devotion.\n(Gain 2 Piety at the start of each turn.)",
+  "AICARDMOD-DEVOTION_CARD.description": "Gain 1 Piety at the start of each turn.",
+  "AICARDMOD-DEVOTION_CARD.upgraded_description": "Gain 2 Piety at the start of each turn.",
 
   "AICARDMOD-AI_CARD.title": "AI Oracle",
   "AICARDMOD-AI_CARD.description": "Name your desire. The AI grants exactly what you ask — if it is too powerful, a price must be paid.",
@@ -14,5 +25,129 @@
   "AICARDMOD-UI_DIALOG.instructions": "What effect do you want? (e.g. \"80 block\", \"draw 3 cards\", \"2 strength\")\nIf the request is too powerful, the AI will add a penalty to balance it.",
   "AICARDMOD-UI_DIALOG.input_placeholder": "Type your request here...",
   "AICARDMOD-UI_DIALOG.button": "Transform Card  [Enter]",
-  "AICARDMOD-UI_DIALOG.cancel": "[Esc] Cancel"
+  "AICARDMOD-UI_DIALOG.cancel": "[Esc] Cancel",
+
+  "AICARDMOD-SACRED_FLAME_CARD.title": "Sacred Flame",
+  "AICARDMOD-SACRED_FLAME_CARD.description": "Deal {Damage} damage. If Piety >= 3, deal {BonusDamage} more damage.",
+  "AICARDMOD-SACRED_FLAME_CARD.upgraded_description": "Deal {Damage} damage. If Piety >= 3, deal {BonusDamage} more damage.",
+
+  "AICARDMOD-JUDGMENT_CARD.title": "Judgment",
+  "AICARDMOD-JUDGMENT_CARD.description": "Apply {VulnAmount} Vulnerable to target. Deal {Damage} damage.",
+  "AICARDMOD-JUDGMENT_CARD.upgraded_description": "Apply {VulnAmount} Vulnerable to target. Deal {Damage} damage.",
+
+  "AICARDMOD-HOLY_WRATH_CARD.title": "Holy Wrath",
+  "AICARDMOD-HOLY_WRATH_CARD.description": "Deal {Damage} damage to ALL enemies.",
+  "AICARDMOD-HOLY_WRATH_CARD.upgraded_description": "Deal {Damage} damage to ALL enemies.",
+
+  "AICARDMOD-DIVINE_PUNISHMENT_CARD.title": "Divine Punishment",
+  "AICARDMOD-DIVINE_PUNISHMENT_CARD.description": "Deal {Damage} damage. Consume 3 Piety to deal {BonusDamage} more damage.",
+  "AICARDMOD-DIVINE_PUNISHMENT_CARD.upgraded_description": "Deal {Damage} damage. Consume 3 Piety to deal {BonusDamage} more damage.",
+
+  "AICARDMOD-DIVINE_STRIKE_CARD.title": "Divine Strike",
+  "AICARDMOD-DIVINE_STRIKE_CARD.description": "Deal {Damage} damage {Hits} times. Gain 1 Piety per hit.",
+  "AICARDMOD-DIVINE_STRIKE_CARD.upgraded_description": "Deal {Damage} damage {Hits} times. Gain 1 Piety per hit.",
+
+  "AICARDMOD-MEDITATION_CARD.title": "Meditation",
+  "AICARDMOD-MEDITATION_CARD.description": "Gain {Block} Block. Gain {PietyGain} Piety.",
+  "AICARDMOD-MEDITATION_CARD.upgraded_description": "Gain {Block} Block. Gain {PietyGain} Piety.",
+
+  "AICARDMOD-HOLY_SHIELD_CARD.title": "Holy Shield",
+  "AICARDMOD-HOLY_SHIELD_CARD.description": "Gain (4 + Piety) Block.",
+  "AICARDMOD-HOLY_SHIELD_CARD.upgraded_description": "Gain (7 + Piety) Block.",
+
+  "AICARDMOD-CONDEMN_CARD.title": "Condemn",
+  "AICARDMOD-CONDEMN_CARD.description": "Apply {WeakAmount} Weak and {VulnAmount} Vulnerable to target.",
+  "AICARDMOD-CONDEMN_CARD.upgraded_description": "Apply {WeakAmount} Weak and {VulnAmount} Vulnerable to target.",
+
+  "AICARDMOD-PURIFICATION_CARD.title": "Purification",
+  "AICARDMOD-PURIFICATION_CARD.description": "Gain 4 Piety. Exhaust.",
+  "AICARDMOD-PURIFICATION_CARD.upgraded_description": "Gain 6 Piety. Exhaust.",
+
+  "AICARDMOD-ORACLE_INSIGHT_CARD.title": "Oracle's Insight",
+  "AICARDMOD-ORACLE_INSIGHT_CARD.description": "Draw 3 cards. Gain 2 Piety. Exhaust.",
+  "AICARDMOD-ORACLE_INSIGHT_CARD.upgraded_description": "Draw 4 cards. Gain 3 Piety. Exhaust.",
+
+  "AICARDMOD-DIVINE_LIGHT_CARD.title": "Divine Light",
+  "AICARDMOD-DIVINE_LIGHT_CARD.description": "At the start of each turn, gain 3 Block.",
+  "AICARDMOD-DIVINE_LIGHT_CARD.upgraded_description": "At the start of each turn, gain 5 Block.",
+
+  "AICARDMOD-PROPHET_EYE_CARD.title": "Prophet's Eye",
+  "AICARDMOD-PROPHET_EYE_CARD.description": "At the start of each turn, if Piety >= 5, draw 1 extra card.",
+  "AICARDMOD-PROPHET_EYE_CARD.upgraded_description": "At the start of each turn, if Piety >= 3, draw 1 extra card.",
+
+  "AICARDMOD-RADIANT_BLADE_CARD.title": "Radiant Blade",
+  "AICARDMOD-RADIANT_BLADE_CARD.description": "Deal {Damage} damage. Gain 1 Piety.",
+  "AICARDMOD-RADIANT_BLADE_CARD.upgraded_description": "Deal {Damage} damage. Gain 1 Piety.",
+
+  "AICARDMOD-SMITE_CARD.title": "Smite",
+  "AICARDMOD-SMITE_CARD.description": "Deal {Damage} damage. Apply {WeakAmount} Weak to target.",
+  "AICARDMOD-SMITE_CARD.upgraded_description": "Deal {Damage} damage. Apply {WeakAmount} Weak to target.",
+
+  "AICARDMOD-PIOUS_STRIKE_CARD.title": "Pious Strike",
+  "AICARDMOD-PIOUS_STRIKE_CARD.description": "Deal {Damage} damage. Gain {PietyGain} Piety.",
+  "AICARDMOD-PIOUS_STRIKE_CARD.upgraded_description": "Deal {Damage} damage. Gain {PietyGain} Piety.",
+
+  "AICARDMOD-HOLY_CLEAVE_CARD.title": "Holy Cleave",
+  "AICARDMOD-HOLY_CLEAVE_CARD.description": "Deal {Damage} damage to ALL enemies.",
+  "AICARDMOD-HOLY_CLEAVE_CARD.upgraded_description": "Deal {Damage} damage to ALL enemies.",
+
+  "AICARDMOD-DIVINE_LANCE_CARD.title": "Divine Lance",
+  "AICARDMOD-DIVINE_LANCE_CARD.description": "Apply {VulnAmount} Vulnerable to target. Deal {Damage} damage.",
+  "AICARDMOD-DIVINE_LANCE_CARD.upgraded_description": "Apply {VulnAmount} Vulnerable to target. Deal {Damage} damage.",
+
+  "AICARDMOD-ANGELIC_RETRIBUTION_CARD.title": "Angelic Retribution",
+  "AICARDMOD-ANGELIC_RETRIBUTION_CARD.description": "Deal {Damage} damage. Apply {WeakAmount} Weak to target.",
+  "AICARDMOD-ANGELIC_RETRIBUTION_CARD.upgraded_description": "Deal {Damage} damage. Apply {WeakAmount} Weak to target.",
+
+  "AICARDMOD-WRATHFUL_JUDGMENT_CARD.title": "Wrathful Judgment",
+  "AICARDMOD-WRATHFUL_JUDGMENT_CARD.description": "Consume all Piety. Deal Piety x {Multiplier} damage (minimum {MinDamage}).",
+  "AICARDMOD-WRATHFUL_JUDGMENT_CARD.upgraded_description": "Consume all Piety. Deal Piety x {Multiplier} damage (minimum {MinDamage}).",
+
+  "AICARDMOD-HOLY_STORM_CARD.title": "Holy Storm",
+  "AICARDMOD-HOLY_STORM_CARD.description": "Deal {Damage} damage to ALL enemies. Gain {PietyGain} Piety.",
+  "AICARDMOD-HOLY_STORM_CARD.upgraded_description": "Deal {Damage} damage to ALL enemies. Gain {PietyGain} Piety.",
+
+  "AICARDMOD-DEVOUT_BLADE_CARD.title": "Devout Blade",
+  "AICARDMOD-DEVOUT_BLADE_CARD.description": "Deal {Damage} damage. If Piety >= 5, deal {BonusDamage} more. Gain 1 Piety.",
+  "AICARDMOD-DEVOUT_BLADE_CARD.upgraded_description": "Deal {Damage} damage. If Piety >= 5, deal {BonusDamage} more. Gain 1 Piety.",
+
+  "AICARDMOD-SACRED_BARRAGE_CARD.title": "Sacred Barrage",
+  "AICARDMOD-SACRED_BARRAGE_CARD.description": "Deal {Damage} damage (Piety + 1) times (max {MaxHits} hits).",
+  "AICARDMOD-SACRED_BARRAGE_CARD.upgraded_description": "Deal {Damage} damage (Piety + 1) times (max {MaxHits} hits).",
+
+  "AICARDMOD-ATONEMENT_CARD.title": "Atonement",
+  "AICARDMOD-ATONEMENT_CARD.description": "Lose 2 Piety. Gain {Block} Block.",
+  "AICARDMOD-ATONEMENT_CARD.upgraded_description": "Lose 2 Piety. Gain {Block} Block.",
+
+  "AICARDMOD-PROPHETIC_SHIELD_CARD.title": "Prophetic Shield",
+  "AICARDMOD-PROPHETIC_SHIELD_CARD.description": "Gain Piety x {Multiplier} Block.",
+  "AICARDMOD-PROPHETIC_SHIELD_CARD.upgraded_description": "Gain Piety x {Multiplier} Block.",
+
+  "AICARDMOD-HOLY_RITUAL_CARD.title": "Holy Ritual",
+  "AICARDMOD-HOLY_RITUAL_CARD.description": "Double your current Piety (max 12).",
+  "AICARDMOD-HOLY_RITUAL_CARD.upgraded_description": "Double your current Piety (max 20).",
+
+  "AICARDMOD-INNER_PEACE_CARD.title": "Inner Peace",
+  "AICARDMOD-INNER_PEACE_CARD.description": "Gain {Block} Block. If Piety >= {PietyThreshold}, draw 1 card.",
+  "AICARDMOD-INNER_PEACE_CARD.upgraded_description": "Gain {Block} Block. If Piety >= {PietyThreshold}, draw 1 card.",
+
+  "AICARDMOD-DIVINE_GRACE_CARD.title": "Divine Grace",
+  "AICARDMOD-DIVINE_GRACE_CARD.description": "Draw 2 cards. Gain 2 Piety. Exhaust.",
+  "AICARDMOD-DIVINE_GRACE_CARD.upgraded_description": "Draw 3 cards. Gain 3 Piety. Exhaust.",
+
+  "AICARDMOD-DIVINE_FAVOR_CARD.title": "Divine Favor",
+  "AICARDMOD-DIVINE_FAVOR_CARD.description": "At the start of each turn, gain 1 Piety.",
+  "AICARDMOD-DIVINE_FAVOR_CARD.upgraded_description": "At the start of each turn, gain 2 Piety.",
+
+  "AICARDMOD-HOLY_RESONANCE_CARD.title": "Holy Resonance",
+  "AICARDMOD-HOLY_RESONANCE_CARD.description": "At the start of each turn, if Piety >= 3, gain 1 Strength.",
+  "AICARDMOD-HOLY_RESONANCE_CARD.upgraded_description": "At the start of each turn, if Piety >= 1, gain 1 Strength.",
+
+  "AICARDMOD-BLESSED_ARMOR_CARD.title": "Blessed Armor",
+  "AICARDMOD-BLESSED_ARMOR_CARD.description": "At the start of each turn, gain Block equal to your Piety.",
+  "AICARDMOD-BLESSED_ARMOR_CARD.upgraded_description": "At the start of each turn, gain (Piety + {BonusBlock}) Block.",
+
+  "AICARDMOD-PROPHETIC_AURA_CARD.title": "Prophetic Aura",
+  "AICARDMOD-PROPHETIC_AURA_CARD.description": "At the start of each turn, apply 1 Vulnerable to ALL enemies.",
+  "AICARDMOD-PROPHETIC_AURA_CARD.upgraded_description": "At the start of each turn, apply 2 Vulnerable to ALL enemies."
 }

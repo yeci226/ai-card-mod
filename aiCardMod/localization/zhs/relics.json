@@ -1,0 +1,7 @@
+{
+  "AICARDMOD-ORACLE_TABLET_RELIC.title": "神諭石板",
+  "AICARDMOD-ORACLE_TABLET_RELIC.description": "每回合結束時，虔誠衰退 1 層（而非 2 層）。使用神諭時，若虔誠 = 0，神明以「不悅」回應。",
+
+  "AICARDMOD-ORACLE_TABLET_RELIC_UPGRADED_RELIC.title": "神諭石板（升華）",
+  "AICARDMOD-ORACLE_TABLET_RELIC_UPGRADED_RELIC.description": "每回合結束時，虔誠不再衰退。使用神諭時，若虔誠 = 0，神明以「不悅」回應。"
+}

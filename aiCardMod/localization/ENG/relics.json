@@ -1,0 +1,7 @@
+{
+  "AICARDMOD-ORACLE_TABLET_RELIC.title": "Oracle Tablet",
+  "AICARDMOD-ORACLE_TABLET_RELIC.description": "At end of turn, Piety decays by 1 instead of 2. When using Oracle at 0 Piety, the oracle responds as DISPLEASED instead of ANGERED.",
+
+  "AICARDMOD-ORACLE_TABLET_RELIC_UPGRADED_RELIC.title": "Oracle Tablet (Awakened)",
+  "AICARDMOD-ORACLE_TABLET_RELIC_UPGRADED_RELIC.description": "Piety no longer decays each turn. When using Oracle at 0 Piety, the oracle responds as DISPLEASED instead of ANGERED."
+}

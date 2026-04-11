@@ -9,7 +9,17 @@
       "Bash(\"/c/Users/shawn/文件/Godot_v4.5.1-stable_mono_win64/Godot_v4.5.1-stable_mono_win64.exe\" --headless --export-pack \"Windows Desktop\" \"D:/Steam/steamapps/common/Slay the Spire 2/mods/aiCardMod/aiCardMod.pck\" --path \"c:/Users/shawn/桌面/sts2-mod/ai-card-mod\")",
       "Bash(echo \"Exit: $?\")",
       "Bash(powershell -Command ':*)",
-      "Bash(read f:*)"
+      "Bash(read f:*)",
+      "Bash(reg query:*)",
+      "Bash(ilspycmd \"/d/Steam/steamapps/common/Slay the Spire 2/mods/BaseLib/BaseLib.dll\" -t \"BaseLib.Abstracts.CustomCardPoolModel\")",
+      "Bash(ilspycmd \"/d/Steam/steamapps/common/Slay the Spire 2/data_sts2_windows_x86_64/sts2.dll\" -t \"MegaCrit.Sts2.Core.Entities.Cards.CardRarity\")",
+      "Bash(ilspycmd \"/d/Steam/steamapps/common/Slay the Spire 2/mods/BaseLib/BaseLib.dll\" -t \"BaseLib.Abstracts.CustomRelicModel\")",
+      "Bash(ilspycmd \"/d/Steam/steamapps/common/Slay the Spire 2/data_sts2_windows_x86_64/sts2.dll\" -t \"MegaCrit.Sts2.Core.Models.RelicModel\")",
+      "Bash(ilspycmd \"/d/Steam/steamapps/common/Slay the Spire 2/sts2_Data/Managed/MegaCrit.Sts2.Core.dll\")",
+      "Bash(grep -n \"DynamicVars\\\\|dynamicVar\\\\|dynamicvars\\\\|\\\\\"\\\\\\\\[.*\\\\\\\\]\\\\\"\" /tmp/sts2_full.txt)",
+      "Bash(grep -n \"DescriptionLocString\\\\|GetDescription\\\\|description.*DynamicVar\\\\|DynamicVar.*description\\\\|GetRawText\\\\|GetVarText\\\\|varValue\\\\|\\\\\\\\.Name\\\\b.*var\\\\b\" /tmp/sts2_full.txt)",
+      "Bash(sed -n '284545,284510p' /tmp/sts2_full.txt)",
+      "Bash(sed -n '285490,285510p' /tmp/sts2_full.txt)"
     ]
   }
 }

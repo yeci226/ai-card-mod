@@ -1,0 +1,17 @@
+{
+  "AICARDMOD-PROPHET_CHARACTER.aromaPrinciple": "[sine][gold]……神明……是否在聆聽……[/gold][/sine]",
+  "AICARDMOD-PROPHET_CHARACTER.banter.alive.endTurnPing": "神明的恩典與我同在。",
+  "AICARDMOD-PROPHET_CHARACTER.banter.dead.endTurnPing": "……我的信仰……從未消散……",
+  "AICARDMOD-PROPHET_CHARACTER.cardsModifierDescription": "先知的卡牌現在會出現在獎勵和商店中。",
+  "AICARDMOD-PROPHET_CHARACTER.cardsModifierTitle": "先知卡牌",
+  "AICARDMOD-PROPHET_CHARACTER.description": "一位被神明揀選的少女。\n她的[gold]虔誠[/gold]決定神明是否眷顧，\n而[gold]神諭[/gold]的力量，取決於她付出了多少信仰。",
+  "AICARDMOD-PROPHET_CHARACTER.eventDeathPrevention": "神明……請再給我一次機會……",
+  "AICARDMOD-PROPHET_CHARACTER.goldMonologue": "[sine]這些金幣……或許可以獻給神明……[/sine]",
+  "AICARDMOD-PROPHET_CHARACTER.possessiveAdjective": "她的",
+  "AICARDMOD-PROPHET_CHARACTER.pronounObject": "她",
+  "AICARDMOD-PROPHET_CHARACTER.pronounPossessive": "她的",
+  "AICARDMOD-PROPHET_CHARACTER.pronounSubject": "她",
+  "AICARDMOD-PROPHET_CHARACTER.title": "先知",
+  "AICARDMOD-PROPHET_CHARACTER.titleObject": "先知",
+  "AICARDMOD-PROPHET_CHARACTER.unlockText": "用[pink]{Prerequisite}[/pink]進行一局遊戲來解鎖這個角色。"
+}

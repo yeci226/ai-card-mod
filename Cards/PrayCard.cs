@@ -11,7 +11,7 @@ namespace AICardMod.Scripts;
 /// <summary>
 /// 祈禱 — 賦予虔誠。虔誠決定神諭的效果品質。
 /// </summary>
-[Pool(typeof(ColorlessCardPool))]
+[Pool(typeof(ProphetCardPool))]
 public class PrayCard : CustomCardModel
 {
     private const int energyCost = 1;
@@ -20,7 +20,7 @@ public class PrayCard : CustomCardModel
     private const TargetType targetType = TargetType.None;
     private const bool shouldShowInLibrary = true;
 
-    private int _pietyGain = 3;
+    private int _pietyGain = 2;
 
     public PrayCard() : base(energyCost, type, rarity, targetType, shouldShowInLibrary) { }
 
@@ -31,6 +31,6 @@ public class PrayCard : CustomCardModel
 
     protected override void OnUpgrade()
     {
-        _pietyGain = 5;
+        _pietyGain = 4;
     }
 }

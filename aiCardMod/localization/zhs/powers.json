@@ -5,5 +5,29 @@
 
   "AICARDMOD-DEVOTION_POWER.title": "信仰",
   "AICARDMOD-DEVOTION_POWER.description": "每回合開始時獲得虔誠。",
-  "AICARDMOD-DEVOTION_POWER.smartDescription": "每回合開始時獲得 [blue]{Amount}[/blue] 層虔誠。"
+  "AICARDMOD-DEVOTION_POWER.smartDescription": "每回合開始時獲得 [blue]{Amount}[/blue] 層虔誠。",
+
+  "AICARDMOD-DIVINE_LIGHT_POWER.title": "神光",
+  "AICARDMOD-DIVINE_LIGHT_POWER.description": "每回合開始時獲得格擋。",
+  "AICARDMOD-DIVINE_LIGHT_POWER.smartDescription": "每回合開始時獲得 [blue]{Amount}[/blue] 格擋。",
+
+  "AICARDMOD-PROPHET_EYE_POWER.title": "先知之眼",
+  "AICARDMOD-PROPHET_EYE_POWER.description": "每回合開始時，如果虔誠達到閾值，額外抽一張牌。",
+  "AICARDMOD-PROPHET_EYE_POWER.smartDescription": "每回合開始時，若虔誠 ≥ [blue]{Amount}[/blue]，額外抽 1 張牌。",
+
+  "AICARDMOD-DIVINE_FAVOR_POWER.title": "神明眷顧",
+  "AICARDMOD-DIVINE_FAVOR_POWER.description": "每回合開始時獲得虔誠。",
+  "AICARDMOD-DIVINE_FAVOR_POWER.smartDescription": "每回合開始時獲得 [blue]{Amount}[/blue] 層虔誠。",
+
+  "AICARDMOD-HOLY_RESONANCE_POWER.title": "神聖共鳴",
+  "AICARDMOD-HOLY_RESONANCE_POWER.description": "每回合開始時，若虔誠達到閾值，獲得 1 層力量。",
+  "AICARDMOD-HOLY_RESONANCE_POWER.smartDescription": "每回合開始時，若虔誠 ≥ [blue]{Amount}[/blue]，獲得 1 層力量。",
+
+  "AICARDMOD-BLESSED_ARMOR_POWER.title": "神佑護甲",
+  "AICARDMOD-BLESSED_ARMOR_POWER.description": "每回合開始時獲得等於虔誠的格擋。",
+  "AICARDMOD-BLESSED_ARMOR_POWER.smartDescription": "每回合開始時獲得（虔誠 + [blue]{Amount}[/blue]）格擋。",
+
+  "AICARDMOD-PROPHETIC_AURA_POWER.title": "先知光環",
+  "AICARDMOD-PROPHETIC_AURA_POWER.description": "每回合對所有敵人施加易傷。",
+  "AICARDMOD-PROPHETIC_AURA_POWER.smartDescription": "每回合對所有敵人施加 [blue]{Amount}[/blue] 層易傷。"
 }

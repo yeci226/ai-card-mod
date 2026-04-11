@@ -1,0 +1,17 @@
+{
+  "AICARDMOD-PROPHET_CHARACTER.aromaPrinciple": "[sine][gold]...The oracle... is she listening...[/gold][/sine]",
+  "AICARDMOD-PROPHET_CHARACTER.banter.alive.endTurnPing": "The oracle's grace watches over me.",
+  "AICARDMOD-PROPHET_CHARACTER.banter.dead.endTurnPing": "...My faith... never fades...",
+  "AICARDMOD-PROPHET_CHARACTER.cardsModifierDescription": "The Prophet's cards now appear in rewards and shops.",
+  "AICARDMOD-PROPHET_CHARACTER.cardsModifierTitle": "Prophet Cards",
+  "AICARDMOD-PROPHET_CHARACTER.description": "A young girl chosen by the divine oracle.\nHer [gold]Piety[/gold] determines the oracle's favor,\nand the power of [gold]Oracle[/gold] depends on how much faith she offers.",
+  "AICARDMOD-PROPHET_CHARACTER.eventDeathPrevention": "Oracle... please grant me one more chance...",
+  "AICARDMOD-PROPHET_CHARACTER.goldMonologue": "[sine]These coins... perhaps an offering to the oracle...[/sine]",
+  "AICARDMOD-PROPHET_CHARACTER.possessiveAdjective": "her",
+  "AICARDMOD-PROPHET_CHARACTER.pronounObject": "her",
+  "AICARDMOD-PROPHET_CHARACTER.pronounPossessive": "her",
+  "AICARDMOD-PROPHET_CHARACTER.pronounSubject": "she",
+  "AICARDMOD-PROPHET_CHARACTER.title": "The Prophet",
+  "AICARDMOD-PROPHET_CHARACTER.titleObject": "the Prophet",
+  "AICARDMOD-PROPHET_CHARACTER.unlockText": "Play a run with [pink]{Prerequisite}[/pink] to unlock this character."
+}

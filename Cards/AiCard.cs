@@ -15,7 +15,7 @@ using MegaCrit.Sts2.Core.Models.CardPools;
 
 namespace AICardMod.Scripts;
 
-[Pool(typeof(ColorlessCardPool))]
+[Pool(typeof(ProphetCardPool))]
 public class AiCard : CustomCardModel
 {
     private const int energyCost = 2;

@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://char_icon_prophet"]
+
+[ext_resource type="Texture2D" uid="uid://cogfk7sgjuotx" path="res://images/char_icon_prophet.png" id="1_icon"]
+
+[node name="CharIconProphet" type="TextureRect"]
+texture = ExtResource("1_icon")
+expand_mode = 1
+stretch_mode = 5

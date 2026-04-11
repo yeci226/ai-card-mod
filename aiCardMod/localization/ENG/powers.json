@@ -5,5 +5,29 @@
 
   "AICARDMOD-DEVOTION_POWER.title": "Devotion",
   "AICARDMOD-DEVOTION_POWER.description": "Gain Piety at the start of each turn.",
-  "AICARDMOD-DEVOTION_POWER.smartDescription": "Gain [blue]{Amount}[/blue] Piety at the start of each turn."
+  "AICARDMOD-DEVOTION_POWER.smartDescription": "Gain [blue]{Amount}[/blue] Piety at the start of each turn.",
+
+  "AICARDMOD-DIVINE_LIGHT_POWER.title": "Divine Light",
+  "AICARDMOD-DIVINE_LIGHT_POWER.description": "Gain Block at the start of each turn.",
+  "AICARDMOD-DIVINE_LIGHT_POWER.smartDescription": "Gain [blue]{Amount}[/blue] Block at the start of each turn.",
+
+  "AICARDMOD-PROPHET_EYE_POWER.title": "Prophet's Eye",
+  "AICARDMOD-PROPHET_EYE_POWER.description": "At the start of each turn, if Piety reaches the threshold, draw an extra card.",
+  "AICARDMOD-PROPHET_EYE_POWER.smartDescription": "If Piety >= [blue]{Amount}[/blue], draw 1 extra card at the start of each turn.",
+
+  "AICARDMOD-DIVINE_FAVOR_POWER.title": "Divine Favor",
+  "AICARDMOD-DIVINE_FAVOR_POWER.description": "Gain Piety at the start of each turn.",
+  "AICARDMOD-DIVINE_FAVOR_POWER.smartDescription": "Gain [blue]{Amount}[/blue] Piety at the start of each turn.",
+
+  "AICARDMOD-HOLY_RESONANCE_POWER.title": "Holy Resonance",
+  "AICARDMOD-HOLY_RESONANCE_POWER.description": "At the start of each turn, if Piety meets the threshold, gain 1 Strength.",
+  "AICARDMOD-HOLY_RESONANCE_POWER.smartDescription": "If Piety >= [blue]{Amount}[/blue], gain 1 Strength at the start of each turn.",
+
+  "AICARDMOD-BLESSED_ARMOR_POWER.title": "Blessed Armor",
+  "AICARDMOD-BLESSED_ARMOR_POWER.description": "At the start of each turn, gain Block equal to your Piety.",
+  "AICARDMOD-BLESSED_ARMOR_POWER.smartDescription": "Gain (Piety + [blue]{Amount}[/blue]) Block at the start of each turn.",
+
+  "AICARDMOD-PROPHETIC_AURA_POWER.title": "Prophetic Aura",
+  "AICARDMOD-PROPHETIC_AURA_POWER.description": "At the start of each turn, apply Vulnerable to ALL enemies.",
+  "AICARDMOD-PROPHETIC_AURA_POWER.smartDescription": "Apply [blue]{Amount}[/blue] Vulnerable to ALL enemies at the start of each turn."
 }
