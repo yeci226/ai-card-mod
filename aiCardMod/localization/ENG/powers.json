@@ -1,7 +1,7 @@
 {
   "AICARDMOD-PIETY_POWER.title": "Piety",
-  "AICARDMOD-PIETY_POWER.description": "Fully consumed when the Oracle is played. Higher stacks yield stronger effects.",
-  "AICARDMOD-PIETY_POWER.smartDescription": "Fully consumed when the Oracle is played. Current: [blue]{Amount}[/blue] stacks.",
+  "AICARDMOD-PIETY_POWER.description": "A stackable resource that powers multiple divine effects. Higher stacks yield stronger effects. Negative Piety causes Weak, and deeper debt causes Vulnerable and Weak.",
+  "AICARDMOD-PIETY_POWER.smartDescription": "Current: [blue]{Amount}[/blue] stacks. Negative Piety recovers by 1 at end of turn.",
 
   "AICARDMOD-DEVOTION_POWER.title": "Devotion",
   "AICARDMOD-DEVOTION_POWER.description": "Gain Piety at the start of each turn.",

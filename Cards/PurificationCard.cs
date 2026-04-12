@@ -1,37 +1,38 @@
 using BaseLib.Abstracts;
-using BaseLib.Cards.Variables;
+
 using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.Localization.DynamicVars;
+using MegaCrit.Sts2.Core.Models.CardPools;
+using MegaCrit.Sts2.Core.Models.Powers;
 
 namespace AICardMod.Scripts;
 
 /// <summary>
-/// 淨化 — 獲得大量虔誠。消耗。
+/// 淨化
 /// </summary>
 [Pool(typeof(ProphetCardPool))]
 public class PurificationCard : CustomCardModel
 {
+    private const int energyCost = 1;
     private const CardType type = CardType.Skill;
-    private const CardRarity rarity = CardRarity.Uncommon;
+    private const CardRarity rarity = CardRarity.Common;
     private const TargetType targetType = TargetType.None;
     private const bool shouldShowInLibrary = true;
 
-    private int _pietyGain = 4;
-
-    public PurificationCard() : base(0, type, rarity, targetType, shouldShowInLibrary) { }
-
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new ExhaustiveVar(1)];
+    public PurificationCard() : base(energyCost, type, rarity, targetType, shouldShowInLibrary) { }
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        await PowerCmd.Apply<PietyPower>(Owner.Creature, _pietyGain, Owner.Creature, this);
+        await PowerCmd.Apply<PietyPower>(Owner.Creature, 2, Owner.Creature, this);
+        if (IsUpgraded)
+            await CardPileCmd.Draw(choiceContext, 1, Owner);
     }
 
     protected override void OnUpgrade()
     {
-        _pietyGain = 6;
+        // Upgrade effects handled in OnPlay if needed
     }
 }
+

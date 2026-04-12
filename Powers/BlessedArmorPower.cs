@@ -1,4 +1,4 @@
-using BaseLib.Abstracts;
+﻿using BaseLib.Abstracts;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Powers;
@@ -29,3 +29,4 @@ public class BlessedArmorPower : CustomPowerModel
             await CreatureCmd.GainBlock(Owner, new BlockVar(block, 0), null);
     }
 }
+

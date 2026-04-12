@@ -1,4 +1,4 @@
-using BaseLib.Abstracts;
+﻿using BaseLib.Abstracts;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Powers;
@@ -24,3 +24,4 @@ public class DivineLightPower : CustomPowerModel
             await CreatureCmd.GainBlock(Owner, new BlockVar((int)Amount, 0), null);
     }
 }
+

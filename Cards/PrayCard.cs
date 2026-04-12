@@ -1,16 +1,14 @@
 using BaseLib.Abstracts;
+
 using BaseLib.Utils;
-using Godot;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models.CardPools;
+using MegaCrit.Sts2.Core.Models.Powers;
 
 namespace AICardMod.Scripts;
 
-/// <summary>
-/// 祈禱 — 賦予虔誠。虔誠決定神諭的效果品質。
-/// </summary>
 [Pool(typeof(ProphetCardPool))]
 public class PrayCard : CustomCardModel
 {
@@ -20,17 +18,27 @@ public class PrayCard : CustomCardModel
     private const TargetType targetType = TargetType.None;
     private const bool shouldShowInLibrary = true;
 
-    private int _pietyGain = 2;
+    private int _basePiety = 3;
+    private int _upgradedPiety = 5;
+    private int _drawCount = 1;
 
     public PrayCard() : base(energyCost, type, rarity, targetType, shouldShowInLibrary) { }
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        await PowerCmd.Apply<PietyPower>(Owner.Creature, _pietyGain, Owner.Creature, this);
+        int piety = _basePiety;
+        if (IsUpgraded) piety = _upgradedPiety;
+
+        // Gain Piety.
+        await PowerCmd.Apply<PietyPower>(Owner.Creature, piety, Owner.Creature, this);
+        
+        // Draw 1.
+        await CardPileCmd.Draw(choiceContext, _drawCount, Owner);
     }
 
     protected override void OnUpgrade()
     {
-        _pietyGain = 4;
+        // Upgrade mechanics handled via _basePiety/_upgradedPiety check
     }
 }
+

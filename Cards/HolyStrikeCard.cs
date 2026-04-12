@@ -1,37 +1,44 @@
-using BaseLib.Abstracts;
+﻿using BaseLib.Abstracts;
 using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.Localization.DynamicVars;
-using MegaCrit.Sts2.Core.ValueProps;
+using MegaCrit.Sts2.Core.Models.CardPools;
 
 namespace AICardMod.Scripts;
 
 [Pool(typeof(ProphetCardPool))]
 public class HolyStrikeCard : CustomCardModel
 {
+    private const int energyCost = 1;
     private const CardType type = CardType.Attack;
-    private const CardRarity rarity = CardRarity.Basic;
+    private const CardRarity rarity = CardRarity.Common;
     private const TargetType targetType = TargetType.AnyEnemy;
     private const bool shouldShowInLibrary = true;
 
-    private int _damage = 6;
+    private int _baseDamage = 7;
+    private int _upgradedDamage = 10;
 
-    protected override IEnumerable<DynamicVar> CanonicalVars =>
-        [new DamageVar(_damage, ValueProp.Move)];
-
-    public HolyStrikeCard() : base(1, type, rarity, targetType, shouldShowInLibrary) { }
+    public HolyStrikeCard() : base(energyCost, type, rarity, targetType, shouldShowInLibrary) { }
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        if (cardPlay.Target == null) return;
-        await DamageCmd.Attack(_damage).FromCard(this).Targeting(cardPlay.Target).Execute(choiceContext);
+        var target = cardPlay.Target;
+        if (target == null) return;
+
+        int damage = IsUpgraded ? _upgradedDamage : _baseDamage;
+        await DamageCmd.Attack(damage)
+            .FromCard(this)
+            .Targeting(target)
+            .Execute(choiceContext);
+
+        // Gain 1 piety
+        await PowerCmd.Apply<PietyPower>(Owner.Creature, 1, Owner.Creature, this);
     }
 
     protected override void OnUpgrade()
     {
-        _damage = 8;
-        DynamicVars.Damage.BaseValue = _damage;
+        base.OnUpgrade();
     }
 }
+

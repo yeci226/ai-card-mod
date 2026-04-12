@@ -1,4 +1,4 @@
-using BaseLib.Abstracts;
+﻿using BaseLib.Abstracts;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Powers;
@@ -24,3 +24,4 @@ public class DevotionPower : CustomPowerModel
             await PowerCmd.Apply<PietyPower>(Owner, Amount, Owner, null);
     }
 }
+

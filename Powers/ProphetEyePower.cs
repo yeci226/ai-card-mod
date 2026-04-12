@@ -1,5 +1,4 @@
-using BaseLib.Abstracts;
-using MegaCrit.Sts2.Core.Commands;
+﻿using BaseLib.Abstracts;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -7,8 +6,7 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 namespace AICardMod.Scripts;
 
 /// <summary>
-/// 先知之眼 — 每回合開始時，若虔誠層數 ≥ 閾值，額外抽一張牌。
-/// 層數儲存的是虔誠閾值。
+/// At the start of turn, if Piety meets the threshold, add a Prayer to hand.
 /// </summary>
 public class ProphetEyePower : CustomPowerModel
 {
@@ -26,6 +24,7 @@ public class ProphetEyePower : CustomPowerModel
         int threshold = (int)Amount;
 
         if (piety >= threshold)
-            await CardPileCmd.Draw(choiceContext, 1, player);
+            await ProphetCardFactory.AddToHand<PrayCard>(choiceContext, player);
     }
 }
+

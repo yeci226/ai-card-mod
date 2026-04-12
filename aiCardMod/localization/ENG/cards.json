@@ -1,11 +1,11 @@
-{
+﻿{
   "AICARDMOD-HOLY_STRIKE_CARD.title": "Holy Strike",
-  "AICARDMOD-HOLY_STRIKE_CARD.description": "Deal {Damage} damage.",
-  "AICARDMOD-HOLY_STRIKE_CARD.upgraded_description": "Deal {Damage} damage.",
+  "AICARDMOD-HOLY_STRIKE_CARD.description": "Deal {Damage:diff()} damage.",
+  "AICARDMOD-HOLY_STRIKE_CARD.upgraded_description": "Deal {Damage:diff()} damage.",
 
   "AICARDMOD-PIOUS_DEFEND_CARD.title": "Pious Defend",
-  "AICARDMOD-PIOUS_DEFEND_CARD.description": "Gain {Block} Block.\nIf Piety >= 2, gain {BonusBlock} more Block.",
-  "AICARDMOD-PIOUS_DEFEND_CARD.upgraded_description": "Gain {Block} Block.\nIf Piety >= 2, gain {BonusBlock} more Block.",
+  "AICARDMOD-PIOUS_DEFEND_CARD.description": "Gain {Block:diff()} Block.\nIf Piety >= 2, gain {BonusBlock:diff()} more Block.",
+  "AICARDMOD-PIOUS_DEFEND_CARD.upgraded_description": "Gain {Block:diff()} Block.\nIf Piety >= 2, gain {BonusBlock:diff()} more Block.",
 
   "AICARDMOD-ORACLE_TABLET_RELIC.title": "Oracle Tablet",
   "AICARDMOD-ORACLE_TABLET_RELIC.description": "When using Oracle at 0 Piety, the oracle responds as DISPLEASED instead of ANGERED.",
@@ -19,135 +19,232 @@
   "AICARDMOD-DEVOTION_CARD.upgraded_description": "Gain 2 Piety at the start of each turn.",
 
   "AICARDMOD-AI_CARD.title": "AI Oracle",
-  "AICARDMOD-AI_CARD.description": "Name your desire. The AI grants exactly what you ask — if it is too powerful, a price must be paid.",
-  "AICARDMOD-AI_CARD.upgraded_description": "Name your desire. The AI grants exactly what you ask — if it is too powerful, a price must be paid.",
-  "AICARDMOD-UI_DIALOG.title": "Oracle  —  Name Your Desire",
+  "AICARDMOD-AI_CARD.description": "Name your desire. The AI grants exactly what you ask - if it is too powerful, a price must be paid.",
+  "AICARDMOD-AI_CARD.upgraded_description": "Name your desire. The AI grants exactly what you ask - if it is too powerful, a price must be paid.",
+  "AICARDMOD-UI_DIALOG.title": "Oracle  -  Name Your Desire",
   "AICARDMOD-UI_DIALOG.instructions": "What effect do you want? (e.g. \"80 block\", \"draw 3 cards\", \"2 strength\")\nIf the request is too powerful, the AI will add a penalty to balance it.",
   "AICARDMOD-UI_DIALOG.input_placeholder": "Type your request here...",
   "AICARDMOD-UI_DIALOG.button": "Transform Card  [Enter]",
   "AICARDMOD-UI_DIALOG.cancel": "[Esc] Cancel",
 
   "AICARDMOD-SACRED_FLAME_CARD.title": "Sacred Flame",
-  "AICARDMOD-SACRED_FLAME_CARD.description": "Deal {Damage} damage. If Piety >= 3, deal {BonusDamage} more damage.",
-  "AICARDMOD-SACRED_FLAME_CARD.upgraded_description": "Deal {Damage} damage. If Piety >= 3, deal {BonusDamage} more damage.",
+  "AICARDMOD-SACRED_FLAME_CARD.description": "Deal {Damage:diff()} damage. If Piety >= 3, deal {BonusDamage:diff()} more damage.",
+  "AICARDMOD-SACRED_FLAME_CARD.upgraded_description": "Deal {Damage:diff()} damage. If Piety >= 3, deal {BonusDamage:diff()} more damage.",
 
   "AICARDMOD-JUDGMENT_CARD.title": "Judgment",
-  "AICARDMOD-JUDGMENT_CARD.description": "Apply {VulnAmount} Vulnerable to target. Deal {Damage} damage.",
-  "AICARDMOD-JUDGMENT_CARD.upgraded_description": "Apply {VulnAmount} Vulnerable to target. Deal {Damage} damage.",
+  "AICARDMOD-JUDGMENT_CARD.description": "Apply {VulnAmount:diff()} Vulnerable to target. Deal {Damage:diff()} damage.",
+  "AICARDMOD-JUDGMENT_CARD.upgraded_description": "Apply {VulnAmount:diff()} Vulnerable to target. Deal {Damage:diff()} damage.",
 
   "AICARDMOD-HOLY_WRATH_CARD.title": "Holy Wrath",
-  "AICARDMOD-HOLY_WRATH_CARD.description": "Deal {Damage} damage to ALL enemies.",
-  "AICARDMOD-HOLY_WRATH_CARD.upgraded_description": "Deal {Damage} damage to ALL enemies.",
+  "AICARDMOD-HOLY_WRATH_CARD.description": "Deal {Damage:diff()} damage to ALL enemies.",
+  "AICARDMOD-HOLY_WRATH_CARD.upgraded_description": "Deal {Damage:diff()} damage to ALL enemies.",
 
   "AICARDMOD-DIVINE_PUNISHMENT_CARD.title": "Divine Punishment",
-  "AICARDMOD-DIVINE_PUNISHMENT_CARD.description": "Deal {Damage} damage. Consume 3 Piety to deal {BonusDamage} more damage.",
-  "AICARDMOD-DIVINE_PUNISHMENT_CARD.upgraded_description": "Deal {Damage} damage. Consume 3 Piety to deal {BonusDamage} more damage.",
+  "AICARDMOD-DIVINE_PUNISHMENT_CARD.description": "Lose 3 Piety. Deal {Damage:diff()} damage and {BonusDamage:diff()} bonus damage.",
+  "AICARDMOD-DIVINE_PUNISHMENT_CARD.upgraded_description": "Lose 3 Piety. Deal {Damage:diff()} damage and {BonusDamage:diff()} bonus damage.",
 
   "AICARDMOD-DIVINE_STRIKE_CARD.title": "Divine Strike",
-  "AICARDMOD-DIVINE_STRIKE_CARD.description": "Deal {Damage} damage {Hits} times. Gain 1 Piety per hit.",
-  "AICARDMOD-DIVINE_STRIKE_CARD.upgraded_description": "Deal {Damage} damage {Hits} times. Gain 1 Piety per hit.",
+  "AICARDMOD-DIVINE_STRIKE_CARD.description": "Deal {Damage:diff()} damage {Hits:diff()} times. Gain 1 Piety per hit.",
+  "AICARDMOD-DIVINE_STRIKE_CARD.upgraded_description": "Deal {Damage:diff()} damage {Hits:diff()} times. Gain 1 Piety per hit.",
 
   "AICARDMOD-MEDITATION_CARD.title": "Meditation",
-  "AICARDMOD-MEDITATION_CARD.description": "Gain {Block} Block. Gain {PietyGain} Piety.",
-  "AICARDMOD-MEDITATION_CARD.upgraded_description": "Gain {Block} Block. Gain {PietyGain} Piety.",
+  "AICARDMOD-MEDITATION_CARD.description": "Gain {Block:diff()} Block. Gain {PietyGain:diff()} Piety.",
+  "AICARDMOD-MEDITATION_CARD.upgraded_description": "Gain {Block:diff()} Block. Gain {PietyGain:diff()} Piety.",
 
   "AICARDMOD-HOLY_SHIELD_CARD.title": "Holy Shield",
   "AICARDMOD-HOLY_SHIELD_CARD.description": "Gain (4 + Piety) Block.",
   "AICARDMOD-HOLY_SHIELD_CARD.upgraded_description": "Gain (7 + Piety) Block.",
 
   "AICARDMOD-CONDEMN_CARD.title": "Condemn",
-  "AICARDMOD-CONDEMN_CARD.description": "Apply {WeakAmount} Weak and {VulnAmount} Vulnerable to target.",
-  "AICARDMOD-CONDEMN_CARD.upgraded_description": "Apply {WeakAmount} Weak and {VulnAmount} Vulnerable to target.",
+  "AICARDMOD-CONDEMN_CARD.description": "Apply {WeakAmount:diff()} Weak and {VulnAmount:diff()} Vulnerable to target.",
+  "AICARDMOD-CONDEMN_CARD.upgraded_description": "Apply {WeakAmount:diff()} Weak and {VulnAmount:diff()} Vulnerable to target.",
 
   "AICARDMOD-PURIFICATION_CARD.title": "Purification",
-  "AICARDMOD-PURIFICATION_CARD.description": "Gain 4 Piety. Exhaust.",
-  "AICARDMOD-PURIFICATION_CARD.upgraded_description": "Gain 6 Piety. Exhaust.",
+  "AICARDMOD-PURIFICATION_CARD.description": "[gold]Exhaust[/gold]\nGain 4 Piety. Add a Smite to your hand.",
+  "AICARDMOD-PURIFICATION_CARD.upgraded_description": "[gold]Exhaust[/gold]\nGain 6 Piety. Add a Smite to your hand.",
 
   "AICARDMOD-ORACLE_INSIGHT_CARD.title": "Oracle's Insight",
-  "AICARDMOD-ORACLE_INSIGHT_CARD.description": "Draw 3 cards. Gain 2 Piety. Exhaust.",
-  "AICARDMOD-ORACLE_INSIGHT_CARD.upgraded_description": "Draw 4 cards. Gain 3 Piety. Exhaust.",
+  "AICARDMOD-ORACLE_INSIGHT_CARD.description": "[gold]Exhaust[/gold]\nDraw 3 cards. Gain 2 Piety. Add an Offering Chant to your hand.",
+  "AICARDMOD-ORACLE_INSIGHT_CARD.upgraded_description": "[gold]Exhaust[/gold]\nDraw 4 cards. Gain 3 Piety. Add an Offering Chant to your hand.",
 
   "AICARDMOD-DIVINE_LIGHT_CARD.title": "Divine Light",
   "AICARDMOD-DIVINE_LIGHT_CARD.description": "At the start of each turn, gain 3 Block.",
   "AICARDMOD-DIVINE_LIGHT_CARD.upgraded_description": "At the start of each turn, gain 5 Block.",
 
   "AICARDMOD-PROPHET_EYE_CARD.title": "Prophet's Eye",
-  "AICARDMOD-PROPHET_EYE_CARD.description": "At the start of each turn, if Piety >= 5, draw 1 extra card.",
-  "AICARDMOD-PROPHET_EYE_CARD.upgraded_description": "At the start of each turn, if Piety >= 3, draw 1 extra card.",
+  "AICARDMOD-PROPHET_EYE_CARD.description": "At the start of each turn, if Piety >= 6, add a Prayer to your hand.",
+  "AICARDMOD-PROPHET_EYE_CARD.upgraded_description": "At the start of each turn, if Piety >= 4, add a Prayer to your hand.",
 
   "AICARDMOD-RADIANT_BLADE_CARD.title": "Radiant Blade",
-  "AICARDMOD-RADIANT_BLADE_CARD.description": "Deal {Damage} damage. Gain 1 Piety.",
-  "AICARDMOD-RADIANT_BLADE_CARD.upgraded_description": "Deal {Damage} damage. Gain 1 Piety.",
+  "AICARDMOD-RADIANT_BLADE_CARD.description": "Deal {Damage:diff()} damage. Gain 1 Piety.",
+  "AICARDMOD-RADIANT_BLADE_CARD.upgraded_description": "Deal {Damage:diff()} damage. Gain 1 Piety.",
 
   "AICARDMOD-SMITE_CARD.title": "Smite",
-  "AICARDMOD-SMITE_CARD.description": "Deal {Damage} damage. Apply {WeakAmount} Weak to target.",
-  "AICARDMOD-SMITE_CARD.upgraded_description": "Deal {Damage} damage. Apply {WeakAmount} Weak to target.",
+  "AICARDMOD-SMITE_CARD.description": "Deal {Damage:diff()} damage. Apply {WeakAmount:diff()} Weak to target.",
+  "AICARDMOD-SMITE_CARD.upgraded_description": "Deal {Damage:diff()} damage. Apply {WeakAmount:diff()} Weak to target.",
 
   "AICARDMOD-PIOUS_STRIKE_CARD.title": "Pious Strike",
-  "AICARDMOD-PIOUS_STRIKE_CARD.description": "Deal {Damage} damage. Gain {PietyGain} Piety.",
-  "AICARDMOD-PIOUS_STRIKE_CARD.upgraded_description": "Deal {Damage} damage. Gain {PietyGain} Piety.",
+  "AICARDMOD-PIOUS_STRIKE_CARD.description": "Deal {Damage:diff()} damage. Gain {PietyGain:diff()} Piety.",
+  "AICARDMOD-PIOUS_STRIKE_CARD.upgraded_description": "Deal {Damage:diff()} damage. Gain {PietyGain:diff()} Piety.",
 
   "AICARDMOD-HOLY_CLEAVE_CARD.title": "Holy Cleave",
-  "AICARDMOD-HOLY_CLEAVE_CARD.description": "Deal {Damage} damage to ALL enemies.",
-  "AICARDMOD-HOLY_CLEAVE_CARD.upgraded_description": "Deal {Damage} damage to ALL enemies.",
+  "AICARDMOD-HOLY_CLEAVE_CARD.description": "Deal {Damage:diff()} damage to ALL enemies.",
+  "AICARDMOD-HOLY_CLEAVE_CARD.upgraded_description": "Deal {Damage:diff()} damage to ALL enemies.",
 
   "AICARDMOD-DIVINE_LANCE_CARD.title": "Divine Lance",
-  "AICARDMOD-DIVINE_LANCE_CARD.description": "Apply {VulnAmount} Vulnerable to target. Deal {Damage} damage.",
-  "AICARDMOD-DIVINE_LANCE_CARD.upgraded_description": "Apply {VulnAmount} Vulnerable to target. Deal {Damage} damage.",
+  "AICARDMOD-DIVINE_LANCE_CARD.description": "Apply {VulnAmount:diff()} Vulnerable to target. Deal {Damage:diff()} damage.",
+  "AICARDMOD-DIVINE_LANCE_CARD.upgraded_description": "Apply {VulnAmount:diff()} Vulnerable to target. Deal {Damage:diff()} damage.",
 
   "AICARDMOD-ANGELIC_RETRIBUTION_CARD.title": "Angelic Retribution",
-  "AICARDMOD-ANGELIC_RETRIBUTION_CARD.description": "Deal {Damage} damage. Apply {WeakAmount} Weak to target.",
-  "AICARDMOD-ANGELIC_RETRIBUTION_CARD.upgraded_description": "Deal {Damage} damage. Apply {WeakAmount} Weak to target.",
+  "AICARDMOD-ANGELIC_RETRIBUTION_CARD.description": "Deal {Damage:diff()} damage. Apply {WeakAmount:diff()} Weak to target.",
+  "AICARDMOD-ANGELIC_RETRIBUTION_CARD.upgraded_description": "Deal {Damage:diff()} damage. Apply {WeakAmount:diff()} Weak to target.",
 
   "AICARDMOD-WRATHFUL_JUDGMENT_CARD.title": "Wrathful Judgment",
-  "AICARDMOD-WRATHFUL_JUDGMENT_CARD.description": "Consume all Piety. Deal Piety x {Multiplier} damage (minimum {MinDamage}).",
-  "AICARDMOD-WRATHFUL_JUDGMENT_CARD.upgraded_description": "Consume all Piety. Deal Piety x {Multiplier} damage (minimum {MinDamage}).",
+  "AICARDMOD-WRATHFUL_JUDGMENT_CARD.description": "Consume all Piety. Deal Piety x {Multiplier:diff()} damage (minimum {MinDamage:diff()}).",
+  "AICARDMOD-WRATHFUL_JUDGMENT_CARD.upgraded_description": "Consume all Piety. Deal Piety x {Multiplier:diff()} damage (minimum {MinDamage:diff()}).",
 
   "AICARDMOD-HOLY_STORM_CARD.title": "Holy Storm",
-  "AICARDMOD-HOLY_STORM_CARD.description": "Deal {Damage} damage to ALL enemies. Gain {PietyGain} Piety.",
-  "AICARDMOD-HOLY_STORM_CARD.upgraded_description": "Deal {Damage} damage to ALL enemies. Gain {PietyGain} Piety.",
+  "AICARDMOD-HOLY_STORM_CARD.description": "Deal {Damage:diff()} damage to ALL enemies. Gain {PietyGain:diff()} Piety.",
+  "AICARDMOD-HOLY_STORM_CARD.upgraded_description": "Deal {Damage:diff()} damage to ALL enemies. Gain {PietyGain:diff()} Piety.",
 
   "AICARDMOD-DEVOUT_BLADE_CARD.title": "Devout Blade",
-  "AICARDMOD-DEVOUT_BLADE_CARD.description": "Deal {Damage} damage. If Piety >= 5, deal {BonusDamage} more. Gain 1 Piety.",
-  "AICARDMOD-DEVOUT_BLADE_CARD.upgraded_description": "Deal {Damage} damage. If Piety >= 5, deal {BonusDamage} more. Gain 1 Piety.",
+  "AICARDMOD-DEVOUT_BLADE_CARD.description": "Deal {Damage:diff()} damage. If Piety >= 5, deal {BonusDamage:diff()} more. Gain 1 Piety.",
+  "AICARDMOD-DEVOUT_BLADE_CARD.upgraded_description": "Deal {Damage:diff()} damage. If Piety >= 5, deal {BonusDamage:diff()} more. Gain 1 Piety.",
 
   "AICARDMOD-SACRED_BARRAGE_CARD.title": "Sacred Barrage",
-  "AICARDMOD-SACRED_BARRAGE_CARD.description": "Deal {Damage} damage (Piety + 1) times (max {MaxHits} hits).",
-  "AICARDMOD-SACRED_BARRAGE_CARD.upgraded_description": "Deal {Damage} damage (Piety + 1) times (max {MaxHits} hits).",
+  "AICARDMOD-SACRED_BARRAGE_CARD.description": "Deal {Damage:diff()} damage (Piety + 1) times (max {MaxHits:diff()} hits).",
+  "AICARDMOD-SACRED_BARRAGE_CARD.upgraded_description": "Deal {Damage:diff()} damage (Piety + 1) times (max {MaxHits:diff()} hits).",
 
   "AICARDMOD-ATONEMENT_CARD.title": "Atonement",
-  "AICARDMOD-ATONEMENT_CARD.description": "Lose 2 Piety. Gain {Block} Block.",
-  "AICARDMOD-ATONEMENT_CARD.upgraded_description": "Lose 2 Piety. Gain {Block} Block.",
+  "AICARDMOD-ATONEMENT_CARD.description": "Lose 2 Piety. Gain {Block:diff()} Block. Can go negative.",
+  "AICARDMOD-ATONEMENT_CARD.upgraded_description": "Lose 2 Piety. Gain {Block:diff()} Block. Can go negative.",
 
   "AICARDMOD-PROPHETIC_SHIELD_CARD.title": "Prophetic Shield",
-  "AICARDMOD-PROPHETIC_SHIELD_CARD.description": "Gain Piety x {Multiplier} Block.",
-  "AICARDMOD-PROPHETIC_SHIELD_CARD.upgraded_description": "Gain Piety x {Multiplier} Block.",
+  "AICARDMOD-PROPHETIC_SHIELD_CARD.description": "Gain Piety x {Multiplier:diff()} Block.",
+  "AICARDMOD-PROPHETIC_SHIELD_CARD.upgraded_description": "Gain Piety x {Multiplier:diff()} Block.",
 
   "AICARDMOD-HOLY_RITUAL_CARD.title": "Holy Ritual",
-  "AICARDMOD-HOLY_RITUAL_CARD.description": "Double your current Piety (max 12).",
-  "AICARDMOD-HOLY_RITUAL_CARD.upgraded_description": "Double your current Piety (max 20).",
+  "AICARDMOD-HOLY_RITUAL_CARD.description": "Double your current Piety.",
+  "AICARDMOD-HOLY_RITUAL_CARD.upgraded_description": "Double your current Piety.",
+
+  "AICARDMOD-OFFERING_CHANT_CARD.title": "Offering Chant",
+  "AICARDMOD-OFFERING_CHANT_CARD.description": "Lose up to {MaxPietyToSpend:diff()} Piety. Gain that much Energy.",
+  "AICARDMOD-OFFERING_CHANT_CARD.upgraded_description": "Lose up to {MaxPietyToSpend:diff()} Piety. Gain that much Energy.",
+
+  "AICARDMOD-REVELATION_VOLLEY_CARD.title": "Revelation Volley",
+  "AICARDMOD-REVELATION_VOLLEY_CARD.description": "Deal {Damage:diff()} damage 1 time. For every {PietyPerExtraHit:diff()} Piety, deal it 1 additional time (max {MaxHits:diff()} hits).",
+  "AICARDMOD-REVELATION_VOLLEY_CARD.upgraded_description": "Deal {Damage:diff()} damage 1 time. For every {PietyPerExtraHit:diff()} Piety, deal it 1 additional time (max {MaxHits:diff()} hits).",
 
   "AICARDMOD-INNER_PEACE_CARD.title": "Inner Peace",
-  "AICARDMOD-INNER_PEACE_CARD.description": "Gain {Block} Block. If Piety >= {PietyThreshold}, draw 1 card.",
-  "AICARDMOD-INNER_PEACE_CARD.upgraded_description": "Gain {Block} Block. If Piety >= {PietyThreshold}, draw 1 card.",
+  "AICARDMOD-INNER_PEACE_CARD.description": "Gain {Block:diff()} Block. If Piety >= {PietyThreshold:diff()}, draw 1 card.",
+  "AICARDMOD-INNER_PEACE_CARD.upgraded_description": "Gain {Block:diff()} Block. If Piety >= {PietyThreshold:diff()}, draw 1 card.",
 
   "AICARDMOD-DIVINE_GRACE_CARD.title": "Divine Grace",
-  "AICARDMOD-DIVINE_GRACE_CARD.description": "Draw 2 cards. Gain 2 Piety. Exhaust.",
-  "AICARDMOD-DIVINE_GRACE_CARD.upgraded_description": "Draw 3 cards. Gain 3 Piety. Exhaust.",
+  "AICARDMOD-DIVINE_GRACE_CARD.description": "[gold]Exhaust[/gold]\nDraw 2 cards. Gain 2 Piety.",
+  "AICARDMOD-DIVINE_GRACE_CARD.upgraded_description": "[gold]Exhaust[/gold]\nDraw 3 cards. Gain 3 Piety.",
 
   "AICARDMOD-DIVINE_FAVOR_CARD.title": "Divine Favor",
   "AICARDMOD-DIVINE_FAVOR_CARD.description": "At the start of each turn, gain 1 Piety.",
   "AICARDMOD-DIVINE_FAVOR_CARD.upgraded_description": "At the start of each turn, gain 2 Piety.",
 
   "AICARDMOD-HOLY_RESONANCE_CARD.title": "Holy Resonance",
-  "AICARDMOD-HOLY_RESONANCE_CARD.description": "At the start of each turn, if Piety >= 3, gain 1 Strength.",
-  "AICARDMOD-HOLY_RESONANCE_CARD.upgraded_description": "At the start of each turn, if Piety >= 1, gain 1 Strength.",
+  "AICARDMOD-HOLY_RESONANCE_CARD.description": "Your Holy cards gain +{HolyBonus:diff()} damage and Block this combat.",
+  "AICARDMOD-HOLY_RESONANCE_CARD.upgraded_description": "Your Holy cards gain +{HolyBonus:diff()} damage and Block this combat.",
 
   "AICARDMOD-BLESSED_ARMOR_CARD.title": "Blessed Armor",
   "AICARDMOD-BLESSED_ARMOR_CARD.description": "At the start of each turn, gain Block equal to your Piety.",
-  "AICARDMOD-BLESSED_ARMOR_CARD.upgraded_description": "At the start of each turn, gain (Piety + {BonusBlock}) Block.",
+  "AICARDMOD-BLESSED_ARMOR_CARD.upgraded_description": "At the start of each turn, gain (Piety + {BonusBlock:diff()}) Block.",
 
   "AICARDMOD-PROPHETIC_AURA_CARD.title": "Prophetic Aura",
   "AICARDMOD-PROPHETIC_AURA_CARD.description": "At the start of each turn, apply 1 Vulnerable to ALL enemies.",
-  "AICARDMOD-PROPHETIC_AURA_CARD.upgraded_description": "At the start of each turn, apply 2 Vulnerable to ALL enemies."
+  "AICARDMOD-PROPHETIC_AURA_CARD.upgraded_description": "At the start of each turn, apply 2 Vulnerable to ALL enemies.",
+
+  "AICARDMOD-CONTRITION_CARD.title": "Contrition",
+  "AICARDMOD-CONTRITION_CARD.description": "Deal {Damage:diff()} damage. If Piety is negative, deal {BonusDamage:diff()} more.",
+  "AICARDMOD-CONTRITION_CARD.upgraded_description": "Deal {Damage:diff()} damage. If Piety is negative, deal {BonusDamage:diff()} more.",
+
+  "AICARDMOD-DEBT_COLLECTION_CARD.title": "Debt Collection",
+  "AICARDMOD-DEBT_COLLECTION_CARD.description": "[gold]Exhaust[/gold]\nGain {EnergyGain:diff()} Energy. Lose {PietyLoss:diff()} Piety.",
+  "AICARDMOD-DEBT_COLLECTION_CARD.upgraded_description": "[gold]Exhaust[/gold]\nGain {EnergyGain:diff()} Energy. Lose {PietyLoss:diff()} Piety.",
+
+  "AICARDMOD-SACRED_SCRIPT_CARD.title": "Sacred Script",
+  "AICARDMOD-SACRED_SCRIPT_CARD.description": "Add a Prayer and a Smite to your hand.",
+  "AICARDMOD-SACRED_SCRIPT_CARD.upgraded_description": "Add a Prayer and a Smite to your hand.",
+
+  "AICARDMOD-ORACLE_DEBT_CARD.title": "Oracle Debt",
+  "AICARDMOD-ORACLE_DEBT_CARD.description": "Draw {Draw:diff()} cards. Lose {PietyLoss:diff()} Piety.",
+  "AICARDMOD-ORACLE_DEBT_CARD.upgraded_description": "Draw {Draw:diff()} cards. Lose {PietyLoss:diff()} Piety.",
+
+  "AICARDMOD-MIRACLE_SPARK_CARD.title": "Miracle Spark",
+  "AICARDMOD-MIRACLE_SPARK_CARD.description": "[gold]Exhaust[/gold]\nGain 1 Energy. Gain 1 Piety.",
+  "AICARDMOD-MIRACLE_SPARK_CARD.upgraded_description": "[gold]Exhaust[/gold]\nGain 1 Energy. Gain 2 Piety.",
+
+  "AICARDMOD-ZEAL_SLASH_CARD.title": "Zeal Slash",
+  "AICARDMOD-ZEAL_SLASH_CARD.description": "Deal {Damage:diff()} damage {Hits:diff()} times.",
+  "AICARDMOD-ZEAL_SLASH_CARD.upgraded_description": "Deal {Damage:diff()} damage {Hits:diff()} times.",
+
+  "AICARDMOD-PENANCE_BURST_CARD.title": "Penance Burst",
+  "AICARDMOD-PENANCE_BURST_CARD.description": "Deal {Damage:diff()} damage. If Piety is negative, deal additional damage equal to your debt x {DebtMultiplier:diff()}.",
+  "AICARDMOD-PENANCE_BURST_CARD.upgraded_description": "Deal {Damage:diff()} damage. If Piety is negative, deal additional damage equal to your debt x {DebtMultiplier:diff()}.",
+
+  "AICARDMOD-RITE_OF_ASH_CARD.title": "Rite of Ash",
+  "AICARDMOD-RITE_OF_ASH_CARD.description": "[gold]Exhaust[/gold]\nAdd 2 Smites to your hand.",
+  "AICARDMOD-RITE_OF_ASH_CARD.upgraded_description": "[gold]Exhaust[/gold]\nAdd 2 Smites to your hand.",
+
+  "AICARDMOD-CHOIR_STORM_CARD.title": "Choir Storm",
+  "AICARDMOD-CHOIR_STORM_CARD.description": "Deal {Damage:diff()} damage to ALL enemies. Add a Prayer to your hand.",
+  "AICARDMOD-CHOIR_STORM_CARD.upgraded_description": "Deal {Damage:diff()} damage to ALL enemies. Add a Prayer to your hand.",
+
+  "AICARDMOD-ORACLE_BARGAIN_CARD.title": "Oracle Bargain",
+  "AICARDMOD-ORACLE_BARGAIN_CARD.description": "Draw {Draw:diff()} cards. Gain {EnergyGain:diff()} Energy. Lose {PietyLoss:diff()} Piety.",
+  "AICARDMOD-ORACLE_BARGAIN_CARD.upgraded_description": "Draw {Draw:diff()} cards. Gain {EnergyGain:diff()} Energy. Lose {PietyLoss:diff()} Piety.",
+
+  "AICARDMOD-SUNLIT_EDICT_CARD.title": "Sunlit Edict",
+  "AICARDMOD-SUNLIT_EDICT_CARD.description": "Apply {VulnAmount:diff()} Vulnerable to ALL enemies.",
+  "AICARDMOD-SUNLIT_EDICT_CARD.upgraded_description": "Apply {VulnAmount:diff()} Vulnerable to ALL enemies.",
+
+  "AICARDMOD-ABSOLUTION_CARD.title": "Absolution",
+  "AICARDMOD-ABSOLUTION_CARD.description": "Gain {Block:diff()} Block. If Piety is negative, remove all debt and gain that much extra Block.",
+  "AICARDMOD-ABSOLUTION_CARD.upgraded_description": "Gain {Block:diff()} Block. If Piety is negative, remove all debt and gain that much extra Block.",
+
+  "AICARDMOD-FAITH_LOAN_CARD.title": "Faith Loan",
+  "AICARDMOD-FAITH_LOAN_CARD.description": "[gold]Exhaust[/gold]\nGain 3 Piety.",
+  "AICARDMOD-FAITH_LOAN_CARD.upgraded_description": "[gold]Exhaust[/gold]\nGain 5 Piety.",
+
+  "AICARDMOD-SHRINE_GUARD_CARD.title": "Shrine Guard",
+  "AICARDMOD-SHRINE_GUARD_CARD.description": "Gain {Block:diff()} Block. If Piety is negative, gain {DebtBonus:diff()} more Block.",
+  "AICARDMOD-SHRINE_GUARD_CARD.upgraded_description": "Gain {Block:diff()} Block. If Piety is negative, gain {DebtBonus:diff()} more Block.",
+
+  "AICARDMOD-LITANY_BLADE_CARD.title": "Litany Blade",
+  "AICARDMOD-LITANY_BLADE_CARD.description": "Deal {Damage:diff()} damage. If Piety >= 6, draw 1 card.",
+  "AICARDMOD-LITANY_BLADE_CARD.upgraded_description": "Deal {Damage:diff()} damage. If Piety >= 6, draw 1 card.",
+
+  "AICARDMOD-BORROWED_MIRACLE_CARD.title": "Borrowed Miracle",
+  "AICARDMOD-BORROWED_MIRACLE_CARD.description": "[gold]Exhaust[/gold]\nGain {EnergyGain:diff()} Energy. Lose {PietyLoss:diff()} Piety.",
+  "AICARDMOD-BORROWED_MIRACLE_CARD.upgraded_description": "[gold]Exhaust[/gold]\nGain {EnergyGain:diff()} Energy. Lose {PietyLoss:diff()} Piety.",
+
+  "AICARDMOD-HALO_BURST_CARD.title": "Halo Burst",
+  "AICARDMOD-HALO_BURST_CARD.description": "Deal {Damage:diff()} damage. Add a Prayer to your hand.",
+  "AICARDMOD-HALO_BURST_CARD.upgraded_description": "Deal {Damage:diff()} damage. Add a Prayer to your hand.",
+
+  "AICARDMOD-REVERENT_CYCLE_CARD.title": "Reverent Cycle",
+  "AICARDMOD-REVERENT_CYCLE_CARD.description": "Draw 1 card. Add an Offering Chant and a Prayer to your hand.",
+  "AICARDMOD-REVERENT_CYCLE_CARD.upgraded_description": "Draw 1 card. Add an Offering Chant and a Prayer to your hand.",
+
+  "AICARDMOD-DEBT_FORGIVEN_CARD.title": "Debt Forgiven",
+  "AICARDMOD-DEBT_FORGIVEN_CARD.description": "If Piety is negative, remove all debt and gain 2 Piety. Draw {Draw:diff()} cards.",
+  "AICARDMOD-DEBT_FORGIVEN_CARD.upgraded_description": "If Piety is negative, remove all debt and gain 2 Piety. Draw {Draw:diff()} cards.",
+
+  "AICARDMOD-PENITENT_STRIKE_CARD.title": "Penitent Strike",
+  "AICARDMOD-PENITENT_STRIKE_CARD.description": "Deal {Damage:diff()} damage. If Piety is negative, gain 1 Piety.",
+  "AICARDMOD-PENITENT_STRIKE_CARD.upgraded_description": "Deal {Damage:diff()} damage. If Piety is negative, gain 1 Piety.",
+
+  "AICARDMOD-FERVENT_PRAYER_CARD.title": "Fervent Prayer",
+  "AICARDMOD-FERVENT_PRAYER_CARD.description": "Gain {PietyGain:diff()} Piety. Draw 1 card.",
+  "AICARDMOD-FERVENT_PRAYER_CARD.upgraded_description": "Gain {PietyGain:diff()} Piety. Draw 1 card.",
+
+  "AICARDMOD-JUDGMENT_RAIN_CARD.title": "Judgment Rain",
+  "AICARDMOD-JUDGMENT_RAIN_CARD.description": "Deal {Damage:diff()} damage to ALL enemies. Apply {WeakAmount:diff()} Weak.",
+  "AICARDMOD-JUDGMENT_RAIN_CARD.upgraded_description": "Deal {Damage:diff()} damage to ALL enemies. Apply {WeakAmount:diff()} Weak."
 }
+

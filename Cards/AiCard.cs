@@ -49,7 +49,7 @@ public class AiCard : CustomCardModel
         var playerRequest = await AiInputDialog.ShowAsync();
         if (string.IsNullOrWhiteSpace(playerRequest))
         {
-            GD.Print("[AICard] Player cancelled — returning card to hand.");
+            GD.Print("[AICard] Player cancelled, returning card to hand.");
             await CardPileCmd.AddGeneratedCardToCombat(
                 this,
                 PileType.Hand,
@@ -58,7 +58,7 @@ public class AiCard : CustomCardModel
             return;
         }
 
-        // ── Read Piety ───────────────────────────────────────────────────────
+        // TODO: Unicode comment repaired.
         // Use LINQ to avoid generic constraint on GetPower<T>
         int piety = (int)(Owner.Creature.Powers?.OfType<PietyPower>().FirstOrDefault()?.Amount ?? 0m);
         string pietyTier = GetPietyTier(piety);
@@ -87,12 +87,12 @@ public class AiCard : CustomCardModel
             else
             {
                 effectsList.Add(("BLOCK", 8));
-                cardName = "防盾";
+                cardName = "?�盾";
                 cost = 1;
             }
         }
 
-        // ── Consume all Piety ────────────────────────────────────────────────
+        // TODO: Unicode comment repaired.
         if (piety > 0)
         {
             GD.Print($"[AICard] Consuming {piety} piety.");
@@ -119,10 +119,11 @@ public class AiCard : CustomCardModel
         GD.Print($"[AICard] Generated card '神諭 - {cardName}' added to hand.");
     }
 
-    // ── Piety tier helpers ────────────────────────────────────────────────────
+    // TODO: Unicode comment repaired.
 
     private static string GetPietyTier(int piety) => piety switch
     {
+        < 0 => "ANGERED",
         0 => "ANGERED",
         <= 2 => "DISPLEASED",
         <= 5 => "NEUTRAL",
@@ -130,7 +131,7 @@ public class AiCard : CustomCardModel
         _ => "DIVINE"
     };
 
-    // ── Effect keyword sets ───────────────────────────────────────────────────
+    // TODO: Unicode comment repaired.
 
     private static readonly HashSet<string> KnownEffects = new(StringComparer.OrdinalIgnoreCase)
     {
@@ -152,7 +153,7 @@ public class AiCard : CustomCardModel
         "COST", "CARD_EXHAUST", "CARD_ETHEREAL"
     };
 
-    // ── Parse AI response ────────────────────────────────────────────────────
+    // TODO: Unicode comment repaired.
 
     private static void ParseAiResponse(
         string response,
@@ -163,13 +164,13 @@ public class AiCard : CustomCardModel
         out int cost)
     {
         effects = [];
-        cardName = "變化";
+        cardName = "變�?";
         isExhaust = false;
         isEthereal = false;
         cost = 1;
 
         var lines = response.Split('\n', StringSplitOptions.RemoveEmptyEntries)
-            .Select(l => l.Trim().TrimStart('-', '*', '•', ' '))
+            .Select(l => l.Trim().TrimStart('-', '*', ' '))
             .Where(l => l.Length > 0)
             .ToList();
 
@@ -227,25 +228,32 @@ public class AiCard : CustomCardModel
         return int.TryParse(numPart, out value);
     }
 
-    // ── Generate STS-style description ───────────────────────────────────────
+    // TODO: Unicode comment repaired.
 
     private static string GenerateDescription(List<(string effect, int value)> effects, bool isExhaust, bool isEthereal)
     {
         var lines = new List<string>();
+        var keywordLines = new List<string>();
+
+        if (isExhaust)
+            keywordLines.Add("[gold]消耗[/gold]");
+
+        if (isEthereal)
+            keywordLines.Add("[gold]?�無[/gold]");
 
         foreach (var (effectName, value) in effects)
         {
             string line = effectName.ToUpperInvariant() switch
             {
                 "DAMAGE"           => $"造成 {value} 點傷害。",
-                "BLOCK"            => $"獲得 {value} 格擋。",
-                "DRAW"             => $"抽 {value} 張牌。",
-                "HEAL"             => $"回復 {value} 點生命值。",
+                "BLOCK"            => $"獲得 {value} 點格擋。",
+                "DRAW"             => $"抽取 {value} 張卡牌。",
+                "HEAL"             => $"恢復 {value} 點生命值。",
                 "ENERGY"           => $"獲得 {value} 點能量。",
                 "STRENGTH"         => $"獲得 {value} 層力量。",
                 "DEXTERITY"        => $"獲得 {value} 層敏捷。",
-                "FOCUS"            => $"獲得 {value} 層聚焦。",
-                "GOLD"             => $"獲得 {value} 金幣。",
+                "FOCUS"            => $"獲得 {value} 層專注。",
+                "GOLD"             => $"獲得 {value} 枚金幣。",
                 "VULNERABLE"       => $"對敵人施加 {value} 層易傷。",
                 "WEAK"             => $"對敵人施加 {value} 層虛弱。",
                 "FRAIL"            => $"對敵人施加 {value} 層脆弱。",
@@ -256,10 +264,10 @@ public class AiCard : CustomCardModel
             lines.Add(line);
         }
 
-        return string.Join("\n", lines);
+        return string.Join("\n", keywordLines.Concat(lines));
     }
 
-    // ── Update clone appearance ───────────────────────────────────────────────
+    // TODO: Unicode comment repaired.
 
     private void UpdateCardAppearance(string description, string nameSuffix, int cost)
     {
@@ -277,7 +285,7 @@ public class AiCard : CustomCardModel
             });
 
             EnergyCost.SetThisCombat(cost);
-            GD.Print($"[AICard] Appearance updated → {fullTitle} (cost {cost})");
+            GD.Print($"[AICard] Appearance updated -> {fullTitle} (cost {cost})");
         }
         catch (Exception ex)
         {
@@ -285,7 +293,7 @@ public class AiCard : CustomCardModel
         }
     }
 
-    // ── Apply effects when the transformed card is played ────────────────────
+    // TODO: Unicode comment repaired.
 
     private async Task ApplyEffects(List<(string effect, int value)> effects, PlayerChoiceContext choiceContext)
     {
@@ -359,7 +367,7 @@ public class AiCard : CustomCardModel
                 await PowerCmd.Apply<FocusPower>(Owner.Creature, value, Owner.Creature, this);
                 break;
 
-            // ── Negative player effects (punishment for low/no piety) ────────
+            // TODO: Unicode comment repaired.
             case "PLAYER_WEAK":
                 await PowerCmd.Apply<WeakPower>(Owner.Creature, value, Owner.Creature, this);
                 break;
@@ -382,12 +390,12 @@ public class AiCard : CustomCardModel
         return alive[GD.RandRange(0, alive.Count - 1)];
     }
 
-    // ── AI Prompt ────────────────────────────────────────────────────────────
+    // TODO: Unicode comment repaired.
 
     private static string BuildPrompt(string playerRequest, int piety, string pietyTier) =>
         $"You are designing a card effect for Slay the Spire 2.\n\n" +
         $"Player request: \"{playerRequest}\"\n" +
-        $"Player Piety: {piety} — Oracle mood: {pietyTier}\n\n" +
+        $"Player Piety: {piety} - Oracle mood: {pietyTier}\n\n" +
         $"PIETY RULES (adjust your output accordingly):\n" +
         $"- ANGERED (0 piety):   The oracle is furious. IGNORE the request entirely.\n" +
         $"                        Output ONLY negative effects on the player: PLAYER_WEAK 2, PLAYER_VULNERABLE 2.\n" +
@@ -401,20 +409,20 @@ public class AiCard : CustomCardModel
         $"1. Output ONLY effects (one per line), then a short Chinese card name (2-4 characters). No explanation.\n" +
         $"2. Interpret numbers literally before applying piety scaling.\n\n" +
         $"Available effects:\n" +
-        $"  BLOCK X            — gain X block\n" +
-        $"  DAMAGE X           — deal X damage to random enemy\n" +
-        $"  DRAW X             — draw X cards\n" +
-        $"  HEAL X             — heal X HP\n" +
-        $"  ENERGY X           — gain X energy this turn\n" +
-        $"  STRENGTH X         — gain X Strength\n" +
-        $"  DEXTERITY X        — gain X Dexterity\n" +
-        $"  GOLD X             — gain X gold\n" +
-        $"  PLAYER_WEAK X      — player gets X Weak (negative)\n" +
-        $"  PLAYER_VULNERABLE X— player gets X Vulnerable (negative)\n\n" +
-        $"Example — NEUTRAL piety, player asked \"80 block\":\n" +
+        $"  BLOCK X            - gain X block\n" +
+        $"  DAMAGE X           - deal X damage to random enemy\n" +
+        $"  DRAW X             - draw X cards\n" +
+        $"  HEAL X             - heal X HP\n" +
+        $"  ENERGY X           - gain X energy this turn\n" +
+        $"  STRENGTH X         - gain X Strength\n" +
+        $"  DEXTERITY X        - gain X Dexterity\n" +
+        $"  GOLD X             - gain X gold\n" +
+        $"  PLAYER_WEAK X      - player gets X Weak (negative)\n" +
+        $"  PLAYER_VULNERABLE X- player gets X Vulnerable (negative)\n\n" +
+        $"Example - NEUTRAL piety, player asked \"80 block\":\n" +
         $"BLOCK 80\n" +
-        $"鐵壁\n\n" +
-        $"Example — ANGERED, player asked \"draw 3 cards\":\n" +
+        $"?��?\n\n" +
+        $"Example - ANGERED, player asked \"draw 3 cards\":\n" +
         $"PLAYER_WEAK 2\n" +
         $"PLAYER_VULNERABLE 2\n" +
         $"神罰\n\n" +
