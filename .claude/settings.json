@@ -19,7 +19,30 @@
       "Bash(grep -n \"DynamicVars\\\\|dynamicVar\\\\|dynamicvars\\\\|\\\\\"\\\\\\\\[.*\\\\\\\\]\\\\\"\" /tmp/sts2_full.txt)",
       "Bash(grep -n \"DescriptionLocString\\\\|GetDescription\\\\|description.*DynamicVar\\\\|DynamicVar.*description\\\\|GetRawText\\\\|GetVarText\\\\|varValue\\\\|\\\\\\\\.Name\\\\b.*var\\\\b\" /tmp/sts2_full.txt)",
       "Bash(sed -n '284545,284510p' /tmp/sts2_full.txt)",
-      "Bash(sed -n '285490,285510p' /tmp/sts2_full.txt)"
+      "Bash(sed -n '285490,285510p' /tmp/sts2_full.txt)",
+      "Bash(powershell -Command 'Add-Type -Path '\\\\''.godot/mono/temp/bin/Debug/aiCardMod.dll'\\\\''; [System.AppDomain]::CurrentDomain.GetAssemblies\\(\\) | Where-Object { $_.GetName\\(\\).Name -eq '\\\\''BaseLib'\\\\'' }')",
+      "Read(//d//**)",
+      "Read(//e//**)",
+      "Bash(powershell -Command '[System.Reflection.Assembly]::LoadFile\\('\\\\''D:/Steam/steamapps/common/Slay the Spire 2/mods/BaseLib/BaseLib.dll'\\\\''\\).GetTypes\\(\\) | Where-Object { $_.Name -eq '\\\\''BlockVar'\\\\'' } | Select-Object FullName')",
+      "Bash(powershell -Command 'Add-Type -AssemblyName '\\\\''System.Reflection'\\\\''; $bytes = [System.IO.File]::ReadAllBytes\\('\\\\''D:/Steam/steamapps/common/Slay the Spire 2/mods/BaseLib/BaseLib.dll'\\\\''\\); $asm = [System.Reflection.Assembly]::Load\\($bytes\\); $asm.GetTypes\\(\\) | Where-Object { $_.Name -like '\\\\''*Block*'\\\\'' } | Select-Object FullName')",
+      "Bash(python3 -c ':*)",
+      "Bash(python -c ':*)",
+      "Bash(where python:*)",
+      "Bash(powershell -Command \"Get-Content 'C:\\\\\\\\Users\\\\\\\\shawn\\\\\\\\AppData\\\\\\\\Local\\\\\\\\Temp\\\\\\\\claude\\\\\\\\c--Users-shawn----Programming-sts2-mod-ai-card-mod\\\\\\\\61841039-8632-4086-95b6-a0ab13a40655\\\\\\\\tasks\\\\\\\\b2q81o5ln.output'\")",
+      "Bash(powershell -Command \"Get-Content 'C:\\\\\\\\Users\\\\\\\\shawn\\\\\\\\AppData\\\\\\\\Local\\\\\\\\Temp\\\\\\\\claude\\\\\\\\c--Users-shawn----Programming-sts2-mod-ai-card-mod\\\\\\\\61841039-8632-4086-95b6-a0ab13a40655\\\\\\\\tasks\\\\\\\\bhal38q3b.output'\")",
+      "Bash(powershell -Command \"Get-Content 'C:\\\\\\\\Users\\\\\\\\shawn\\\\\\\\AppData\\\\\\\\Local\\\\\\\\Temp\\\\\\\\claude\\\\\\\\c--Users-shawn----Programming-sts2-mod-ai-card-mod\\\\\\\\61841039-8632-4086-95b6-a0ab13a40655\\\\\\\\tasks\\\\\\\\bpfbtxmer.output'\")",
+      "Bash(powershell -Command \"Get-Content 'C:\\\\\\\\Users\\\\\\\\shawn\\\\\\\\AppData\\\\\\\\Local\\\\\\\\Temp\\\\\\\\claude\\\\\\\\c--Users-shawn----Programming-sts2-mod-ai-card-mod\\\\\\\\61841039-8632-4086-95b6-a0ab13a40655\\\\\\\\tasks\\\\\\\\b0j814ve8.output'\")",
+      "Bash(powershell -Command \"Get-Content 'C:\\\\\\\\Users\\\\\\\\shawn\\\\\\\\AppData\\\\\\\\Local\\\\\\\\Temp\\\\\\\\claude\\\\\\\\c--Users-shawn----Programming-sts2-mod-ai-card-mod\\\\\\\\61841039-8632-4086-95b6-a0ab13a40655\\\\\\\\tasks\\\\\\\\bfhv7ckw5.output'\")",
+      "Bash(powershell -Command \"Get-Content 'C:\\\\\\\\Users\\\\\\\\shawn\\\\\\\\AppData\\\\\\\\Local\\\\\\\\Temp\\\\\\\\claude\\\\\\\\c--Users-shawn----Programming-sts2-mod-ai-card-mod\\\\\\\\61841039-8632-4086-95b6-a0ab13a40655\\\\\\\\tasks\\\\\\\\bi4h899bw.output'\")",
+      "Bash(ilspycmd /c/Users/shawn/桌面/tempmod/sts2.dll -l c)",
+      "Bash(ilspycmd /c/Users/shawn/桌面/tempmod/sts2.dll -t \"MegaCrit.Sts2.Core.Models.PowerModel\")",
+      "Bash(ilspycmd /c/Users/shawn/桌面/tempmod/sts2.dll -t \"MegaCrit.Sts2.Core.Commands.CreatureCmd\")",
+      "Bash(ilspycmd /c/Users/shawn/桌面/tempmod/sts2.dll -t \"MegaCrit.Sts2.Core.Commands.CardPileCmd\")",
+      "Bash(ilspycmd /c/Users/shawn/桌面/tempmod/sts2.dll -t \"MegaCrit.Sts2.Core.Commands.PowerCmd\")",
+      "Bash(ilspycmd /c/Users/shawn/桌面/tempmod/sts2.dll -t \"MegaCrit.Sts2.Core.Commands.DamageCmd\")",
+      "Bash(ilspycmd /c/Users/shawn/桌面/tempmod/sts2.dll -t \"MegaCrit.Sts2.Core.Commands.Builders.AttackCommand\")",
+      "Bash(ilspycmd /c/Users/shawn/桌面/tempmod/sts2.dll -t \"MegaCrit.Sts2.Core.Commands.CardCmd\")",
+      "Bash(ilspycmd /c/Users/shawn/桌面/tempmod/BaseLib.dll -t \"BaseLib.Abstracts.CustomPowerModel\")"
     ]
   }
 }

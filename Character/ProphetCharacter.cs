@@ -58,20 +58,20 @@ public class ProphetCharacter : PlaceholderCharacterModel
     public override RelicPoolModel RelicPool => ModelDb.RelicPool<ProphetRelicPool>();
     public override PotionPoolModel PotionPool => ModelDb.PotionPool<ProphetPotionPool>();
 
-    // ── 起始卡組（5x 神聖打擊 + 4x 虔誠防禦 + 1x 祈禱） ───────────────────
+    // ── 起始卡組（5x 打擊 + 4x 防禦 + 1x 祈禱） ───────────────────
 
     public override IEnumerable<CardModel> StartingDeck =>
     [
-        ModelDb.Card<HolyStrikeCard>(),
-        ModelDb.Card<HolyStrikeCard>(),
-        ModelDb.Card<HolyStrikeCard>(),
-        ModelDb.Card<HolyStrikeCard>(),
-        ModelDb.Card<HolyStrikeCard>(),
-        ModelDb.Card<PiousDefendCard>(),
-        ModelDb.Card<PiousDefendCard>(),
-        ModelDb.Card<PiousDefendCard>(),
-        ModelDb.Card<PiousDefendCard>(),
-        ModelDb.Card<PrayCard>(),
+        ModelDb.Card<StrikeCard>(),
+        ModelDb.Card<StrikeCard>(),
+        ModelDb.Card<StrikeCard>(),
+        ModelDb.Card<StrikeCard>(),
+        ModelDb.Card<DefendCard>(),
+        ModelDb.Card<DefendCard>(),
+        ModelDb.Card<DefendCard>(),
+        ModelDb.Card<DefendCard>(),
+        ModelDb.Card<HolyLightStrikeCard>(),
+        ModelDb.Card<AiCard>(),
     ];
 
     // ── 起始遺物（神諭石板） ──────────────────────────────────────────────────

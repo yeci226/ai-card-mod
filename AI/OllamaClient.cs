@@ -1,23 +1,34 @@
 using System.Net.Http;
 using System.Text;
 using System.Text.Json;
+using AICardMod.Scripts;
 
 namespace AICardMod.AI;
 
 public static class OllamaClient
 {
     private static readonly HttpClient _http = new() { Timeout = TimeSpan.FromSeconds(20) };
-    private const string ApiUrl = "http://ollama.yeci.lol/api/generate";
-    private const string Model = "qwen2.5:3b";
 
     public static async Task<string> AskAsync(string prompt)
     {
-        var body = JsonSerializer.Serialize(new { model = Model, prompt, stream = false });
+        var apiUrl = AiCardModConfig.AiApiUrl.Trim();
+        var model = AiCardModConfig.AiModel.Trim();
+
+        if (string.IsNullOrWhiteSpace(apiUrl) || string.IsNullOrWhiteSpace(model))
+        {
+            global::Godot.GD.PrintErr("[AICard] AI API URL or model is empty. Configure them in mod settings.");
+            return "";
+        }
+
+        var timeoutSeconds = Math.Clamp((int)Math.Round(AiCardModConfig.AiTimeoutSeconds), 5, 90);
+        _http.Timeout = TimeSpan.FromSeconds(timeoutSeconds);
+
+        var body = JsonSerializer.Serialize(new { model, prompt, stream = false });
         var content = new StringContent(body, Encoding.UTF8, "application/json");
 
         try
         {
-            var response = await _http.PostAsync(ApiUrl, content);
+            var response = await _http.PostAsync(apiUrl, content);
             var json = await response.Content.ReadAsStringAsync();
             global::Godot.GD.Print($"[AICard] Raw response: {json}");
 

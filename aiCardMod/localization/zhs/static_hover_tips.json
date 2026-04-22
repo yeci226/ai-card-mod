@@ -1,0 +1,8 @@
+{
+  "AICARDMOD-REVELATIONGAIN.title": "啟示",
+  "AICARDMOD-REVELATIONGAIN.description": "此牌將獲得等量啟示。",
+  "AICARDMOD-FAITHGAIN.title": "信仰",
+  "AICARDMOD-FAITHGAIN.description": "此牌將獲得等量信仰。",
+  "AICARDMOD-MISSTEPGAIN.title": "失誤",
+  "AICARDMOD-MISSTEPGAIN.description": "敵人在下一次攻擊時傷害降低 25%，然後失誤減少 1 層。"
+}

@@ -21,7 +21,21 @@
       "Bash(ilspycmd \"/d/Steam/steamapps/common/Slay the Spire 2/data_sts2_windows_x86_64/sts2.dll\" -t \"MegaCrit.Sts2.Core.Nodes.PileType\")",
       "Bash(ilspycmd \"/d/Steam/steamapps/common/Slay the Spire 2/data_sts2_windows_x86_64/sts2.dll\" -t \"MegaCrit.Sts2.Core.Entities.Players.Player\")",
       "Bash(ilspycmd \"/d/Steam/steamapps/common/Slay the Spire 2/data_sts2_windows_x86_64/sts2.dll\" -t \"MegaCrit.Sts2.Core.Combat.PlayerCombatState\")",
-      "Bash(ilspycmd \"/d/Steam/steamapps/common/Slay the Spire 2/data_sts2_windows_x86_64/sts2.dll\")"
+      "Bash(ilspycmd \"/d/Steam/steamapps/common/Slay the Spire 2/data_sts2_windows_x86_64/sts2.dll\")",
+      "Bash(powershell -Command \"Get-ChildItem 'D:\\\\SteamLibrary\\\\steamapps\\\\common' -ErrorAction SilentlyContinue | Select-Object -First 20 Name; Get-ChildItem 'E:\\\\SteamLibrary\\\\steamapps\\\\common' -ErrorAction SilentlyContinue | Select-Object -First 20 Name\")",
+      "Bash(cat Directory.Build.props)",
+      "Bash(cat Directory.Build.props.example)",
+      "Bash(node -e ':*)",
+      "Bash(dotnet run:*)",
+      "Bash(sed -i 's/\"AICARDMOD-FINAL_PRAYER_CARD.upgraded_description\": \"\\\\[gold\\\\]Exhaust\\\\[\\\\/gold\\\\] \\\\[gold\\\\]Retain\\\\[\\\\/gold\\\\]\\\\\\\\nGain 1 Energy. At end of turn, you die.\"\\\\n}/\"AICARDMOD-FINAL_PRAYER_CARD.upgraded_description\": \"[gold]Exhaust[\\\\/gold] [gold]Retain[\\\\/gold]\\\\\\\\nGain 1 Energy. At end of turn, you die.\",\\\\n  \"AICARDMOD-SELECT_PROMPT\": \"Select a card\"\\\\n}/' \"c:/Users/shawn/桌面/Programming/sts2-mod/ai-card-mod/aiCardMod/localization/ENG/cards.json\")",
+      "Bash(python3 -c ':*)",
+      "Read(//mnt/d/Steam/steamapps/common/Slay the Spire 2/data_sts2_windows_x86_64/mods/**)",
+      "Read(//mnt/d/**)",
+      "Read(//mnt/c/Users/**)",
+      "Read(//mnt/c/Users/shawn/**)",
+      "Read(//c/Steam/steamapps/common/Slay the Spire 2/mods/**)",
+      "Bash(powershell.exe -Command \"Get-ItemProperty 'HKLM:\\\\\\\\SOFTWARE\\\\\\\\WOW6432Node\\\\\\\\Valve\\\\\\\\Steam' -Name InstallPath 2>null | Select -ExpandProperty InstallPath\")",
+      "Bash(xargs -I{} sh -c 'echo \"=== {} ===\" && head -5 \"{}\"')"
     ]
   }
 }

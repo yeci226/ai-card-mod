@@ -1,13 +1,7 @@
 {
-  "AICARDMOD-ORACLE_TABLET_RELIC.title": "Oracle Tablet",
-  "AICARDMOD-ORACLE_TABLET_RELIC.description": "At end of turn, Piety decays by 1 instead of 2. When using Oracle at 0 Piety, the oracle responds as DISPLEASED instead of ANGERED.",
+  "AICARDMOD-ORACLE_TABLET_RELIC.title": "Broken Scripture",
+  "AICARDMOD-ORACLE_TABLET_RELIC.description": "At the start of each combat, gain 3 Faith and trigger Revelation check.",
 
-  "AICARDMOD-ORACLE_TABLET_RELIC_UPGRADED_RELIC.title": "Oracle Tablet (Awakened)",
-  "AICARDMOD-ORACLE_TABLET_RELIC_UPGRADED_RELIC.description": "At end of turn, lose 25% of your Piety instead (minimum 1). When using Oracle at 0 Piety, the oracle responds as DISPLEASED instead of ANGERED.",
-
-  "AICARDMOD-PRAYER_BEADS_RELIC.title": "Prayer Beads",
-  "AICARDMOD-PRAYER_BEADS_RELIC.description": "At end of turn, lose 1 less Piety.",
-
-  "AICARDMOD-PRAYER_BEADS_RELIC_UPGRADED_RELIC.title": "Prayer Beads (Blessed)",
-  "AICARDMOD-PRAYER_BEADS_RELIC_UPGRADED_RELIC.description": "At end of turn, lose 2 less Piety."
+  "AICARDMOD-ORACLE_TABLET_RELIC_UPGRADED_RELIC.title": "Saint's Golden Scripture",
+  "AICARDMOD-ORACLE_TABLET_RELIC_UPGRADED_RELIC.description": "At the start of each combat, gain 6 Faith and trigger Revelation check. Each Revelation also draws 1 card."
 }

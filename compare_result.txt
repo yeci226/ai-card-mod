@@ -1,0 +1,21 @@
+﻿A. CSV card names
+total=79
+unique=78
+
+B. Implemented title names
+total=75
+unique=75
+
+C. Missing from CSV vs title (sorted)
+- 【失誤】（Misstep）：敵人的負面狀態，使其下一次攻擊傷害減少 25%。觸發後減少 1 層。
+- 【神諭 UI】（Oracle UI）：打出後彈出介面，讓玩家選擇「對象」、「動作」、「加成」來組成一張臨時卡牌。
+- 【虔誠】（Piety）：一種不會隨回合結束而消失的資源數值。
+- 【啟示】（Revelation）：玩家回合結束時，每 3 點【啟示】會轉化為 1 發造成 3 點傷害的「神聖箭矢」，隨機攻擊單體敵人。這屬於效果傷害，不觸發反傷，不受力量或虛弱影響。
+- 靜修
+
+D. Possible variant spellings (max 3 candidates)
+- 【失誤】（Misstep）：敵人的負面狀態，使其下一次攻擊傷害減少 25%。觸發後減少 1 層。 -> (no obvious candidate)
+- 【神諭 UI】（Oracle UI）：打出後彈出介面，讓玩家選擇「對象」、「動作」、「加成」來組成一張臨時卡牌。 -> (no obvious candidate)
+- 【虔誠】（Piety）：一種不會隨回合結束而消失的資源數值。 -> (no obvious candidate)
+- 【啟示】（Revelation）：玩家回合結束時，每 3 點【啟示】會轉化為 1 發造成 3 點傷害的「神聖箭矢」，隨機攻擊單體敵人。這屬於效果傷害，不觸發反傷，不受力量或虛弱影響。 -> (no obvious candidate)
+- 靜修 -> (no obvious candidate)

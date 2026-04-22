@@ -1,0 +1,8 @@
+{
+  "AICARDMOD-REVELATIONGAIN.title": "Revelation",
+  "AICARDMOD-REVELATIONGAIN.description": "This card grants that much Revelation.",
+  "AICARDMOD-FAITHGAIN.title": "Faith",
+  "AICARDMOD-FAITHGAIN.description": "This card grants that much Faith.",
+  "AICARDMOD-MISSTEPGAIN.title": "Misstep",
+  "AICARDMOD-MISSTEPGAIN.description": "The enemy's next attack deals 25% less damage, then Misstep decreases by 1 stack."
+}

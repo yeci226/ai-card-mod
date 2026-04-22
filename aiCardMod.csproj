@@ -29,6 +29,13 @@
     <LocalizationFiles Include="aiCardMod\localization\**\*" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Remove="Cards_Legacy\**\*.cs" />
+    <None Include="Cards_Legacy\**\*" />
+    <Compile Remove="Powers_Legacy\**\*.cs" />
+    <None Include="Powers_Legacy\**\*" />
+  </ItemGroup>
+
   <Target Name="Copy Mod" AfterTargets="PostBuildEvent">
     <Message Text="Copying mod to Slay the Spire 2 mods folder..." Importance="high" />
     <MakeDir Directories="$(Sts2Dir)\mods\$(MSBuildProjectName)\localization\ENG" />

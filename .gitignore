@@ -4,3 +4,4 @@
 
 # Local build overrides (machine-specific paths)
 Directory.Build.props
+.agent.md

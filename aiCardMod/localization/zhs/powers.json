@@ -1,93 +1,47 @@
 {
-  "AICARDMOD-PIETY_POWER.title": "虔誠",
-  "AICARDMOD-PIETY_POWER.description": "一種可疊加的資源，會影響多種神聖相關效果。層數越高，效果越強大。若虔誠為負，會導致虛弱；負值更深時還會帶來易傷與虛弱。",
-  "AICARDMOD-PIETY_POWER.smartDescription": "目前: [blue]{Amount}[/blue] 層。負虔誠會在回合結束時回復 1 層。",
-
-  "AICARDMOD-DEVOTION_POWER.title": "信仰",
-  "AICARDMOD-DEVOTION_POWER.description": "每回合開始時獲得虔誠。",
-  "AICARDMOD-DEVOTION_POWER.smartDescription": "每回合開始時獲得 [blue]{Amount}[/blue] 層虔誠。",
-
-  "AICARDMOD-DIVINE_LIGHT_POWER.title": "神光",
-  "AICARDMOD-DIVINE_LIGHT_POWER.description": "每回合開始時獲得格擋。",
-  "AICARDMOD-DIVINE_LIGHT_POWER.smartDescription": "每回合開始時獲得 [blue]{Amount}[/blue] 格擋。",
-
-  "AICARDMOD-PROPHET_EYE_POWER.title": "先知之眼",
-  "AICARDMOD-PROPHET_EYE_POWER.description": "每回合開始時，如果虔誠達到閾值，額外抽一張牌。",
-  "AICARDMOD-PROPHET_EYE_POWER.smartDescription": "每回合開始時，若虔誠 ≥ [blue]{Amount}[/blue]，額外抽 1 張牌。",
-
-  "AICARDMOD-DIVINE_FAVOR_POWER.title": "神明眷顧",
-  "AICARDMOD-DIVINE_FAVOR_POWER.description": "每回合開始時獲得虔誠。",
-  "AICARDMOD-DIVINE_FAVOR_POWER.smartDescription": "每回合開始時獲得 [blue]{Amount}[/blue] 層虔誠。",
-
-  "AICARDMOD-HOLY_RESONANCE_POWER.title": "神聖共鳴",
-  "AICARDMOD-HOLY_RESONANCE_POWER.description": "每回合開始時，若虔誠達到閾值，獲得 1 層力量。",
-  "AICARDMOD-HOLY_RESONANCE_POWER.smartDescription": "每回合開始時，若虔誠 ≥ [blue]{Amount}[/blue]，獲得 1 層力量。",
-
-  "AICARDMOD-BLESSED_ARMOR_POWER.title": "神佑護甲",
-  "AICARDMOD-BLESSED_ARMOR_POWER.description": "每回合開始時獲得等於虔誠的格擋。",
-  "AICARDMOD-BLESSED_ARMOR_POWER.smartDescription": "每回合開始時獲得（虔誠 + [blue]{Amount}[/blue]）格擋。",
-
-  "AICARDMOD-PROPHETIC_AURA_POWER.title": "先知光環",
-  "AICARDMOD-PROPHETIC_AURA_POWER.description": "每回合對所有敵人施加易傷。",
-  "AICARDMOD-PROPHETIC_AURA_POWER.smartDescription": "每回合對所有敵人施加 [blue]{Amount}[/blue] 層易傷。",
-
-  "AICARDMOD-DIVINE_SUMMON_POWER.title": "神聖召喚",
-  "AICARDMOD-DIVINE_SUMMON_POWER.description": "神聖護盾，防止虔誠在回合結束時衰退。",
-  "AICARDMOD-DIVINE_SUMMON_POWER.smartDescription": "虔誠不會在回合結束時衰退。",
-
-  "AICARDMOD-FORBIDDEN_ICON_POWER.title": "禁忌聖像",
-  "AICARDMOD-FORBIDDEN_ICON_POWER.description": "將受到的傷害轉化為格擋。",
-  "AICARDMOD-FORBIDDEN_ICON_POWER.smartDescription": "將傷害轉化為 [blue]{Amount}[/blue] 倍格擋。",
-
-  "AICARDMOD-GATES_OF_PARADISE_POWER.title": "樂園之門",
-  "AICARDMOD-GATES_OF_PARADISE_POWER.description": "每回合開始時獲得能量。",
-  "AICARDMOD-GATES_OF_PARADISE_POWER.smartDescription": "每回合開始時獲得 [blue]{Amount}[/blue] 的能量。",
-
-  "AICARDMOD-GOOD_FOR_EVIL_POWER.title": "化惡為善",
-  "AICARDMOD-GOOD_FOR_EVIL_POWER.description": "將受到的傷害轉化為生命恢復。",
-  "AICARDMOD-GOOD_FOR_EVIL_POWER.smartDescription": "將傷害轉化為 [blue]{Amount}[/blue] 倍的生命恢復。",
-
-  "AICARDMOD-HOLY_BLOOD_CULTIVATION_POWER.title": "聖血修養",
-  "AICARDMOD-HOLY_BLOOD_CULTIVATION_POWER.description": "積累聖血力量，強化卡牌效果。",
-  "AICARDMOD-HOLY_BLOOD_CULTIVATION_POWER.smartDescription": "當前聖血層數: [blue]{Amount}[/blue]。",
-
-  "AICARDMOD-HOLY_GUIDANCE_POWER.title": "聖光引導",
-  "AICARDMOD-HOLY_GUIDANCE_POWER.description": "每回合開始時獲得虔誠。",
-  "AICARDMOD-HOLY_GUIDANCE_POWER.smartDescription": "每回合開始時獲得 [blue]{Amount}[/blue] 層虔誠。",
-
-  "AICARDMOD-HYMNAL_CHORUS_POWER.title": "聖詠合唱",
-  "AICARDMOD-HYMNAL_CHORUS_POWER.description": "聖詩的迴響在每個回合中加強虔誠。",
-  "AICARDMOD-HYMNAL_CHORUS_POWER.smartDescription": "每回合開始時獲得 [blue]{Amount}[/blue] 層虔誠。",
-
-  "AICARDMOD-INFINITE_GLORY_POWER.title": "無限榮耀",
-  "AICARDMOD-INFINITE_GLORY_POWER.description": "虔誠的力量被翻倍加強。",
-  "AICARDMOD-INFINITE_GLORY_POWER.smartDescription": "虔誠效果翻倍（層數 [blue]{Amount}[/blue]）。",
-
-  "AICARDMOD-KARMA_TRANSFER_POWER.title": "業力轉移",
-  "AICARDMOD-KARMA_TRANSFER_POWER.description": "受到的傷害轉化為業力債務。",
-  "AICARDMOD-KARMA_TRANSFER_POWER.smartDescription": "傷害轉化為 [blue]{Amount}[/blue] 倍的虔誠債務。",
-
-  "AICARDMOD-MARTYRDOM_POWER.title": "殉道",
-  "AICARDMOD-MARTYRDOM_POWER.description": "受傷時對敵人造成反傷害。",
-  "AICARDMOD-MARTYRDOM_POWER.smartDescription": "受傷時對敵人造成 [blue]{Amount}[/blue] 倍的反傷害。",
-
-  "AICARDMOD-QUIET_MIND_POWER.title": "寧靜心靈",
-  "AICARDMOD-QUIET_MIND_POWER.description": "內心平靜，回合結束時自動結束。",
-  "AICARDMOD-QUIET_MIND_POWER.smartDescription": "已激活（層數 [blue]{Amount}[/blue]）。",
-
-  "AICARDMOD-REFUGE_POWER.title": "庇所",
-  "AICARDMOD-REFUGE_POWER.description": "永久保存格擋，累積保護力。",
-  "AICARDMOD-REFUGE_POWER.smartDescription": "永久儲存格擋: [blue]{Amount}[/blue]。",
-
-  "AICARDMOD-SAINT_LEGACY_POWER.title": "聖者遺產",
-  "AICARDMOD-SAINT_LEGACY_POWER.description": "聖者的力量在每回合中提升虔誠。",
-  "AICARDMOD-SAINT_LEGACY_POWER.smartDescription": "每回合開始時獲得 [blue]{Amount}[/blue] 層虔誠。",
-
-  "AICARDMOD-THORN_TRIAL_POWER.title": "刺棘試煉",
-  "AICARDMOD-THORN_TRIAL_POWER.description": "敵人對你造成傷害時，反彈傷害。",
-  "AICARDMOD-THORN_TRIAL_POWER.smartDescription": "反彈敵人傷害的 [blue]{Amount}[/blue] 倍。",
-
-  "AICARDMOD-SOUL_LINK_POWER.title": "靈魂綁定",
-  "AICARDMOD-SOUL_LINK_POWER.description": "與他人的靈魂綁定，共享狀態。",
-  "AICARDMOD-SOUL_LINK_POWER.smartDescription": "綁定強度: [blue]{Amount}[/blue]。"
+	"AICARDMOD-FAITH_POWER.title":  "虔誠",
+	"AICARDMOD-FAITH_POWER.description":  "不會在回合結束時消失的資源。",
+	"AICARDMOD-FAITH_POWER.smartDescription":  "目前有 [blue]{Amount}[/blue] 點虔誠。",
+	"AICARDMOD-REVELATION_POWER.title":  "啟示",
+	"AICARDMOD-REVELATION_POWER.description":  "每回合結束時，每3點啟示會轉化為1發神聖箭矢。",
+	"AICARDMOD-REVELATION_POWER.smartDescription":  "目前有 [blue]{Amount}[/blue] 點啟示。每3點在回合結束時觸發一次神聖箭矢。",
+	"AICARDMOD-INFINITE_GLORY_POWER.title":  "無限榮光",
+	"AICARDMOD-INFINITE_GLORY_POWER.description":  "每當啟示觸發時，獲得 1 層力量與 1 層敏捷。",
+	"AICARDMOD-INFINITE_GLORY_POWER.smartDescription":  "已觸發 [blue]{Amount}[/blue] 次；每次啟示 +1 力量 +1 敏捷。",
+	"AICARDMOD-NEXT_TURN_DRAW_POWER.title":  "下回抽牌",
+	"AICARDMOD-NEXT_TURN_DRAW_POWER.description":  "下回合開始時調整抽牌數，之後移除。正數代表多抽；負數目前暫不處理。",
+	"AICARDMOD-NEXT_TURN_DRAW_POWER.smartDescription":  "下回合開始時抽牌數變動 [blue]{Amount}[/blue]，之後移除。",
+	"AICARDMOD-NEXT_TURN_ENERGY_POWER.title":  "儲備能量",
+	"AICARDMOD-NEXT_TURN_ENERGY_POWER.description":  "下回合開始時，獲得這麼多能量，之後效果消失。",
+	"AICARDMOD-NEXT_TURN_ENERGY_POWER.smartDescription":  "下回合開始獲得 [blue]{Amount}[/blue] 點能量，然後效果消失。",
+	"AICARDMOD-NEXT_TURN_REVELATION_POWER.title":  "下回啟示",
+	"AICARDMOD-NEXT_TURN_REVELATION_POWER.description":  "下回合開始時獲得等量啟示，之後移除。",
+	"AICARDMOD-NEXT_TURN_REVELATION_POWER.smartDescription":  "下回合開始獲得 [blue]{Amount}[/blue] 點啟示，然後移除。",
+	"AICARDMOD-PIETY_END_TURN_POWER.title":  "聖遺物箱",
+	"AICARDMOD-PIETY_END_TURN_POWER.description":  "回合結束時，獲得等量虔誠。",
+	"AICARDMOD-PIETY_END_TURN_POWER.smartDescription":  "回合結束時，獲得 [blue]{Amount}[/blue] 點虔誠。",
+	"AICARDMOD-REVELATION_START_TURN_POWER.title":  "啟示之光",
+	"AICARDMOD-REVELATION_START_TURN_POWER.description":  "回合開始時，獲得等量啟示。",
+	"AICARDMOD-REVELATION_START_TURN_POWER.smartDescription":  "回合開始時，獲得 [blue]{Amount}[/blue] 點啟示。",
+	"AICARDMOD-REVELATION_PER_CARD_THIS_TURN_POWER.title":  "聖徒步伐",
+	"AICARDMOD-REVELATION_PER_CARD_THIS_TURN_POWER.description":  "本回合每打出一張牌，獲得1點啟示。",
+	"AICARDMOD-REVELATION_PER_CARD_THIS_TURN_POWER.smartDescription":  "本回合每打出一張牌，獲得 [blue]{Amount}[/blue] 點啟示。",
+	"AICARDMOD-REVELATION_ECHO_POWER.title":  "啟示迴響",
+	"AICARDMOD-REVELATION_ECHO_POWER.description":  "每當啟示觸發時，獲得格擋。",
+	"AICARDMOD-REVELATION_ECHO_POWER.smartDescription":  "每當啟示觸發時，獲得 [blue]{Amount}[/blue] 點格擋。",
+	"AICARDMOD-HOLY_MIGHT_POWER.title":  "聖力增幅",
+	"AICARDMOD-HOLY_MIGHT_POWER.description":  "啟示傷害提高。",
+	"AICARDMOD-HOLY_MIGHT_POWER.smartDescription":  "啟示傷害 +[blue]{Amount}[/blue]。",
+	"AICARDMOD-DOOMSDAY_JUDGMENT_POWER.title":  "末日審判",
+	"AICARDMOD-DOOMSDAY_JUDGMENT_POWER.description":  "每次啟示觸發後，本回合後續啟示傷害提升。",
+	"AICARDMOD-DOOMSDAY_JUDGMENT_POWER.smartDescription":  "每次啟示觸發後，本回合後續啟示傷害 +[blue]{Amount}[/blue]。",
+	"AICARDMOD-CAUSALITY_POWER.title":  "因果律",
+	"AICARDMOD-CAUSALITY_POWER.description":  "本回合該敵人受到傷害時，會額外受到固定傷害。",
+	"AICARDMOD-CAUSALITY_POWER.smartDescription":  "本回合該敵人每次受到傷害時，額外受到 [blue]{Amount}[/blue] 點傷害。",
+	"AICARDMOD-MISSTEP_POWER.title":  "失誤",
+	"AICARDMOD-MISSTEP_POWER.description":  "每次攻擊傷害降低 25%，每觸發一次減少 1 層。",
+	"AICARDMOD-MISSTEP_POWER.smartDescription":  "每次攻擊傷害降低 25%，每觸發一次減少 1 層。剩餘 [blue]{Amount}[/blue] 層。",
+	"AICARDMOD-GOLDEN_SCRIPTURE_EFFECT_POWER.title":  "黃金經文祝福",
+	"AICARDMOD-GOLDEN_SCRIPTURE_EFFECT_POWER.description":  "每當啟示觸發時，額外抽 1 張牌。",
+	"AICARDMOD-GOLDEN_SCRIPTURE_EFFECT_POWER.smartDescription":  "啟示額外效果啟動：每次觸發多抽 1 張牌。"
 }

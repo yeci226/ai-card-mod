@@ -8,33 +8,71 @@ using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Models.Powers;
+using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.ValueProps;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models.CardPools;
+using System.Reflection;
+using System.Threading;
 
 namespace AICardMod.Scripts;
 
 [Pool(typeof(ProphetCardPool))]
-public class AiCard : CustomCardModel
+/// <summary>
+/// 名稱：神諭：靈感
+/// 描述：根據前綴、中綴、後綴設定生成衍生卡牌。可於模組設定切換為AI模式。
+/// </summary>
+public class AiCard : PortraitCardModel
 {
-    private const int energyCost = 2;
+    private sealed record TemplatePart(string Name, string Effect, int BaseValue);
+
+    private static readonly TemplatePart[] PrefixOptions =
+    [
+        new("守護", "BLOCK", 8),
+        new("聖炎", "DAMAGE", 8),
+        new("靈思", "DRAW", 1),
+        new("恩典", "HEAL", 5),
+        new("懲戒", "VULNERABLE", 1)
+    ];
+
+    private static readonly TemplatePart[] MiddleOptions =
+    [
+        new("祈言", "ENERGY", 1),
+        new("審判", "WEAK", 1),
+        new("庇護", "BLOCK", 6),
+        new("裁決", "DAMAGE", 6),
+        new("啟示", "DRAW", 1)
+    ];
+
+    private static readonly TemplatePart[] SuffixOptions =
+    [
+        new("之光", "DAMAGE", 5),
+        new("之幕", "BLOCK", 5),
+        new("之息", "HEAL", 4),
+        new("之誓", "STRENGTH", 1),
+        new("之痕", "FRAIL", 1)
+    ];
+
+    private const int energyCost = 1;
     private const CardType type = CardType.Skill;
     private const CardRarity rarity = CardRarity.Rare;
     private const TargetType targetType = TargetType.None;
     private const bool shouldShowInLibrary = true;
+    private static readonly string BaseCardTitle = new LocString("cards", "AICARDMOD-AI_CARD.title").GetFormattedText();
+    private static int _generatedCardSerial = 0;
 
     public AiCard() : base(energyCost, type, rarity, targetType, shouldShowInLibrary) { }
 
     private bool _hasTransformed = false;
     private List<(string effect, int value)> _effectsList = [];
     private string _cardNameSuffix = "";
-    private bool _isCardExhaust = true;   // original card is always exhaust
+    private bool _isCardExhaust = false;
     private bool _isCardEthereal = false;
 
-    // ExhaustiveVar makes BaseLib treat this card as Exhaust (keyword shown on card, goes to exhaust pile)
-    protected override IEnumerable<DynamicVar> CanonicalVars =>
-        _isCardExhaust ? [new ExhaustiveVar(1)] : [];
+    public override IEnumerable<CardKeyword> CanonicalKeywords =>
+        _isCardExhaust ? [CardKeyword.Exhaust] : [];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
@@ -42,6 +80,23 @@ public class AiCard : CustomCardModel
         {
             GD.Print($"[AICard] Executing stored effects: {string.Join(", ", _effectsList.Select(e => $"{e.effect} {e.value}"))}");
             await ApplyEffects(_effectsList, choiceContext);
+            return;
+        }
+
+        if (!AiCardModConfig.UseAiMode)
+        {
+            await GenerateFromTemplate(choiceContext);
+            return;
+        }
+
+        if (!IsAiConfigReady())
+        {
+            GD.PrintErr("[AICard] AI mode is enabled but API URL/model are not configured. Returning card to hand.");
+            await CardPileCmd.AddGeneratedCardToCombat(
+                this,
+                PileType.Hand,
+                addedByPlayer: true,
+                CardPilePosition.Top);
             return;
         }
 
@@ -58,9 +113,7 @@ public class AiCard : CustomCardModel
             return;
         }
 
-        // TODO: Unicode comment repaired.
-        // Use LINQ to avoid generic constraint on GetPower<T>
-        int piety = (int)(Owner.Creature.Powers?.OfType<PietyPower>().FirstOrDefault()?.Amount ?? 0m);
+        int piety = (int)(Owner.Creature.Powers?.OfType<FaithPower>().FirstOrDefault()?.Amount ?? 0m);
         string pietyTier = GetPietyTier(piety);
         GD.Print($"[AICard] Piety: {piety} ({pietyTier})");
 
@@ -71,67 +124,192 @@ public class AiCard : CustomCardModel
         GD.Print($"[AICard] AI response:\n{aiResponse}");
 
         ParseAiResponse(aiResponse, out var effectsList, out var cardName, out var isExhaust, out var isEthereal, out var cost);
+
         GD.Print($"[AICard] Effects: {string.Join(", ", effectsList.Select(e => $"{e.Item1} {e.Item2}"))}");
         GD.Print($"[AICard] Name: {cardName}, Cost: {cost}, Exhaust: {isExhaust}, Ethereal: {isEthereal}");
 
-        // Fallback if AI returned nothing useful
-        if (effectsList.Count == 0)
+        // Fallback if parsing still produced nothing useful.
+        if (effectsList.Count == 0 && !isExhaust && !isEthereal)
         {
-            GD.Print("[AICard] No effects parsed, using fallback.");
-            if (piety == 0)
-            {
-                effectsList.Add(("PLAYER_WEAK", 2));
-                cardName = "神罰";
-                cost = 0;
-            }
-            else
-            {
-                effectsList.Add(("BLOCK", 8));
-                cardName = "?�盾";
-                cost = 1;
-            }
+            GD.Print("[AICard] No effects parsed, using neutral fallback.");
+            effectsList.Add(("BLOCK", 8));
+            cardName = "庇護";
+            cost = 1;
         }
 
-        // TODO: Unicode comment repaired.
         if (piety > 0)
         {
-            GD.Print($"[AICard] Consuming {piety} piety.");
-            await PowerCmd.Apply<PietyPower>(Owner.Creature, -piety, Owner.Creature, null);
+            GD.Print($"[AICard] Consuming {piety} faith.");
+            await PowerCmd.Apply<FaithPower>(Owner.Creature, -piety, Owner.Creature, null);
         }
 
-        // Create a transformed clone and add to hand
-        var clone = (AiCard)CreateClone();
-        clone._effectsList = new List<(string, int)>(effectsList);
-        clone._hasTransformed = true;
-        clone._cardNameSuffix = cardName;
-        clone._isCardExhaust = isExhaust;
-        clone._isCardEthereal = isEthereal;
+        // Transform this card in-place and return it to hand.
+        _effectsList = new List<(string, int)>(effectsList);
+        _hasTransformed = true;
+        _cardNameSuffix = cardName;
+        _isCardExhaust = false;
+        _isCardEthereal = isEthereal;
 
-        var description = GenerateDescription(effectsList, isExhaust, isEthereal);
-        clone.UpdateCardAppearance(description, cardName, cost);
+        var description = GenerateDescription(_effectsList, _isCardEthereal);
+        UpdateCardAppearance(description, _cardNameSuffix, cost);
 
         await CardPileCmd.AddGeneratedCardToCombat(
-            clone,
+            this,
             PileType.Hand,
             addedByPlayer: true,
             CardPilePosition.Top);
 
-        GD.Print($"[AICard] Generated card '神諭 - {cardName}' added to hand.");
+        GD.Print($"[AICard] Card transformed in-place to '神諭 - {cardName}' and returned to hand.");
     }
 
-    // TODO: Unicode comment repaired.
-
-    private static string GetPietyTier(int piety) => piety switch
+    private async Task GenerateFromTemplate(PlayerChoiceContext choiceContext)
     {
-        < 0 => "ANGERED",
-        0 => "ANGERED",
-        <= 2 => "DISPLEASED",
-        <= 5 => "NEUTRAL",
-        <= 9 => "BLESSED",
-        _ => "DIVINE"
-    };
+        int availablePiety = (int)(Owner.Creature.Powers?.OfType<FaithPower>().FirstOrDefault()?.Amount ?? 0m);
+        int defaultPietySpend = Math.Clamp((int)Math.Round(AiCardModConfig.DefaultPietySpend), 0, Math.Max(0, availablePiety));
 
-    // TODO: Unicode comment repaired.
+        var selection = await TemplateCardDialog.ShowAsync(
+            PrefixOptions.Select(x => x.Name).ToArray(),
+            MiddleOptions.Select(x => x.Name).ToArray(),
+            SuffixOptions.Select(x => x.Name).ToArray(),
+            (int)Math.Round(AiCardModConfig.PrefixIndex),
+            (int)Math.Round(AiCardModConfig.MiddleIndex),
+            (int)Math.Round(AiCardModConfig.SuffixIndex),
+            defaultPietySpend,
+            Math.Max(0, availablePiety),
+            AiCardModConfig.GeneratedCardEthereal,
+            BuildTemplatePreview);
+
+        if (selection == null)
+        {
+            await CardPileCmd.AddGeneratedCardToCombat(
+                this,
+                PileType.Hand,
+                addedByPlayer: true,
+                CardPilePosition.Top);
+            GD.Print("[AICard] Template selection cancelled, card returned to hand.");
+            return;
+        }
+
+        int pietySpend = Math.Clamp(selection.PietySpend, 0, Math.Max(0, availablePiety));
+        var prefix = GetTemplatePart(PrefixOptions, selection.PrefixIndex);
+        var middle = GetTemplatePart(MiddleOptions, selection.MiddleIndex);
+        var suffix = GetTemplatePart(SuffixOptions, selection.SuffixIndex);
+
+        double scale = Math.Clamp(AiCardModConfig.EffectScale, 0.5, 2.5);
+        double pietyPoints = CalculatePietyPoints(pietySpend);
+        var effects = new List<(string effect, int value)>
+        {
+            (prefix.Effect, ScaleEffectValue(prefix.Effect, prefix.BaseValue, scale, pietyPoints)),
+            (middle.Effect, ScaleEffectValue(middle.Effect, middle.BaseValue, scale, pietyPoints)),
+            (suffix.Effect, ScaleEffectValue(suffix.Effect, suffix.BaseValue, scale, pietyPoints))
+        };
+
+        MergeEffects(effects);
+
+        _effectsList = effects;
+        _hasTransformed = true;
+        _cardNameSuffix = $"{prefix.Name}{middle.Name}{suffix.Name}";
+        _isCardExhaust = false;
+        _isCardEthereal = selection.Ethereal;
+
+        AiCardModConfig.PrefixIndex = selection.PrefixIndex;
+        AiCardModConfig.MiddleIndex = selection.MiddleIndex;
+        AiCardModConfig.SuffixIndex = selection.SuffixIndex;
+        AiCardModConfig.DefaultPietySpend = pietySpend;
+        AiCardModConfig.GeneratedCardEthereal = selection.Ethereal;
+
+        var description = GenerateDescription(_effectsList, _isCardEthereal);
+        UpdateCardAppearance(description, _cardNameSuffix, 0);
+
+        if (pietySpend > 0)
+        {
+            await PowerCmd.Apply<FaithPower>(Owner.Creature, -pietySpend, Owner.Creature, null);
+        }
+
+        await CardPileCmd.AddGeneratedCardToCombat(
+            this,
+            PileType.Hand,
+            addedByPlayer: true,
+            CardPilePosition.Top);
+
+        GD.Print($"[AICard] Template card '{_cardNameSuffix}' transformed in-place and returned to hand. Piety spent: {pietySpend}");
+    }
+
+    private static bool IsAiConfigReady() =>
+        !string.IsNullOrWhiteSpace(AiCardModConfig.AiApiUrl) &&
+        !string.IsNullOrWhiteSpace(AiCardModConfig.AiModel);
+
+    private static TemplatePart GetTemplatePart(TemplatePart[] options, double rawIndex)
+    {
+        int index = Math.Clamp((int)Math.Round(rawIndex), 0, options.Length - 1);
+        return options[index];
+    }
+
+    private static (string title, string description, string affixText, string metaText) BuildTemplatePreview(
+        int prefixIndex,
+        int middleIndex,
+        int suffixIndex,
+        int pietySpend,
+        bool isEthereal)
+    {
+        var prefix = GetTemplatePart(PrefixOptions, prefixIndex);
+        var middle = GetTemplatePart(MiddleOptions, middleIndex);
+        var suffix = GetTemplatePart(SuffixOptions, suffixIndex);
+
+        double scale = Math.Clamp(AiCardModConfig.EffectScale, 0.5, 2.5);
+        double pietyPoints = CalculatePietyPoints(Math.Max(0, pietySpend));
+
+        var effects = new List<(string effect, int value)>
+        {
+            (prefix.Effect, ScaleEffectValue(prefix.Effect, prefix.BaseValue, scale, pietyPoints)),
+            (middle.Effect, ScaleEffectValue(middle.Effect, middle.BaseValue, scale, pietyPoints)),
+            (suffix.Effect, ScaleEffectValue(suffix.Effect, suffix.BaseValue, scale, pietyPoints))
+        };
+
+        MergeEffects(effects);
+
+        string suffixName = $"{prefix.Name}{middle.Name}{suffix.Name}";
+        string title = $"{BaseCardTitle} - {suffixName}";
+        string description = GenerateDescription(effects, isEthereal);
+        string affixText = $"前綴：{prefix.Name}    中綴：{middle.Name}    後綴：{suffix.Name}";
+        string keywords = isEthereal ? "虛無" : "無";
+        string metaText = $"費用：0    關鍵字：{keywords}    虔誠投入：{Math.Max(0, pietySpend)}    虔誠轉點：{pietyPoints:0.##}";
+        return (title, description, affixText, metaText);
+    }
+
+    private static double CalculatePietyPoints(int pietySpend)
+    {
+        if (pietySpend <= 0) return 0;
+        if (pietySpend <= 4) return pietySpend * 0.5;
+        if (pietySpend <= 8) return 2 + (pietySpend - 4) * 0.35;
+        return 3.4 + (pietySpend - 8) * 0.2;
+    }
+
+    private static int ScaleEffectValue(string effect, int baseValue, double scale, double pietyPoints)
+    {
+        int scaled = (int)Math.Round(baseValue * scale, MidpointRounding.AwayFromZero);
+        int withBonus = scaled + (int)Math.Round(pietyPoints, MidpointRounding.AwayFromZero);
+
+        return effect.ToUpperInvariant() switch
+        {
+            "DRAW" => Math.Clamp(withBonus, 1, 5),
+            "ENERGY" => Math.Clamp(withBonus, 1, 3),
+            "VULNERABLE" or "WEAK" or "FRAIL" => Math.Clamp(withBonus, 1, 6),
+            "STRENGTH" or "DEXTERITY" or "FOCUS" => Math.Clamp(withBonus, 1, 5),
+            _ => Math.Clamp(withBonus, 1, 99)
+        };
+    }
+
+    private static void MergeEffects(List<(string effect, int value)> effects)
+    {
+        var merged = effects
+            .GroupBy(x => x.effect, StringComparer.OrdinalIgnoreCase)
+            .Select(g => (effect: g.Key.ToUpperInvariant(), value: g.Sum(x => x.value)))
+            .ToList();
+
+        effects.Clear();
+        effects.AddRange(merged);
+    }
 
     private static readonly HashSet<string> KnownEffects = new(StringComparer.OrdinalIgnoreCase)
     {
@@ -151,6 +329,16 @@ public class AiCard : CustomCardModel
     private static readonly HashSet<string> CardPropertyEffects = new(StringComparer.OrdinalIgnoreCase)
     {
         "COST", "CARD_EXHAUST", "CARD_ETHEREAL"
+    };
+
+    private static string GetPietyTier(int piety) => piety switch
+    {
+        < 0 => "ANGERED",
+        0 => "ANGERED",
+        <= 2 => "DISPLEASED",
+        <= 5 => "NEUTRAL",
+        <= 9 => "BLESSED",
+        _ => "DIVINE"
     };
 
     // TODO: Unicode comment repaired.
@@ -230,36 +418,33 @@ public class AiCard : CustomCardModel
 
     // TODO: Unicode comment repaired.
 
-    private static string GenerateDescription(List<(string effect, int value)> effects, bool isExhaust, bool isEthereal)
+    private static string GenerateDescription(List<(string effect, int value)> effects, bool isEthereal)
     {
         var lines = new List<string>();
         var keywordLines = new List<string>();
 
-        if (isExhaust)
-            keywordLines.Add("[gold]消耗[/gold]");
-
         if (isEthereal)
-            keywordLines.Add("[gold]?�無[/gold]");
+            keywordLines.Add("[gold]虛無[/gold]");
 
         foreach (var (effectName, value) in effects)
         {
             string line = effectName.ToUpperInvariant() switch
             {
-                "DAMAGE"           => $"造成 {value} 點傷害。",
-                "BLOCK"            => $"獲得 {value} 點格擋。",
-                "DRAW"             => $"抽取 {value} 張卡牌。",
-                "HEAL"             => $"恢復 {value} 點生命值。",
-                "ENERGY"           => $"獲得 {value} 點能量。",
-                "STRENGTH"         => $"獲得 {value} 層力量。",
-                "DEXTERITY"        => $"獲得 {value} 層敏捷。",
-                "FOCUS"            => $"獲得 {value} 層專注。",
-                "GOLD"             => $"獲得 {value} 枚金幣。",
-                "VULNERABLE"       => $"對敵人施加 {value} 層易傷。",
-                "WEAK"             => $"對敵人施加 {value} 層虛弱。",
-                "FRAIL"            => $"對敵人施加 {value} 層脆弱。",
-                "PLAYER_WEAK"      => $"[red]你獲得 {value} 層虛弱。[/red]",
-                "PLAYER_VULNERABLE"=> $"[red]你獲得 {value} 層易傷。[/red]",
-                _                  => $"{effectName} {value}"
+                "DAMAGE" => $"造成 {value} 點傷害。",
+                "BLOCK" => $"獲得 {value} 點格擋。",
+                "DRAW" => $"抽取 {value} 張卡牌。",
+                "HEAL" => $"恢復 {value} 點生命值。",
+                "ENERGY" => $"獲得 {value} 點能量。",
+                "STRENGTH" => $"獲得 {value} 層力量。",
+                "DEXTERITY" => $"獲得 {value} 層敏捷。",
+                "FOCUS" => $"獲得 {value} 層專注。",
+                "GOLD" => $"獲得 {value} 枚金幣。",
+                "VULNERABLE" => $"對敵人施加 {value} 層易傷。",
+                "WEAK" => $"對敵人施加 {value} 層虛弱。",
+                "FRAIL" => $"對敵人施加 {value} 層脆弱。",
+                "PLAYER_WEAK" => $"[red]你獲得 {value} 層虛弱。[/red]",
+                "PLAYER_VULNERABLE" => $"[red]你獲得 {value} 層易傷。[/red]",
+                _ => $"{effectName} {value}"
             };
             lines.Add(line);
         }
@@ -274,14 +459,14 @@ public class AiCard : CustomCardModel
         try
         {
             var cardKey = Id.Entry;
-            var baseTitle = new LocString("cards", "AICARDMOD-AI_CARD.title").GetFormattedText();
-            var fullTitle = $"{baseTitle} - {nameSuffix}";
+            var fullTitle = $"{BaseCardTitle} - {nameSuffix}";
 
             var table = LocManager.Instance.GetTable("cards");
             table.MergeWith(new Dictionary<string, string>
             {
                 [$"{cardKey}.title"] = fullTitle,
-                [$"{cardKey}.description"] = description
+                [$"{cardKey}.description"] = description,
+                [$"{cardKey}.upgraded_description"] = description
             });
 
             EnergyCost.SetThisCombat(cost);
@@ -318,7 +503,7 @@ public class AiCard : CustomCardModel
                 break;
 
             case "BLOCK":
-                await CreatureCmd.GainBlock(Owner.Creature, new BlockVar(value, 0), null);
+                await CreatureCmd.GainBlock(Owner.Creature, new BlockVar(value, ValueProp.Move), null);
                 break;
 
             case "DRAW":
@@ -390,24 +575,12 @@ public class AiCard : CustomCardModel
         return alive[GD.RandRange(0, alive.Count - 1)];
     }
 
-    // TODO: Unicode comment repaired.
-
     private static string BuildPrompt(string playerRequest, int piety, string pietyTier) =>
         $"You are designing a card effect for Slay the Spire 2.\n\n" +
-        $"Player request: \"{playerRequest}\"\n" +
-        $"Player Piety: {piety} - Oracle mood: {pietyTier}\n\n" +
-        $"PIETY RULES (adjust your output accordingly):\n" +
-        $"- ANGERED (0 piety):   The oracle is furious. IGNORE the request entirely.\n" +
-        $"                        Output ONLY negative effects on the player: PLAYER_WEAK 2, PLAYER_VULNERABLE 2.\n" +
-        $"                        Give the card a punishing Chinese name.\n" +
-        $"- DISPLEASED (1-2):    Grant a WEAKENED version (reduce all values by ~40%).\n" +
-        $"                        Add PLAYER_WEAK 1 as a side penalty.\n" +
-        $"- NEUTRAL (3-5):       Grant EXACTLY what was asked. No bonus, no penalty.\n" +
-        $"- BLESSED (6-9):       Grant an ENHANCED version. Increase all values by ~30%.\n" +
-        $"- DIVINE (10+):        Grant a GREATLY ENHANCED version. Increase all values by ~60%.\n\n" +
+        $"Player request: \"{playerRequest}\"\n\n" +
         $"RULES:\n" +
-        $"1. Output ONLY effects (one per line), then a short Chinese card name (2-4 characters). No explanation.\n" +
-        $"2. Interpret numbers literally before applying piety scaling.\n\n" +
+        $"1. Grant EXACTLY what the player asked for.\n" +
+        $"2. Output ONLY effects (one per line), then a short Chinese card name (2-4 characters). No explanation.\n\n" +
         $"Available effects:\n" +
         $"  BLOCK X            - gain X block\n" +
         $"  DAMAGE X           - deal X damage to random enemy\n" +
@@ -417,23 +590,32 @@ public class AiCard : CustomCardModel
         $"  STRENGTH X         - gain X Strength\n" +
         $"  DEXTERITY X        - gain X Dexterity\n" +
         $"  GOLD X             - gain X gold\n" +
+        $"  VULNERABLE X       - enemy gets X Vulnerable\n" +
+        $"  WEAK X             - enemy gets X Weak\n" +
+        $"  FRAIL X            - enemy gets X Frail\n" +
         $"  PLAYER_WEAK X      - player gets X Weak (negative)\n" +
         $"  PLAYER_VULNERABLE X- player gets X Vulnerable (negative)\n\n" +
-        $"Example - NEUTRAL piety, player asked \"80 block\":\n" +
+        $"Example - player asked \"80 block\":\n" +
         $"BLOCK 80\n" +
-        $"?��?\n\n" +
-        $"Example - ANGERED, player asked \"draw 3 cards\":\n" +
-        $"PLAYER_WEAK 2\n" +
-        $"PLAYER_VULNERABLE 2\n" +
-        $"神罰\n\n" +
+        $"堡壘\n\n" +
         $"Now output for the player's request. No extra text.";
 
     protected override void OnUpgrade()
     {
+        EnergyCost.SetCustomBaseCost(0);
         _hasTransformed = false;
         _cardNameSuffix = "";
         _effectsList = [];
-        _isCardExhaust = true;
+        _isCardExhaust = false;
         _isCardEthereal = false;
+    }
+
+    private static void SetGeneratedCardId(AiCard card)
+    {
+        int serial = Interlocked.Increment(ref _generatedCardSerial);
+        var generatedId = new ModelId(card.Id.Category, $"AICARDMOD-AI_CARD_GEN_{serial:D4}");
+        var idField = typeof(AbstractModel).GetField("<Id>k__BackingField", BindingFlags.Instance | BindingFlags.NonPublic)
+            ?? throw new InvalidOperationException("Unable to locate AbstractModel.Id backing field.");
+        idField.SetValue(card, generatedId);
     }
 }
