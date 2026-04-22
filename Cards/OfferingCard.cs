@@ -16,8 +16,6 @@ namespace AICardMod.Scripts;
 /// </summary>
 public class OfferingCard : PortraitCardModel
 {
-    private const string EnergyGainKey = "AICARDMOD-EnergyGain";
-    private const string DrawPenaltyKey = "DrawPenalty";
     private const int energyCost = 1;
     private const CardType type = CardType.Skill;
     private const CardRarity rarity = CardRarity.Common;
@@ -26,19 +24,19 @@ public class OfferingCard : PortraitCardModel
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new DynamicVar(EnergyGainKey, 2),
-        new DynamicVar(DrawPenaltyKey, 1)
+        new CardsVar(1)
     ];
-
-    public override IEnumerable<CardKeyword> CanonicalKeywords => IsUpgraded ? [] : [CardKeyword.Exhaust];
 
     public OfferingCard() : base(energyCost, type, rarity, targetType, shouldShowInLibrary) { }
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        await PlayerCmd.GainEnergy(DynamicVars[EnergyGainKey].IntValue, Owner);
-        await PowerCmd.Apply<NextTurnDrawPower>(Owner.Creature, -DynamicVars[DrawPenaltyKey].IntValue, Owner.Creature, this);
+        await PlayerCmd.GainEnergy(2, Owner);
+        await PowerCmd.Apply<NextTurnDrawPower>(Owner.Creature, -DynamicVars["Cards"].IntValue, Owner.Creature, this);
     }
 
-    protected override void OnUpgrade() { }
+    protected override void OnUpgrade()
+    {
+        RemoveKeyword(CardKeyword.Exhaust);
+    }
 }

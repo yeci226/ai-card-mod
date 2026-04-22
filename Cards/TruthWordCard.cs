@@ -3,8 +3,7 @@ using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.Localization.DynamicVars;
-using MegaCrit.Sts2.Core.Models.CardPools;
+using MegaCrit.Sts2.Core.HoverTips;
 
 namespace AICardMod.Scripts;
 
@@ -22,9 +21,9 @@ public class TruthWordCard : CustomCardModel
     private const TargetType targetType = TargetType.None;
     private const bool shouldShowInLibrary = true;
 
-    public override IEnumerable<CardKeyword> CanonicalKeywords =>
-        IsUpgraded ? [CardKeyword.Exhaust, CardKeyword.Retain] : [CardKeyword.Exhaust];
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new DynamicVar(RevelationPerCardKey, 1)];
+    protected override IEnumerable<IHoverTip> ExtraHoverTips => [HoverTipFactory.FromPower<RevelationPower>()];
+
+    public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
 
     public TruthWordCard() : base(energyCost, type, rarity, targetType, shouldShowInLibrary) { }
 
@@ -36,5 +35,8 @@ public class TruthWordCard : CustomCardModel
             await PowerCmd.Apply<RevelationPower>(Owner.Creature, handCount * revelationPerCard, Owner.Creature, this);
     }
 
-    protected override void OnUpgrade() { }
+    protected override void OnUpgrade()
+    {
+        AddKeyword(CardKeyword.Retain);
+    }
 }

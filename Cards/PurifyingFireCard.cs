@@ -16,7 +16,6 @@ namespace AICardMod.Scripts;
 /// </summary>
 public class PurifyingFireCard : CustomCardModel
 {
-    private const string RepeatKey = RepeatVar.Key;
     private const int energyCost = 0;
     private const CardType type = CardType.Attack;
     private const CardRarity rarity = CardRarity.Uncommon;
@@ -25,7 +24,9 @@ public class PurifyingFireCard : CustomCardModel
 
     protected override bool HasEnergyCostX => true;
 
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new DynamicVar(RepeatKey, 1)];
+    protected override IEnumerable<DynamicVar> CanonicalVars => [
+        new RepeatVar(1)
+    ];
 
     public PurifyingFireCard() : base(energyCost, type, rarity, targetType, shouldShowInLibrary) { }
 
@@ -45,6 +46,6 @@ public class PurifyingFireCard : CustomCardModel
 
     protected override void OnUpgrade()
     {
-        DynamicVars[RepeatKey].UpgradeValueBy(1);
+        DynamicVars["Repeat"].UpgradeValueBy(1);
     }
 }

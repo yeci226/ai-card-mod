@@ -4,7 +4,7 @@ using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
-using MegaCrit.Sts2.Core.Models.CardPools;
+using MegaCrit.Sts2.Core.HoverTips;
 
 namespace AICardMod.Scripts;
 
@@ -22,6 +22,10 @@ public class HolyWaterBlessingCard : CustomCardModel
     private const CardRarity rarity = CardRarity.Uncommon;
     private const TargetType targetType = TargetType.None;
     private const bool shouldShowInLibrary = true;
+
+    protected override IEnumerable<IHoverTip> ExtraHoverTips => [
+        HoverTipFactory.FromPower<FaithPower>()
+    ];
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
@@ -46,5 +50,8 @@ public class HolyWaterBlessingCard : CustomCardModel
         await CardPileCmd.Draw(choiceContext, spend * drawPerFaith, Owner);
     }
 
-    protected override void OnUpgrade() { }
+    protected override void OnUpgrade()
+    {
+        EnergyCost.SetCustomBaseCost(0);
+    }
 }

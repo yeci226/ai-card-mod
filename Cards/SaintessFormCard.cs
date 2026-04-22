@@ -3,7 +3,7 @@ using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.Models.CardPools;
+using MegaCrit.Sts2.Core.HoverTips;
 
 namespace AICardMod.Scripts;
 
@@ -20,7 +20,9 @@ public class SaintessFormCard : CustomCardModel
     private const TargetType targetType = TargetType.None;
     private const bool shouldShowInLibrary = true;
 
-    public override IEnumerable<CardKeyword> CanonicalKeywords => IsUpgraded ? [CardKeyword.Retain] : [];
+    protected override IEnumerable<IHoverTip> ExtraHoverTips => [HoverTipFactory.FromPower<RevelationPower>()];
+
+
 
     public SaintessFormCard() : base(energyCost, type, rarity, targetType, shouldShowInLibrary) { }
 
@@ -29,5 +31,8 @@ public class SaintessFormCard : CustomCardModel
         await PowerCmd.Apply<SaintessFormPower>(Owner.Creature, 1, Owner.Creature, this);
     }
 
-    protected override void OnUpgrade() { }
+    protected override void OnUpgrade()
+    {
+        AddKeyword(CardKeyword.Retain);
+    }
 }

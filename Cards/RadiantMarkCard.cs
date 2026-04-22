@@ -3,8 +3,8 @@ using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
-using MegaCrit.Sts2.Core.Models.CardPools;
 using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.ValueProps;
 
@@ -29,6 +29,8 @@ public class RadiantMarkCard : CustomCardModel
         new DamageVar(7, ValueProp.Move),
         new DynamicVar(VulnerableGainKey, 1)
     ];
+
+    protected override IEnumerable<IHoverTip> ExtraHoverTips => [HoverTipFactory.FromPower<VulnerablePower>()];
 
     public RadiantMarkCard() : base(energyCost, type, rarity, targetType, shouldShowInLibrary) { }
 

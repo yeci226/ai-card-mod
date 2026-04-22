@@ -17,7 +17,6 @@ namespace AICardMod.Scripts;
 /// </summary>
 public class SacredTouchCard : PortraitCardModel
 {
-    private const string HealKey = HealVar.Key;
     private const int energyCost = 1;
     private const CardType type = CardType.Attack;
     private const CardRarity rarity = CardRarity.Common;
@@ -25,7 +24,7 @@ public class SacredTouchCard : PortraitCardModel
     private const bool shouldShowInLibrary = true;
 
     public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(5, ValueProp.Move), new DynamicVar(HealKey, 2)];
+    protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(5, ValueProp.Move), new HealVar(2)];
 
     public SacredTouchCard() : base(energyCost, type, rarity, targetType, shouldShowInLibrary) { }
 
@@ -34,12 +33,12 @@ public class SacredTouchCard : PortraitCardModel
         ArgumentNullException.ThrowIfNull(cardPlay.Target, nameof(cardPlay.Target));
 
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this).Targeting(cardPlay.Target).Execute(choiceContext);
-        await CreatureCmd.Heal(Owner.Creature, DynamicVars[HealKey].IntValue);
+        await CreatureCmd.Heal(Owner.Creature, DynamicVars["Heal"].IntValue);
     }
 
     protected override void OnUpgrade()
     {
         DynamicVars.Damage.UpgradeValueBy(3);
-        DynamicVars[HealKey].UpgradeValueBy(1);
+        DynamicVars["Heal"].UpgradeValueBy(1);
     }
 }

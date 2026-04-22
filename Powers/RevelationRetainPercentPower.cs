@@ -10,6 +10,6 @@ namespace AICardMod.Scripts;
 public class RevelationRetainPercentPower : CustomPowerModel
 {
     public override PowerType Type => PowerType.Buff;
-    public override PowerStackType StackType => PowerStackType.Counter;
+    public override PowerStackType StackType => PowerStackType.Single;
     public override int DisplayAmount => (int)Amount;
 }

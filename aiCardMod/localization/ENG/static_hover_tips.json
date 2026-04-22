@@ -1,8 +1,8 @@
 {
   "AICARDMOD-REVELATIONGAIN.title": "Revelation",
-  "AICARDMOD-REVELATIONGAIN.description": "This card grants that much Revelation.",
+  "AICARDMOD-REVELATIONGAIN.description": "At the end of the player's turn, every 3 [gold]Revelation[/gold] is converted into 1 [gold]Holy Arrow[/gold] that deals 3 damage and randomly strikes a single enemy. This is considered effect damage, so it doesn't trigger Thorns and isn't affected by Strength or Weakness.",
   "AICARDMOD-FAITHGAIN.title": "Faith",
-  "AICARDMOD-FAITHGAIN.description": "This card grants that much Faith.",
+  "AICARDMOD-FAITHGAIN.description": "A resource that doesn't disappear at the end of the turn.",
   "AICARDMOD-MISSTEPGAIN.title": "Misstep",
   "AICARDMOD-MISSTEPGAIN.description": "The enemy's next attack deals 25% less damage, then Misstep decreases by 1 stack."
 }

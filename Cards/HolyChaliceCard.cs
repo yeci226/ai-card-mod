@@ -5,7 +5,6 @@ using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
-using MegaCrit.Sts2.Core.Models.CardPools;
 
 namespace AICardMod.Scripts;
 
@@ -22,8 +21,6 @@ public class HolyChaliceCard : CustomCardModel
     private const CardRarity rarity = CardRarity.Rare;
     private const TargetType targetType = TargetType.None;
     private const bool shouldShowInLibrary = true;
-
-    public override IEnumerable<CardKeyword> CanonicalKeywords => IsUpgraded ? [CardKeyword.Retain] : [];
     protected override IEnumerable<DynamicVar> CanonicalVars => [new DynamicVar(BonusGainKey, 1).WithTooltip(RevelationGainVar.LocKey)];
 
     public HolyChaliceCard() : base(energyCost, type, rarity, targetType, shouldShowInLibrary) { }
@@ -33,5 +30,8 @@ public class HolyChaliceCard : CustomCardModel
         await PowerCmd.Apply<HolyChalicePower>(Owner.Creature, DynamicVars[BonusGainKey].IntValue, Owner.Creature, this);
     }
 
-    protected override void OnUpgrade() { }
+    protected override void OnUpgrade()
+    {
+        AddKeyword(CardKeyword.Retain);
+    }
 }

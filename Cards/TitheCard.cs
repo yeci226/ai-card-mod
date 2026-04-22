@@ -10,7 +10,7 @@ namespace AICardMod.Scripts;
 [Pool(typeof(ProphetCardPool))]
 /// <summary>
 /// 名稱：什一稅
-/// 描述：在戰鬥結束時，獲得你持有金幣的10%作為金幣。
+/// 描述：在戰鬥結束時，獲得你持有金幣10%的金幣。
 /// </summary>
 public class TitheCard : CustomCardModel
 {
@@ -27,5 +27,8 @@ public class TitheCard : CustomCardModel
         await PowerCmd.Apply<TithePower>(Owner.Creature, 1, Owner.Creature, this);
     }
 
-    protected override void OnUpgrade() { }
+    protected override void OnUpgrade()
+    {
+        EnergyCost.SetCustomBaseCost(0);
+    }
 }

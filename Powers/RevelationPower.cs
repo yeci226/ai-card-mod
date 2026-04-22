@@ -10,9 +10,10 @@ using MegaCrit.Sts2.Core.ValueProps;
 using System.Linq;
 
 namespace AICardMod.Scripts;
+
 /// <summary>
 /// 名稱：啟示
-/// 描述：每回合結束時，每3點啟示會轉化為1發神聖箭矢。
+/// 描述：每回合結束時，每3點啟示會轉化為1發神聖箭矢。若無保留能力，剩餘層數會清空。
 /// </summary>
 public class RevelationPower : CustomPowerModel
 {
@@ -27,75 +28,67 @@ public class RevelationPower : CustomPowerModel
         if (side != Owner.Side)
             return;
 
-        int arrowCount = (int)(Amount / 3m);
-        if (arrowCount <= 0)
-            return;
+        int totalAtTurnEnd = (int)Amount;
+        int arrowCount = totalAtTurnEnd / 3;
 
+        int retainPercent = (int)(Owner.Powers?.OfType<RevelationRetainPercentPower>().MaxBy(p => p.Amount)?.Amount ?? 0m);
         var enemies = CombatState.HittableEnemies.Where(enemy => enemy.IsAlive).ToList();
-        if (enemies.Count == 0)
-            return;
 
-        int echoBlock = (int)(Owner.Powers?.OfType<RevelationEchoPower>().FirstOrDefault()?.Amount ?? 0m);
-        int holyMight = (int)(Owner.Powers?.OfType<HolyMightPower>().FirstOrDefault()?.Amount ?? 0m);
-        int doomsdayTurnGain = (int)(Owner.Powers?.OfType<DoomsdayJudgmentPower>().FirstOrDefault()?.Amount ?? 0m);
-        int retainPercent = (int)(Owner.Powers?.OfType<RevelationRetainPercentPower>().MaxBy(power => power.Amount)?.Amount ?? 0m);
-        bool choirAllEnemies = (Owner.Powers?.OfType<HolyChoirPower>().Any() ?? false);
-        int doomsdayTurnBonus = 0;
-
-        var focusTargets = enemies.Where(enemy => enemy.Powers?.OfType<RevelationFocusPower>().Any() ?? false).ToList();
-        var saintessForm = Owner.Powers?.OfType<SaintessFormPower>().FirstOrDefault();
-
-        for (int index = 0; index < arrowCount; index++)
+        if (arrowCount > 0 && enemies.Count > 0)
         {
-            int arrowDamage = Math.Max(0, DivineArrowDamage + holyMight + doomsdayTurnBonus);
+            int echoBlock = (int)(Owner.Powers?.OfType<RevelationEchoPower>().FirstOrDefault()?.Amount ?? 0m);
+            int holyMight = (int)(Owner.Powers?.OfType<HolyMightPower>().FirstOrDefault()?.Amount ?? 0m);
+            int doomsdayTurnGain = (int)(Owner.Powers?.OfType<DoomsdayJudgmentPower>().FirstOrDefault()?.Amount ?? 0m);
+            bool choirAllEnemies = Owner.Powers?.OfType<HolyChoirPower>().Any() ?? false;
+            int doomsdayTurnBonus = 0;
 
-            if (choirAllEnemies)
+            var focusTargets = enemies.Where(enemy => enemy.Powers?.OfType<RevelationFocusPower>().Any() ?? false).ToList();
+            var saintessForm = Owner.Powers?.OfType<SaintessFormPower>().FirstOrDefault();
+
+            for (int index = 0; index < arrowCount; index++)
             {
-                foreach (var enemy in enemies.Where(enemy => enemy.IsAlive))
+                int arrowDamage = Math.Max(0, DivineArrowDamage + holyMight + doomsdayTurnBonus);
+
+                if (choirAllEnemies)
                 {
-                    await CreatureCmd.Damage(
-                        choiceContext,
-                        enemy,
-                        arrowDamage,
-                        ValueProp.Move | ValueProp.Unblockable | ValueProp.Unpowered,
-                        Owner,
-                        null);
+                    foreach (var enemy in enemies.Where(e => e.IsAlive))
+                    {
+                        await CreatureCmd.Damage(choiceContext, enemy, arrowDamage, ValueProp.Move | ValueProp.Unblockable | ValueProp.Unpowered, Owner, null);
+                    }
                 }
+                else
+                {
+                    var targetPool = focusTargets.Count > 0 ? focusTargets : enemies;
+                    var target = Owner.Player?.RunState.Rng.CombatTargets.NextItem(targetPool);
+                    if (target == null) break;
+
+                    await CreatureCmd.Damage(choiceContext, target, arrowDamage, ValueProp.Move | ValueProp.Unblockable | ValueProp.Unpowered, Owner, null);
+                }
+
+                if (echoBlock > 0)
+                    await CreatureCmd.GainBlock(Owner, echoBlock, ValueProp.Move | ValueProp.Unpowered, null);
+
+                if (doomsdayTurnGain > 0)
+                    doomsdayTurnBonus += doomsdayTurnGain;
             }
-            else
-            {
-                var targetPool = focusTargets.Count > 0 ? focusTargets : enemies;
-                var target = Owner.Player?.RunState.Rng.CombatTargets.NextItem(targetPool);
-                if (target == null)
-                    break;
 
-                await CreatureCmd.Damage(
-                    choiceContext,
-                    target,
-                    arrowDamage,
-                    ValueProp.Move | ValueProp.Unblockable | ValueProp.Unpowered,
-                    Owner,
-                    null);
-            }
-
-            if (echoBlock > 0)
-                await CreatureCmd.GainBlock(Owner, echoBlock, ValueProp.Move | ValueProp.Unpowered, null);
-
-            if (doomsdayTurnGain > 0)
-                doomsdayTurnBonus += doomsdayTurnGain;
+            if (saintessForm != null)
+                await saintessForm.RegisterRevelationTriggers(choiceContext, arrowCount);
         }
 
-        if (saintessForm != null)
-            await saintessForm.RegisterRevelationTriggers(choiceContext, arrowCount);
 
-        int consumed = arrowCount * 3;
-        int retained = (int)Math.Ceiling(consumed * (Math.Max(0, retainPercent) / 100m));
-        int delta = -consumed + retained;
+        int retained = (int)Math.Ceiling(totalAtTurnEnd * (Math.Max(0, retainPercent) / 100m));
+
+        int delta = -totalAtTurnEnd + retained;
         var finalAmount = Amount + delta;
 
         if (finalAmount > 0m)
+        {
             await PowerCmd.Apply<RevelationPower>(Owner, delta, Owner, null, silent: true);
+        }
         else
+        {
             await PowerCmd.Remove(this);
+        }
     }
 }

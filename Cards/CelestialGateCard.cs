@@ -17,7 +17,6 @@ namespace AICardMod.Scripts;
 /// </summary>
 public class CelestialGateCard : CustomCardModel
 {
-    private const string RepeatKey = RepeatVar.Key;
     private const string RevelationGainKey = RevelationGainVar.Key;
     private const int energyCost = 0;
     private const CardType type = CardType.Attack;
@@ -31,7 +30,7 @@ public class CelestialGateCard : CustomCardModel
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new DamageVar(7, ValueProp.Move),
-        new DynamicVar(RepeatKey, 1),
+        new RepeatVar(1),
         new DynamicVar(RevelationGainKey, 3).WithTooltip(RevelationGainVar.LocKey)
     ];
 

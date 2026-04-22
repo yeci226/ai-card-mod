@@ -41,5 +41,8 @@ public class TrinityCard : CustomCardModel
         await FaithManager.ApplyFaith(Owner.Creature, DynamicVars[FaithGainKey].IntValue, this);
     }
 
-    protected override void OnUpgrade() { }
+    protected override void OnUpgrade()
+    {
+        EnergyCost.SetCustomBaseCost(0);
+    }
 }

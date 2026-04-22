@@ -1,11 +1,10 @@
 using BaseLib.Abstracts;
 using BaseLib.Utils;
-using System;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
-using MegaCrit.Sts2.Core.Models.CardPools;
+using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.ValueProps;
 namespace AICardMod.Scripts;
 
@@ -16,14 +15,14 @@ namespace AICardMod.Scripts;
 /// </summary>
 public class SmiteEvilCard : CustomCardModel
 {
-    private const string RepeatKey = RepeatVar.Key;
     private const int energyCost = 2;
     private const CardType type = CardType.Attack;
     private const CardRarity rarity = CardRarity.Common;
     private const TargetType targetType = TargetType.AnyEnemy;
     private const bool shouldShowInLibrary = true;
 
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(12, ValueProp.Move), new DynamicVar(RepeatKey, 2)];
+    protected override IEnumerable<IHoverTip> ExtraHoverTips => [HoverTipFactory.FromPower<MisstepPower>()];
+    protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(12, ValueProp.Move), new RepeatVar(2)];
 
     public SmiteEvilCard() : base(energyCost, type, rarity, targetType, shouldShowInLibrary) { }
 
@@ -34,7 +33,7 @@ public class SmiteEvilCard : CustomCardModel
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this).Targeting(cardPlay.Target).Execute(choiceContext);
         if (cardPlay.Target.HasPower<MisstepPower>())
         {
-            for (var i = 1; i < DynamicVars[RepeatKey].IntValue; i++)
+            for (var i = 1; i < DynamicVars["Repeat"].IntValue; i++)
                 await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this).Targeting(cardPlay.Target).Execute(choiceContext);
         }
     }

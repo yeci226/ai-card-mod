@@ -17,7 +17,6 @@ namespace AICardMod.Scripts;
 /// </summary>
 public class SaintLanceCard : CustomCardModel
 {
-    private const string RepeatKey = RepeatVar.Key;
     private const int energyCost = 2;
     private const CardType type = CardType.Attack;
     private const CardRarity rarity = CardRarity.Uncommon;
@@ -27,7 +26,7 @@ public class SaintLanceCard : CustomCardModel
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new DamageVar(4, ValueProp.Move),
-        new DynamicVar(RepeatKey, 4)
+        new RepeatVar(4)
     ];
 
     public SaintLanceCard() : base(energyCost, type, rarity, targetType, shouldShowInLibrary) { }
@@ -37,7 +36,7 @@ public class SaintLanceCard : CustomCardModel
         if (cardPlay.Target == null)
             return;
 
-        for (int index = 0; index < DynamicVars[RepeatKey].IntValue; index++)
+        for (int index = 0; index < DynamicVars["Repeat"].IntValue; index++)
             await DamageCmd.Attack(DynamicVars.Damage.IntValue).FromCard(this).Targeting(cardPlay.Target).Execute(choiceContext);
     }
 

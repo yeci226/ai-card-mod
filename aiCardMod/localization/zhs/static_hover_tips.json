@@ -1,8 +1,8 @@
 {
   "AICARDMOD-REVELATIONGAIN.title": "啟示",
-  "AICARDMOD-REVELATIONGAIN.description": "此牌將獲得等量啟示。",
-  "AICARDMOD-FAITHGAIN.title": "信仰",
-  "AICARDMOD-FAITHGAIN.description": "此牌將獲得等量信仰。",
+  "AICARDMOD-REVELATIONGAIN.description": "玩家回合結束時，每3點[gold]啟示[/gold]會轉化為1發造成3點傷害的[gold]神聖箭矢[/gold]，隨機攻擊單體敵人。這屬於效果傷害，不觸發反傷，不受力量或虛弱影響。",
+  "AICARDMOD-FAITHGAIN.title": "虔誠",
+  "AICARDMOD-FAITHGAIN.description": "一種不會隨回合結束而消失的資源。",
   "AICARDMOD-MISSTEPGAIN.title": "失誤",
   "AICARDMOD-MISSTEPGAIN.description": "敵人在下一次攻擊時傷害降低 25%，然後失誤減少 1 層。"
 }

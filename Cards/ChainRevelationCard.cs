@@ -17,7 +17,6 @@ namespace AICardMod.Scripts;
 /// </summary>
 public class ChainRevelationCard : CustomCardModel
 {
-    private const string RepeatKey = RepeatVar.Key;
     private const string RevelationGainKey = RevelationGainVar.Key;
     private const int energyCost = 1;
     private const CardType type = CardType.Attack;
@@ -28,7 +27,7 @@ public class ChainRevelationCard : CustomCardModel
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new DamageVar(2, ValueProp.Move),
-        new DynamicVar(RepeatKey, 3),
+        new RepeatVar(3),
         new DynamicVar(RevelationGainKey, 1).WithTooltip(RevelationGainVar.LocKey)
     ];
 
@@ -39,7 +38,7 @@ public class ChainRevelationCard : CustomCardModel
         if (cardPlay.Target == null)
             return;
 
-        for (int index = 0; index < DynamicVars[RepeatKey].IntValue; index++)
+        for (int index = 0; index < DynamicVars["Repeat"].IntValue; index++)
         {
             await DamageCmd.Attack(DynamicVars.Damage.IntValue).FromCard(this).Targeting(cardPlay.Target).Execute(choiceContext);
             await PowerCmd.Apply<RevelationPower>(Owner.Creature, DynamicVars[RevelationGainKey].IntValue, Owner.Creature, this);
@@ -48,6 +47,6 @@ public class ChainRevelationCard : CustomCardModel
 
     protected override void OnUpgrade()
     {
-        DynamicVars[RepeatKey].UpgradeValueBy(1);
+        DynamicVars["Repeat"].UpgradeValueBy(1);
     }
 }
