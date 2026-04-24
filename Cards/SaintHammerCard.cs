@@ -41,7 +41,7 @@ public class SaintHammerCard : CustomCardModel
 
         int revelation = (int)(Owner.Creature.GetPower<RevelationPower>()?.Amount ?? 0m);
 
-        await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this).Targeting(cardPlay.Target).Execute(choiceContext);
+        await CommonActions.CardAttack(this, cardPlay, 1).Execute(choiceContext);
         if (revelation > DynamicVars[RevelationThresholdKey].IntValue)
             await PlayerCmd.GainEnergy(DynamicVars[EnergyGainKey].IntValue, Owner);
     }

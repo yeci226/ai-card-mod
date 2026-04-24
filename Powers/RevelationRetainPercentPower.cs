@@ -5,7 +5,7 @@ namespace AICardMod.Scripts;
 
 /// <summary>
 /// 名稱：RevelationRetainPercent
-/// 描述：TODO: 補上在地化描述
+/// 描述：回合結束時，保留這個百分比的啟示而非全部消耗。
 /// </summary>
 public class RevelationRetainPercentPower : CustomPowerModel
 {

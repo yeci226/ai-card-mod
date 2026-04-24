@@ -1,7 +1,5 @@
-using System;
 using BaseLib.Abstracts;
 using BaseLib.Utils;
-using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -30,22 +28,15 @@ public class ChastisementCard : CustomCardModel
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        var target = cardPlay.Target;
-        if (target == null) return;
-
-        await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this).Targeting(target).Execute(choiceContext);
-        if (IsLikelyAttackIntent(target))
-            await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this).Targeting(target).Execute(choiceContext);
+        await CommonActions.CardAttack(this, cardPlay, 1).Execute(choiceContext);
+        if (cardPlay.Target != null && IsLikelyAttackIntent(cardPlay.Target))
+            await CommonActions.CardAttack(this, cardPlay, 1).Execute(choiceContext);
     }
 
     protected override void OnUpgrade() { DynamicVars.Damage.UpgradeValueBy(2); }
 
     private static bool IsLikelyAttackIntent(Creature target)
     {
-        var intentProp = target.GetType().GetProperty("Intent");
-        if (intentProp == null) return false;
-
-        var intent = intentProp.GetValue(target);
-        return intent != null && intent.ToString()?.Contains("Attack", StringComparison.OrdinalIgnoreCase) == true;
+        return target.Monster?.IntendsToAttack ?? false;
     }
 }

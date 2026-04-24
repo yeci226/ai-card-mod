@@ -10,8 +10,8 @@ namespace AICardMod.Scripts;
 
 [Pool(typeof(ProphetCardPool))]
 /// <summary>
-/// 名稱：迴聲聖歌
-/// 描述：結算[gold]啟示[/gold]後，保留{AICARDMOD-RetainPercent:diff()}%的點數。
+/// 名稱：迴響聖詠
+/// 描述：啟示結算後，保留{AICARDMOD-RetainPercent:diff()}%的點數。
 /// </summary>
 public class EchoHymnCard : CustomCardModel
 {

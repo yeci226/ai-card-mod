@@ -26,7 +26,7 @@ public class BlindFollowingCard : CustomCardModel
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new DynamicVar(MisstepGainKey, 1).WithTooltip(MisstepGainVar.LocKey),
+        new DynamicVar(MisstepGainKey, 2).WithTooltip(MisstepGainVar.LocKey),
         new DynamicVar(FaithGainKey, 2).WithTooltip(FaithGainVar.LocKey)
     ];
 
@@ -40,6 +40,7 @@ public class BlindFollowingCard : CustomCardModel
 
     protected override void OnUpgrade()
     {
+        DynamicVars[MisstepGainKey].UpgradeValueBy(-1);
         DynamicVars[FaithGainKey].UpgradeValueBy(1);
     }
 }

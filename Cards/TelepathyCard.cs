@@ -22,6 +22,8 @@ public class TelepathyCard : CustomCardModel
     private const bool shouldShowInLibrary = true;
 
 
+    public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
+
     protected override IEnumerable<DynamicVar> CanonicalVars => [new CardsVar(1)];
 
     public TelepathyCard() : base(energyCost, type, rarity, targetType, shouldShowInLibrary) { }

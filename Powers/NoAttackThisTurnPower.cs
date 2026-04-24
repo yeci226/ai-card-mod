@@ -1,7 +1,6 @@
 using BaseLib.Abstracts;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
-using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -12,7 +11,7 @@ namespace AICardMod.Scripts;
 
 /// <summary>
 /// 名稱：NoAttackThisTurn
-/// 描述：TODO: 補上在地化描述
+/// 描述：本回合你的攻擊不造成傷害，回合結束移除。
 /// </summary>
 public class NoAttackThisTurnPower : CustomPowerModel
 {
@@ -37,13 +36,6 @@ public class NoAttackThisTurnPower : CustomPowerModel
 
     private static bool IsAttackCard(CardModel? cardSource)
     {
-        if (cardSource == null)
-            return false;
-
-        var cardTypeProperty = cardSource.GetType().GetProperty("Type");
-        if (cardTypeProperty?.PropertyType != typeof(CardType))
-            return false;
-
-        return cardTypeProperty.GetValue(cardSource) is CardType cardType && cardType == CardType.Attack;
+        return cardSource?.Type == MegaCrit.Sts2.Core.Entities.Cards.CardType.Attack;
     }
 }

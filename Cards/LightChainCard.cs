@@ -37,7 +37,7 @@ public class LightChainCard : CustomCardModel
         if (cardPlay.Target == null)
             return;
 
-        await DamageCmd.Attack(DynamicVars.Damage.IntValue).FromCard(this).Targeting(cardPlay.Target).Execute(choiceContext);
+        await CommonActions.CardAttack(this, cardPlay, 1).Execute(choiceContext);
         await PowerCmd.Apply<StrengthPower>(cardPlay.Target, -DynamicVars[StrengthLossKey].IntValue, Owner.Creature, this);
     }
 

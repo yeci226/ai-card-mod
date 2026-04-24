@@ -5,7 +5,7 @@ namespace AICardMod.Scripts;
 
 /// <summary>
 /// 名稱：CleanseSin
-/// 描述：TODO: 補上在地化描述
+/// 描述：每當你失去虔誠時，獲得等量格擋。
 /// </summary>
 public class CleanseSinPower : CustomPowerModel
 {

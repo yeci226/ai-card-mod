@@ -30,7 +30,7 @@ public class ShelterCard : CustomCardModel
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, null);
+        await CommonActions.CardBlock(this, cardPlay);
         PlayerCmd.EndTurn(Owner, false, null);
     }
 

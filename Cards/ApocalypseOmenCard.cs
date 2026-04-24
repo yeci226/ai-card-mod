@@ -7,12 +7,13 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.HoverTips;
+
 namespace AICardMod.Scripts;
 
 [Pool(typeof(ProphetCardPool))]
 /// <summary>
 /// 名稱：天啟預兆
-/// 描述：抽{Cards:diff()}張牌。打出抽到的牌中帶有[gold]啟示[/gold]的牌。
+/// 描述：抽{Cards:diff()}張牌。打出其中帶有[gold]啟示[/gold]效果的牌。
 /// </summary>
 public class ApocalypseOmenCard : CustomCardModel
 {

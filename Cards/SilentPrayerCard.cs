@@ -11,7 +11,7 @@ namespace AICardMod.Scripts;
 
 [Pool(typeof(ProphetCardPool))]
 /// <summary>
-/// 名稱：沉默禱告
+/// 名稱：默禱
 /// 描述：獲得{AICARDMOD-FaithGain:diff()}點[gold]虔誠[/gold]。本回合無法打出攻擊牌。
 /// </summary>
 public class SilentPrayerCard : CustomCardModel

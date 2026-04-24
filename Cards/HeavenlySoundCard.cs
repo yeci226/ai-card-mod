@@ -38,10 +38,7 @@ public class HeavenlySoundCard : CustomCardModel
         if (enemies.Count == 0)
             return;
 
-        await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
-            .FromCard(this)
-            .TargetingAllOpponents(CombatState!)
-            .Execute(choiceContext);
+        await CommonActions.CardAttack(this, cardPlay, 1).Execute(choiceContext);
 
         int revelationGain = enemies.Count * DynamicVars[RevelationPerEnemyKey].IntValue;
         if (revelationGain > 0)

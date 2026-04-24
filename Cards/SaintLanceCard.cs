@@ -1,7 +1,5 @@
 using BaseLib.Abstracts;
-using BaseLib.Extensions;
 using BaseLib.Utils;
-using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
@@ -33,11 +31,7 @@ public class SaintLanceCard : CustomCardModel
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        if (cardPlay.Target == null)
-            return;
-
-        for (int index = 0; index < DynamicVars["Repeat"].IntValue; index++)
-            await DamageCmd.Attack(DynamicVars.Damage.IntValue).FromCard(this).Targeting(cardPlay.Target).Execute(choiceContext);
+        await CommonActions.CardAttack(this, cardPlay, DynamicVars["Repeat"].IntValue).Execute(choiceContext);
     }
 
     protected override void OnUpgrade()

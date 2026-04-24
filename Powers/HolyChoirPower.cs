@@ -5,7 +5,7 @@ namespace AICardMod.Scripts;
 
 /// <summary>
 /// 名稱：HolyChoir
-/// 描述：TODO: 補上在地化描述
+/// 描述：啟示改為攻擊所有敵人。
 /// </summary>
 public class HolyChoirPower : CustomPowerModel
 {

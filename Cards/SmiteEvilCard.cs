@@ -22,7 +22,7 @@ public class SmiteEvilCard : CustomCardModel
     private const bool shouldShowInLibrary = true;
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips => [HoverTipFactory.FromPower<MisstepPower>()];
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(12, ValueProp.Move), new RepeatVar(2)];
+    protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(12, ValueProp.Move)];
 
     public SmiteEvilCard() : base(energyCost, type, rarity, targetType, shouldShowInLibrary) { }
 
@@ -30,11 +30,11 @@ public class SmiteEvilCard : CustomCardModel
     {
         ArgumentNullException.ThrowIfNull(cardPlay.Target, nameof(cardPlay.Target));
 
-        await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this).Targeting(cardPlay.Target).Execute(choiceContext);
+        await CommonActions.CardAttack(this, cardPlay, 1).Execute(choiceContext);
         if (cardPlay.Target.HasPower<MisstepPower>())
         {
             for (var i = 1; i < DynamicVars["Repeat"].IntValue; i++)
-                await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this).Targeting(cardPlay.Target).Execute(choiceContext);
+                await CommonActions.CardAttack(this, cardPlay, 1).Execute(choiceContext);
         }
     }
 

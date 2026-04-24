@@ -21,7 +21,7 @@ public class EchoSmiteCard : CustomCardModel
     private const bool shouldShowInLibrary = true;
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips => [
-        HoverTipFactory.FromPower<FaithPower>()
+        HoverTipFactory.FromPower<RevelationPower>()
     ];
 
     public EchoSmiteCard() : base(energyCost, type, rarity, targetType, shouldShowInLibrary) { }

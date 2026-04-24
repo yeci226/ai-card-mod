@@ -12,7 +12,7 @@ using MegaCrit.Sts2.Core.ValueProps;
 namespace AICardMod.Scripts;
 /// <summary>
 /// 名稱：TemporaryStrength
-/// 描述：TODO: 補上在地化描述
+/// 描述：本回合攻擊造成額外傷害，下回合開始時移除。
 /// </summary>
 public class TemporaryStrengthPower : CustomPowerModel
 {

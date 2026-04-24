@@ -7,7 +7,7 @@ namespace AICardMod.Scripts;
 
 /// <summary>
 /// 名稱：SaintessForm
-/// 描述：TODO: 補上在地化描述
+/// 描述：每累積 7 次啟示觸發，下回合獲得 1 點能量。
 /// </summary>
 public class SaintessFormPower : CustomPowerModel
 {

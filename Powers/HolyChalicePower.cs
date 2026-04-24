@@ -8,7 +8,7 @@ namespace AICardMod.Scripts;
 
 /// <summary>
 /// 名稱：HolyChalice
-/// 描述：TODO: 補上在地化描述
+/// 描述：每回合開始時，獲得等量啟示。
 /// </summary>
 public class HolyChalicePower : CustomPowerModel
 {

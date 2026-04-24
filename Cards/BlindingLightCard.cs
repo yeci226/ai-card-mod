@@ -35,7 +35,7 @@ public class BlindingLightCard : CustomCardModel
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         ArgumentNullException.ThrowIfNull(cardPlay.Target, nameof(cardPlay.Target));
-        await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this).Targeting(cardPlay.Target).Execute(choiceContext);
+        await CommonActions.CardAttack(this, cardPlay, 1).Execute(choiceContext);
         await PowerCmd.Apply<MisstepPower>(cardPlay.Target, DynamicVars[MisstepGainKey].IntValue, Owner.Creature, this);
     }
 

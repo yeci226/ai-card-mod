@@ -34,10 +34,7 @@ public class BlindRadianceCard : CustomCardModel
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
-            .FromCard(this)
-            .TargetingAllOpponents(CombatState!)
-            .Execute(choiceContext);
+        await CommonActions.CardAttack(this, cardPlay, 1).Execute(choiceContext);
 
         var enemies = Owner.Creature.CombatState?.Enemies?.Where(enemy => enemy.IsAlive).ToList() ?? [];
         foreach (var enemy in enemies)

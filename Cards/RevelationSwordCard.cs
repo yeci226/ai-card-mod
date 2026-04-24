@@ -1,12 +1,11 @@
 using BaseLib.Abstracts;
-using BaseLib.Extensions;
 using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.HoverTips;
+using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.ValueProps;
 
 namespace AICardMod.Scripts;
@@ -36,11 +35,11 @@ public class RevelationSwordCard : CustomCardModel
     {
         ArgumentNullException.ThrowIfNull(cardPlay.Target, nameof(cardPlay.Target));
 
-        int durabilityBefore = GetDurability(cardPlay.Target);
+        int before = GetDurability(cardPlay.Target);
         await DamageCmd.Attack(DynamicVars.Damage.IntValue).FromCard(this).Targeting(cardPlay.Target).Execute(choiceContext);
-        int durabilityAfter = GetDurability(cardPlay.Target);
+        int after = GetDurability(cardPlay.Target);
 
-        int damageDealt = Math.Max(0, durabilityBefore - durabilityAfter);
+        int damageDealt = Math.Max(0, before - after);
         if (damageDealt > 0)
             await PowerCmd.Apply<RevelationPower>(Owner.Creature, damageDealt, Owner.Creature, this);
     }
@@ -52,51 +51,16 @@ public class RevelationSwordCard : CustomCardModel
 
     private static int GetDurability(Creature creature)
     {
-        int hp = GetFirstAvailableIntProperty(creature, "Hp", "CurrentHp", "Health");
-        int block = GetFirstAvailableIntProperty(creature, "Block");
+        int hp = creature.CurrentHp;
+        int block = GetBlock(creature);
         return hp + block;
     }
 
-    private static int GetFirstAvailableIntProperty(object instance, params string[] propertyNames)
+    private static int GetBlock(Creature creature)
     {
-        foreach (var propertyName in propertyNames)
-        {
-            if (TryGetIntProperty(instance, propertyName, out var value))
-                return value;
-        }
-
+        var property = creature.GetType().GetProperty("Block");
+        if (property?.GetValue(creature) is decimal block)
+            return (int)block;
         return 0;
-    }
-
-    private static bool TryGetIntProperty(object instance, string propertyName, out int value)
-    {
-        var property = instance.GetType().GetProperty(propertyName);
-        if (property == null)
-        {
-            value = 0;
-            return false;
-        }
-
-        var rawValue = property.GetValue(instance);
-        if (rawValue is decimal decimalValue)
-        {
-            value = (int)decimalValue;
-            return true;
-        }
-
-        if (rawValue is int intValue)
-        {
-            value = intValue;
-            return true;
-        }
-
-        if (rawValue is long longValue)
-        {
-            value = (int)longValue;
-            return true;
-        }
-
-        value = 0;
-        return false;
     }
 }

@@ -47,7 +47,7 @@ public class CelestialGateCard : CustomCardModel
 
         for (int index = 0; index < repeatCount; index++)
         {
-            await DamageCmd.Attack(DynamicVars.Damage.IntValue).FromCard(this).Targeting(cardPlay.Target).Execute(choiceContext);
+            await CommonActions.CardAttack(this, cardPlay, 1).Execute(choiceContext);
             await PowerCmd.Apply<RevelationPower>(Owner.Creature, DynamicVars[RevelationGainKey].IntValue, Owner.Creature, this);
         }
 

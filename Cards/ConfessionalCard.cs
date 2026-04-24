@@ -37,7 +37,7 @@ public class ConfessionalCard : CustomCardModel
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, null);
+        await CommonActions.CardBlock(this, cardPlay);
 
         var statusCards = CardPile.GetCards(Owner, new[] { PileType.Hand })
             .Where(c => c.Type == CardType.Status)

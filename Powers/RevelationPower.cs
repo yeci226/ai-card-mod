@@ -58,7 +58,10 @@ public class RevelationPower : CustomPowerModel
                 }
                 else
                 {
-                    var targetPool = focusTargets.Count > 0 ? focusTargets : enemies;
+                    var aliveFocusTargets = focusTargets.Where(e => e.IsAlive).ToList();
+                    var aliveEnemies = enemies.Where(e => e.IsAlive).ToList();
+                    if (aliveEnemies.Count == 0) break;
+                    var targetPool = aliveFocusTargets.Count > 0 ? aliveFocusTargets : aliveEnemies;
                     var target = Owner.Player?.RunState.Rng.CombatTargets.NextItem(targetPool);
                     if (target == null) break;
 
@@ -70,6 +73,13 @@ public class RevelationPower : CustomPowerModel
 
                 if (doomsdayTurnGain > 0)
                     doomsdayTurnBonus += doomsdayTurnGain;
+
+                // Notify EchoBlade of each arrow trigger
+                var echoBlade = Owner.Powers?.OfType<EchoBladePower>().FirstOrDefault();
+                if (echoBlade != null)
+                    await echoBlade.RegisterArrowTrigger(choiceContext);
+
+                Flash();
             }
 
             if (saintessForm != null)

@@ -9,7 +9,7 @@ namespace AICardMod.Scripts;
 
 /// <summary>
 /// 名稱：Tithe
-/// 描述：TODO: 補上在地化描述
+/// 描述：戰鬥結束時，獲得等量金幣。
 /// </summary>
 public class TithePower : CustomPowerModel
 {

@@ -26,7 +26,6 @@ public class HymnLeadCard : CustomCardModel
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new CardsVar(1),
         new DynamicVar(RevelationGainKey, 2).WithTooltip(RevelationGainVar.LocKey),
         new DynamicVar(DrawKey, 1)
     ];

@@ -8,7 +8,7 @@ namespace AICardMod.Scripts;
 
 /// <summary>
 /// 名稱：RevelationFocus
-/// 描述：TODO: 補上在地化描述
+/// 描述：啟示優先攻擊此敵人，你的回合結束後移除。
 /// </summary>
 public class RevelationFocusPower : CustomPowerModel
 {
