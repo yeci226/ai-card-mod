@@ -58,6 +58,8 @@ public class RevelationSwordCard : CustomCardModel
 
     private static int GetBlock(Creature creature)
     {
+        if (creature is MegaCrit.Sts2.Core.Entities.Players.PlayerCreature playerCreature)
+            return (int)(playerCreature.Block);
         var property = creature.GetType().GetProperty("Block");
         if (property?.GetValue(creature) is decimal block)
             return (int)block;

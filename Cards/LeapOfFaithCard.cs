@@ -44,6 +44,8 @@ public class LeapOfFaithCard : CustomCardModel
 
     private static int GetCurrentBlock(MegaCrit.Sts2.Core.Entities.Creatures.Creature creature)
     {
+        if (creature is MegaCrit.Sts2.Core.Entities.Players.PlayerCreature playerCreature)
+            return (int)(playerCreature.Block);
         var property = creature.GetType().GetProperty("Block");
         if (property?.GetValue(creature) is decimal block)
             return (int)block;

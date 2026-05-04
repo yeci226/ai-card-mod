@@ -15,7 +15,7 @@ namespace AICardMod.Scripts;
 /// </summary>
 public class NoAttackThisTurnPower : CustomPowerModel
 {
-    public override PowerType Type => PowerType.Buff;
+    public override PowerType Type => PowerType.Debuff;
     public override PowerStackType StackType => PowerStackType.Counter;
 
     public override decimal ModifyHpLostBeforeOsty(Creature target, decimal amount, ValueProp props, Creature? dealer, CardModel? cardSource)
