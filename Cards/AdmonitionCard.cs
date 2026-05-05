@@ -24,6 +24,7 @@ public class AdmonitionCard : CustomCardModel
     private const TargetType targetType = TargetType.AnyEnemy;
     private const bool shouldShowInLibrary = true;
 
+    public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
     protected override IEnumerable<DynamicVar> CanonicalVars => [new DynamicVar(RevelationGainKey, 2).WithTooltip(RevelationGainVar.LocKey), new DynamicVar(MisstepGainKey, 1).WithTooltip(MisstepGainVar.LocKey)];
 
     public AdmonitionCard() : base(energyCost, type, rarity, targetType, shouldShowInLibrary) { }

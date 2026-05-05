@@ -71,6 +71,7 @@ public class ProphetCharacter : PlaceholderCharacterModel
         ModelDb.Card<DefendCard>(),
         ModelDb.Card<DefendCard>(),
         ModelDb.Card<HolyLightStrikeCard>(),
+        ModelDb.Card<DivineLightCard>(),
         ModelDb.Card<AiCard>(),
     ];
 
