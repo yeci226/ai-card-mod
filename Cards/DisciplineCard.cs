@@ -15,7 +15,7 @@ namespace AICardMod.Scripts;
 /// 名稱：戒律
 /// 描述：本回合打出的下一張攻擊牌傷害增加{AICARDMOD-TemporaryStrengthPower:diff()}點。
 /// </summary>
-public class DisciplineCard : CustomCardModel
+public class DisciplineCard : PortraitCardModel
 {
     private const string AmountKey = TemporaryStrengthPowerVar.Key;
     private const int energyCost = 0;

@@ -15,7 +15,7 @@ namespace AICardMod.Scripts;
 /// 名稱：光芒鎖鏈
 /// 描述：造成{Damage:diff()}點傷害。該敵人失去{AICARDMOD-StrengthLoss:diff()}點力量。
 /// </summary>
-public class LightChainCard : CustomCardModel
+public class LightChainCard : PortraitCardModel
 {
     private const string StrengthLossKey = "AICARDMOD-StrengthLoss";
     private const int energyCost = 1;

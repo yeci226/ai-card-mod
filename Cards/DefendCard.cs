@@ -13,7 +13,7 @@ namespace AICardMod.Scripts;
 /// 名稱：防禦
 /// 描述：獲得{Block:diff()}[gold]格擋[/gold]。
 /// </summary>
-public class DefendCard : CustomCardModel
+public class DefendCard : PortraitCardModel
 {
     protected override HashSet<CardTag> CanonicalTags => [CardTag.Defend];
     private const int energyCost = 1;

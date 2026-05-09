@@ -15,7 +15,7 @@ namespace AICardMod.Scripts;
 /// 名稱：盲目之光
 /// 描述：造成{Damage:diff()}點傷害。給予敵人{AICARDMOD-MisstepGain:diff()}層[gold]失誤[/gold]。
 /// </summary>
-public class BlindingLightCard : CustomCardModel
+public class BlindingLightCard : PortraitCardModel
 {
     private const string MisstepGainKey = MisstepGainVar.Key;
     private const int energyCost = 1;

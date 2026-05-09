@@ -16,7 +16,7 @@ namespace AICardMod.Scripts;
 /// 名稱：懺悔室
 /// 描述：獲得{Block:diff()}點[gold]格擋[/gold]。消滅所有狀態牌，每消滅一張狀態牌抽{Cards:diff()}張牌，累計{AICARDMOD-RevelationGain:diff()}點[gold]啟示[/gold]。
 /// </summary>
-public class ConfessionalCard : CustomCardModel
+public class ConfessionalCard : PortraitCardModel
 {
     private const string RevelationGainKey = RevelationGainVar.Key;
     private const int energyCost = 1;

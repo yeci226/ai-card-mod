@@ -13,7 +13,7 @@ namespace AICardMod.Scripts;
 /// 名稱：警世
 /// 描述：給予{AICARDMOD-MisstepGain:diff()}層[gold]失誤[/gold]。獲得{AICARDMOD-RevelationGain:diff()}點[gold]啟示[/gold]。
 /// </summary>
-public class AdmonitionCard : CustomCardModel
+public class AdmonitionCard : PortraitCardModel
 {
     private const string MisstepGainKey = MisstepGainVar.Key;
     private const string RevelationGainKey = RevelationGainVar.Key;

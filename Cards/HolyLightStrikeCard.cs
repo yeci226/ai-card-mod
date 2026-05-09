@@ -16,7 +16,7 @@ namespace AICardMod.Scripts;
 /// 名稱：聖光閃擊
 /// 描述：造成{Damage:diff()}點傷害。累計{AICARDMOD-RevelationGain:diff()}點[gold]啟示[/gold]。
 /// </summary>
-public class HolyLightStrikeCard : CustomCardModel
+public class HolyLightStrikeCard : PortraitCardModel
 {
     private const string RevelationGainKey = RevelationGainVar.Key;
     private const int energyCost = 1;

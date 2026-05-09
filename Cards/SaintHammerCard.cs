@@ -14,7 +14,7 @@ namespace AICardMod.Scripts;
 /// 名稱：聖徒之錘
 /// 描述：造成{Damage:diff()}點傷害。若[gold]啟示[/gold]大於{AICARDMOD-RevelationThreshold:diff()}點，獲得{AICARDMOD-EnergyGain:diff()}點能量。
 /// </summary>
-public class SaintHammerCard : CustomCardModel
+public class SaintHammerCard : PortraitCardModel
 {
     private const string RevelationThresholdKey = "AICARDMOD-RevelationThreshold";
     private const string EnergyGainKey = "AICARDMOD-EnergyGain";

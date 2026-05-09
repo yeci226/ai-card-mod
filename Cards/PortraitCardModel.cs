@@ -14,11 +14,19 @@ public abstract class PortraitCardModel : CustomCardModel
     {
     }
 
-    protected virtual string PortraitFolder => "res://aiCardMod/images/cards";
+    protected virtual string PortraitFolder => "res://images/packed/card_portraits/prophet";
 
-    protected virtual string PortraitName => GetType().Name;
+    protected virtual string PortraitName => GetPortraitName();
 
-    public override string PortraitPath => $"{PortraitFolder}/{PortraitName}.png";
+    private string GetPortraitName()
+    {
+        var className = GetType().Name; // e.g. "AdmonitionCard"
+        // Convert PascalCase to snake_case
+        var snake = System.Text.RegularExpressions.Regex.Replace(className, "(?<!^)(?=[A-Z])", "_").ToLower();
+        return $"aicardmod-{snake}";
+    }
 
-    public override string BetaPortraitPath => PortraitPath;
+    public override string? CustomPortraitPath => $"{PortraitFolder}/{PortraitName}.png";
+
+    public override string BetaPortraitPath => CustomPortraitPath ?? base.BetaPortraitPath;
 }

@@ -14,7 +14,7 @@ namespace AICardMod.Scripts;
 /// 名稱：聖歌引領
 /// 描述：抽{AICARDMOD-HymnLeadDraw:diff()}張牌。累計{AICARDMOD-RevelationGain:diff()}點[gold]啟示[/gold]。
 /// </summary>
-public class HymnLeadCard : CustomCardModel
+public class HymnLeadCard : PortraitCardModel
 {
     private const string RevelationGainKey = RevelationGainVar.Key;
     private const string DrawKey = "AICARDMOD-HymnLeadDraw";

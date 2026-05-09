@@ -14,7 +14,7 @@ namespace AICardMod.Scripts;
 /// 名稱：懲戒
 /// 描述：造成{Damage:diff()}點傷害。如果敵人的意圖是攻擊，則攻擊兩次。
 /// </summary>
-public class ChastisementCard : CustomCardModel
+public class ChastisementCard : PortraitCardModel
 {
     private const int energyCost = 1;
     private const CardType type = CardType.Attack;

@@ -13,7 +13,7 @@ namespace AICardMod.Scripts;
 /// 名稱：破邪
 /// 描述：造成{Damage:diff()}點傷害。如果該敵人有[gold]失誤[/gold]狀態，則造成{Repeat:diff()}次傷害。
 /// </summary>
-public class SmiteEvilCard : CustomCardModel
+public class SmiteEvilCard : PortraitCardModel
 {
     private const int energyCost = 2;
     private const CardType type = CardType.Attack;

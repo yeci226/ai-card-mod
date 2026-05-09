@@ -15,7 +15,7 @@ namespace AICardMod.Scripts;
 /// 名稱：連鎖啟示
 /// 描述：造成{Damage:diff()}點傷害{Repeat:diff()}次。每一下獲得{AICARDMOD-RevelationGain:diff()}點[gold]啟示[/gold]。
 /// </summary>
-public class ChainRevelationCard : CustomCardModel
+public class ChainRevelationCard : PortraitCardModel
 {
     private const string RevelationGainKey = RevelationGainVar.Key;
     private const int energyCost = 1;

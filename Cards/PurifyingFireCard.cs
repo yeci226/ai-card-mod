@@ -14,7 +14,7 @@ namespace AICardMod.Scripts;
 /// 名稱：淨化之火
 /// 描述：造成等同你目前[gold]虔誠[/gold]點數的傷害{Repeat:diff()}次。
 /// </summary>
-public class PurifyingFireCard : CustomCardModel
+public class PurifyingFireCard : PortraitCardModel
 {
     private const int energyCost = 0;
     private const CardType type = CardType.Attack;

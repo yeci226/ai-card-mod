@@ -14,7 +14,7 @@ namespace AICardMod.Scripts;
 /// 名稱：點燃靈感
 /// 描述：造成{Damage:diff()}點傷害。每有{AICARDMOD-RevelationStep:diff()}層[gold]啟示[/gold]就額外造成{BonusPerThree:diff()}點傷害。
 /// </summary>
-public class IgniteInspirationCard : CustomCardModel
+public class IgniteInspirationCard : PortraitCardModel
 {
     private const string RevelationStepKey = "AICARDMOD-RevelationStep";
     private const string BonusPerThreeKey = "BonusPerThree";

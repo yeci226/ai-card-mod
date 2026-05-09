@@ -14,7 +14,7 @@ namespace AICardMod.Scripts;
 /// 名稱：虔誠衛士
 /// 描述：獲得{Block:diff()}點[gold]格擋[/gold]。若有[gold]虔誠[/gold]，則額外獲得{AICARDMOD-FaithBonusBlock:diff()}點[gold]格擋[/gold]。
 /// </summary>
-public class DevoutGuardianCard : CustomCardModel
+public class DevoutGuardianCard : PortraitCardModel
 {
     private const string FaithBonusBlockKey = "AICARDMOD-FaithBonusBlock";
     private const int energyCost = 1;

@@ -16,7 +16,7 @@ namespace AICardMod.Scripts;
 /// 名稱：謙卑
 /// 描述：丟棄{Cards:diff()}張手牌。獲得{AICARDMOD-FaithGain:diff()}點[gold]虔誠[/gold]。
 /// </summary>
-public class HumilityCard : CustomCardModel
+public class HumilityCard : PortraitCardModel
 {
     private const string FaithGainKey = FaithGainVar.Key;
     private const int energyCost = 0;

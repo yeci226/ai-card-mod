@@ -13,7 +13,7 @@ namespace AICardMod.Scripts;
 /// 名稱：打擊
 /// 描述：造成{Damage:diff()}點傷害。
 /// </summary>
-public class StrikeCard : CustomCardModel
+public class StrikeCard : PortraitCardModel
 {
     protected override HashSet<CardTag> CanonicalTags => [CardTag.Strike];
     private const int energyCost = 1;

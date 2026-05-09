@@ -14,7 +14,7 @@ namespace AICardMod.Scripts;
 /// 名稱：光弧
 /// 描述：造成{Damage:diff()}點傷害。如果你擁有大於等於{AICARDMOD-LightArcFaithSpend:diff()}點[gold]虔誠[/gold]，則消耗{AICARDMOD-LightArcFaithSpend:diff()}點[gold]虔誠[/gold]，造成{BonusDamage:diff()}點額外傷害。
 /// </summary>
-public class LightArcCard : CustomCardModel
+public class LightArcCard : PortraitCardModel
 {
     private const string FaithSpendKey = "AICARDMOD-LightArcFaithSpend";
     private const string BonusDamageKey = "BonusDamage";

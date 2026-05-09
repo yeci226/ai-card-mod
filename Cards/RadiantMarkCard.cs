@@ -15,7 +15,7 @@ namespace AICardMod.Scripts;
 /// 名稱：光輝印記
 /// 描述：造成{Damage:diff()}點傷害。賦予敵人{AICARDMOD-VulnerableGain:diff()}層易傷。
 /// </summary>
-public class RadiantMarkCard : CustomCardModel
+public class RadiantMarkCard : PortraitCardModel
 {
     private const string VulnerableGainKey = "AICARDMOD-VulnerableGain";
     private const int energyCost = 1;
