@@ -55,7 +55,7 @@ public class RevelationPower : CustomPowerModel
                 {
                     foreach (var enemy in enemies.Where(e => e.IsAlive))
                     {
-                        await VfxCmd.PlayOnCreature(enemy, ArrowVfxPath);
+                        VfxCmd.PlayOnCreature(enemy, ArrowVfxPath);
                         await CreatureCmd.Damage(choiceContext, enemy, arrowDamage, ValueProp.Move | ValueProp.Unpowered, this);
                     }
                 }
@@ -68,7 +68,7 @@ public class RevelationPower : CustomPowerModel
                     var target = Owner.Player?.RunState.Rng.CombatTargets.NextItem(targetPool);
                     if (target == null) break;
 
-                    await VfxCmd.PlayOnCreature(target, ArrowVfxPath);
+                    VfxCmd.PlayOnCreature(target, ArrowVfxPath);
                     await CreatureCmd.Damage(choiceContext, target, arrowDamage, ValueProp.Move | ValueProp.Unpowered, this);
                 }
 
