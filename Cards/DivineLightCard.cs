@@ -1,10 +1,10 @@
 using BaseLib.Abstracts;
+using BaseLib.Extensions;
 using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
-using MegaCrit.Sts2.Core.HoverTips;
 
 namespace AICardMod.Scripts;
 
@@ -22,12 +22,8 @@ public class DivineLightCard : CustomCardModel
     private const TargetType targetType = TargetType.None;
     private const bool shouldShowInLibrary = true;
 
-    protected override IEnumerable<IHoverTip> ExtraHoverTips => [
-        HoverTipFactory.FromPower<RevelationPower>()
-    ];
-
     protected override IEnumerable<DynamicVar> CanonicalVars => [
-        new DynamicVar(RevelationGainKey, 3).WithTooltip(RevelationGainVar.LocKey)
+        new DynamicVar(RevelationGainKey, 2).WithTooltip(RevelationGainVar.LocKey)
     ];
 
     public DivineLightCard() : base(energyCost, type, rarity, targetType, shouldShowInLibrary) { }
@@ -39,6 +35,6 @@ public class DivineLightCard : CustomCardModel
 
     protected override void OnUpgrade()
     {
-        DynamicVars[RevelationGainKey].UpgradeValueTo(5);
+        DynamicVars[RevelationGainKey].UpgradeValueBy(5);
     }
 }
