@@ -1,6 +1,5 @@
 using BaseLib.Abstracts;
 using MegaCrit.Sts2.Core.Commands;
-using MegaCrit.Sts2.Core.Commands.Builders;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Players;
@@ -56,11 +55,8 @@ public class RevelationPower : CustomPowerModel
                 {
                     foreach (var enemy in enemies.Where(e => e.IsAlive))
                     {
-                        await DamageCmd.Attack(arrowDamage)
-                            .FromPowerWithPowerHoverTips(this)
-                            .WithHitFx(ArrowVfxPath)
-                            .Targeting(enemy)
-                            .Execute(choiceContext);
+                        await VfxCmd.PlayOnCreature(enemy, ArrowVfxPath);
+                        await CreatureCmd.Damage(choiceContext, enemy, arrowDamage, ValueProp.Move | ValueProp.Unpowered, this);
                     }
                 }
                 else
@@ -72,11 +68,8 @@ public class RevelationPower : CustomPowerModel
                     var target = Owner.Player?.RunState.Rng.CombatTargets.NextItem(targetPool);
                     if (target == null) break;
 
-                    await DamageCmd.Attack(arrowDamage)
-                        .FromPowerWithPowerHoverTips(this)
-                        .WithHitFx(ArrowVfxPath)
-                        .Targeting(target)
-                        .Execute(choiceContext);
+                    await VfxCmd.PlayOnCreature(target, ArrowVfxPath);
+                    await CreatureCmd.Damage(choiceContext, target, arrowDamage, ValueProp.Move | ValueProp.Unpowered, this);
                 }
 
                 if (echoBlock > 0)
