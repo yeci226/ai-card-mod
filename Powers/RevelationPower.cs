@@ -5,6 +5,7 @@ using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.ValueProps;
 using System.Linq;
@@ -18,6 +19,7 @@ namespace AICardMod.Scripts;
 public class RevelationPower : CustomPowerModel
 {
     private const int DivineArrowDamage = 3;
+    private static readonly string ArrowVfxPath = SceneHelper.GetScenePath("vfx/small_magic_missile");
 
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Counter;
@@ -53,7 +55,8 @@ public class RevelationPower : CustomPowerModel
                 {
                     foreach (var enemy in enemies.Where(e => e.IsAlive))
                     {
-                        await CreatureCmd.Damage(choiceContext, enemy, arrowDamage, ValueProp.Move | ValueProp.Unblockable | ValueProp.Unpowered, Owner, null);
+                        VfxCmd.PlayOnCreature(enemy, ArrowVfxPath);
+                        await CreatureCmd.Damage(choiceContext, enemy, arrowDamage, ValueProp.Move | ValueProp.Unpowered, Owner);
                     }
                 }
                 else
@@ -65,7 +68,8 @@ public class RevelationPower : CustomPowerModel
                     var target = Owner.Player?.RunState.Rng.CombatTargets.NextItem(targetPool);
                     if (target == null) break;
 
-                    await CreatureCmd.Damage(choiceContext, target, arrowDamage, ValueProp.Move | ValueProp.Unblockable | ValueProp.Unpowered, Owner, null);
+                    VfxCmd.PlayOnCreature(target, ArrowVfxPath);
+                    await CreatureCmd.Damage(choiceContext, target, arrowDamage, ValueProp.Move | ValueProp.Unpowered, Owner);
                 }
 
                 if (echoBlock > 0)

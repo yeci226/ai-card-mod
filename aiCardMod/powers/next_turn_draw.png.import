@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ddctbed50mwdh"
-path="res://.godot/imported/character_icon_aicardmod-prophet_character_outline.png-a36233f121e4cf0462c7ca75d4a52605.ctex"
+uid="uid://bykirdd1kxh4q"
+path="res://.godot/imported/next_turn_draw.png-568ea848889b2b8d4c7b43bedb3c42d6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://images/ui/top_panel/character_icon_aicardmod-prophet_character_outline.png"
-dest_files=["res://.godot/imported/character_icon_aicardmod-prophet_character_outline.png-a36233f121e4cf0462c7ca75d4a52605.ctex"]
+source_file="res://aiCardMod/powers/next_turn_draw.png"
+dest_files=["res://.godot/imported/next_turn_draw.png-568ea848889b2b8d4c7b43bedb3c42d6.ctex"]
 
 [params]
 

@@ -55,6 +55,6 @@ public class FaithBurstCard : CustomCardModel
 
     protected override void OnUpgrade()
     {
-        DynamicVars[DamagePerFaithKey].UpgradeValueTo(3);
+        DynamicVars[DamagePerFaithKey].UpgradeValueBy(3);
     }
 }

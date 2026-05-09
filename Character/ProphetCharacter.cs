@@ -72,7 +72,6 @@ public class ProphetCharacter : PlaceholderCharacterModel
         ModelDb.Card<DefendCard>(),
         ModelDb.Card<HolyLightStrikeCard>(),
         ModelDb.Card<DivineLightCard>(),
-        ModelDb.Card<AiCard>(),
     ];
 
     // ── 起始遺物（神諭石板） ──────────────────────────────────────────────────

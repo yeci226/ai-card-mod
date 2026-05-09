@@ -1,13 +1,14 @@
 [gd_scene load_steps=2 format=3 uid="uid://b30q4b0mpbmog"]
 
-[ext_resource type="Texture2D" uid="uid://c3tmsaalkl4jd" path="res://icon.svg" id="1_char001"]
+[ext_resource type="Texture2D" uid="uid://bw2f5udqu0wms" path="res://images/standing.png" id="1_alp8b"]
 
 [node name="ProphetCharacter" type="Node2D"]
 
 [node name="Visuals" type="Sprite2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(0, -73)
-texture = ExtResource("1_char001")
+position = Vector2(20, -149)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_alp8b")
 
 [node name="Bounds" type="Control" parent="."]
 unique_name_in_owner = true

@@ -5,8 +5,8 @@ using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
-using MegaCrit.Sts2.Core.Models.CardPools;
 using MegaCrit.Sts2.Core.ValueProps;
+using MegaCrit.Sts2.Core.Entities.Creatures;
 
 namespace AICardMod.Scripts;
 
@@ -42,13 +42,8 @@ public class LeapOfFaithCard : CustomCardModel
         DynamicVars[RevelationGainKey].UpgradeValueBy(5);
     }
 
-    private static int GetCurrentBlock(MegaCrit.Sts2.Core.Entities.Creatures.Creature creature)
+    private static int GetCurrentBlock(Creature creature)
     {
-        if (creature is MegaCrit.Sts2.Core.Entities.Players.PlayerCreature playerCreature)
-            return (int)(playerCreature.Block);
-        var property = creature.GetType().GetProperty("Block");
-        if (property?.GetValue(creature) is decimal block)
-            return (int)block;
-        return 0;
+        return (int)creature.Block;
     }
 }

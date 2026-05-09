@@ -1,0 +1,14 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://dnt28oc3pgd2h"
+
+[deps]
+
+source_file="res://Slay the Spire 2 Mod  - 工作表1 (4).csv"
+
+[params]
+
+compress=true
+delimiter=0
