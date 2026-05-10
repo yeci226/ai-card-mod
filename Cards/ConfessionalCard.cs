@@ -40,7 +40,7 @@ public class ConfessionalCard : PortraitCardModel
         await CommonActions.CardBlock(this, cardPlay);
 
         var statusCards = CardPile.GetCards(Owner, new[] { PileType.Hand })
-            .Where(c => c.Type == CardType.Status)
+            .Where(c => c.Type == CardType.Status || c.Type == CardType.Curse)
             .ToList();
 
         foreach (var card in statusCards)

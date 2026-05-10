@@ -1,8 +1,10 @@
 using BaseLib.Abstracts;
 using BaseLib.Utils;
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
+using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.CardPools;
 using MegaCrit.Sts2.Core.ValueProps;
 
@@ -11,7 +13,7 @@ namespace AICardMod.Scripts;
 [Pool(typeof(ProphetCardPool))]
 /// <summary>
 /// 名稱：莊嚴
-/// 描述：獲得{Block:diff()}點[gold]格擋[/gold]。
+/// 描述：獲得{Block:diff()}點[gold]格擋[/gold]。在本回合保留你的手牌。
 /// </summary>
 public class SolemnCard : CustomCardModel
 {
@@ -29,6 +31,13 @@ public class SolemnCard : CustomCardModel
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         await CommonActions.CardBlock(this, cardPlay);
+
+        // Give all cards currently in hand the Retain keyword for this turn
+        var handCards = CardPile.GetCards(Owner, [PileType.Hand]).ToList();
+        foreach (var card in handCards)
+        {
+            card.AddKeyword(CardKeyword.Retain);
+        }
     }
 
     protected override void OnUpgrade()

@@ -20,7 +20,7 @@ public class PrayerCard : PortraitCardModel
     private const CardType type = CardType.Skill;
     private const CardRarity rarity = CardRarity.Common;
     private const TargetType targetType = TargetType.None;
-    private const bool shouldShowInLibrary = true;
+    private const bool shouldShowInLibrary = false;
 
     public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
     protected override IEnumerable<DynamicVar> CanonicalVars => [new DynamicVar(FaithGainKey, 2).WithTooltip(FaithGainVar.LocKey)];
