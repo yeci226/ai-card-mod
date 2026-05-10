@@ -23,7 +23,8 @@ public class RetainHandPower : CustomPowerModel
         if (side != Owner.Side)
             return;
 
-        if (Owner is not MegaCrit.Sts2.Core.Entities.Players.IPlayer player)
+        var player = Owner.Player;
+        if (player == null)
             return;
 
         var handCards = CardPile.GetCards(player, [PileType.Hand]).ToList();
