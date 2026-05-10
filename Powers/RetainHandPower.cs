@@ -2,6 +2,7 @@ using BaseLib.Abstracts;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
@@ -24,7 +25,10 @@ public class RetainHandPower : CustomPowerModel
         if (side != Owner.Side)
             return;
 
-        var handCards = CardPile.GetCards(Owner, [PileType.Hand]).ToList();
+        if (Owner is not Player player)
+            return;
+
+        var handCards = CardPile.GetCards(player, [PileType.Hand]).ToList();
         foreach (var card in handCards)
         {
             CardCmd.ApplyKeyword(card, CardKeyword.Retain);
