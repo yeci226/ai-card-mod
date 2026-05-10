@@ -23,7 +23,10 @@ public class RetainHandPower : CustomPowerModel
         if (side != Owner.Side)
             return;
 
-        var handCards = CardPile.GetCards(Owner, [PileType.Hand]).ToList();
+        if (Owner is not MegaCrit.Sts2.Core.Entities.Players.IPlayer player)
+            return;
+
+        var handCards = CardPile.GetCards(player, [PileType.Hand]).ToList();
         foreach (var card in handCards)
         {
             CardCmd.ApplyKeyword(card, CardKeyword.Retain);
