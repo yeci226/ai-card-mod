@@ -35,6 +35,6 @@ public class DivineLightCard : CustomCardModel
 
     protected override void OnUpgrade()
     {
-        DynamicVars[RevelationGainKey].UpgradeValueBy(5);
+        DynamicVars[RevelationGainKey].UpgradeValueBy(3);
     }
 }

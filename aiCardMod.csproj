@@ -20,9 +20,9 @@
     </Reference>
 
     <Reference Include="BaseLib">
-    <HintPath>$(Sts2Dir)/mods/BaseLib/BaseLib.dll</HintPath>
-    <Private>false</Private>
-  </Reference>
+      <HintPath>$(Sts2Dir)/mods/BaseLib/BaseLib.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
   </ItemGroup>
 
   <ItemGroup>

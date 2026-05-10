@@ -19,11 +19,11 @@ public class RevelationLightCard : CustomCardModel
     private const string RevelationGainKey = RevelationGainVar.Key;
     private const int energyCost = 1;
     private const CardType type = CardType.Power;
-    private const CardRarity rarity = CardRarity.Common;
+    private const CardRarity rarity = CardRarity.Uncommon;
     private const TargetType targetType = TargetType.Self;
     private const bool shouldShowInLibrary = true;
 
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new DynamicVar(RevelationGainKey, 4).WithTooltip(RevelationGainVar.LocKey)];
+    protected override IEnumerable<DynamicVar> CanonicalVars => [new DynamicVar(RevelationGainKey, 3).WithTooltip(RevelationGainVar.LocKey)];
 
     public RevelationLightCard() : base(energyCost, type, rarity, targetType, shouldShowInLibrary) { }
 

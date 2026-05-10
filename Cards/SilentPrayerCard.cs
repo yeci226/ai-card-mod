@@ -23,7 +23,7 @@ public class SilentPrayerCard : CustomCardModel
     private const TargetType targetType = TargetType.None;
     private const bool shouldShowInLibrary = true;
 
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new DynamicVar(FaithGainKey, 2).WithTooltip(FaithGainVar.LocKey)];
+    protected override IEnumerable<DynamicVar> CanonicalVars => [new DynamicVar(FaithGainKey, 3).WithTooltip(FaithGainVar.LocKey)];
 
     public SilentPrayerCard() : base(energyCost, type, rarity, targetType, shouldShowInLibrary) { }
 
