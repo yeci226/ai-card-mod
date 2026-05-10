@@ -21,7 +21,7 @@ public class RevelationPower : CustomPowerModel
     public override string? CustomBigIconPath => "res://aiCardMod/powers/revelation.png";
 
     private const int DivineArrowDamage = 3;
-    private const string ArrowVfxPath = "res://scenes/vfx/small_magic_missile.tscn";
+    private const string ArrowVfxPath = "vfx/small_magic_missile";
 
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Counter;
