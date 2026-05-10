@@ -4,7 +4,6 @@ using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
-using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.CardPools;
 using MegaCrit.Sts2.Core.ValueProps;
 
@@ -31,13 +30,7 @@ public class SolemnCard : CustomCardModel
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         await CommonActions.CardBlock(this, cardPlay);
-
-        // Give all cards currently in hand the Retain keyword for this turn
-        var handCards = CardPile.GetCards(Owner, [PileType.Hand]).ToList();
-        foreach (var card in handCards)
-        {
-            card.AddKeyword(CardKeyword.Retain);
-        }
+        await PowerCmd.Apply<RetainHandPower>(Owner.Creature, 1, Owner.Creature, this);
     }
 
     protected override void OnUpgrade()
