@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cd41nv1qglaev"
-path="res://.godot/imported/aicardmod-chain_revelation_card.png-a5da939a5ce419abaddaae49409356bf.ctex"
+uid="uid://t7qysaubhusx"
+path="res://.godot/imported/aicardmod-holy_will_card.png-ae150dee0b1188c21adb25480ec129fc.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://images/packed/card_portraits/prophet/aicardmod-chain_revelation_card.png"
-dest_files=["res://.godot/imported/aicardmod-chain_revelation_card.png-a5da939a5ce419abaddaae49409356bf.ctex"]
+source_file="res://images/packed/card_portraits/prophet/aicardmod-holy_will_card.png"
+dest_files=["res://.godot/imported/aicardmod-holy_will_card.png-ae150dee0b1188c21adb25480ec129fc.ctex"]
 
 [params]
 

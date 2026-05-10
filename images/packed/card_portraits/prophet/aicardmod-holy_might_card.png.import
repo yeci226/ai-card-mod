@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cd41nv1qglaev"
-path="res://.godot/imported/aicardmod-chain_revelation_card.png-a5da939a5ce419abaddaae49409356bf.ctex"
+uid="uid://c0lj3sxeh38q1"
+path="res://.godot/imported/aicardmod-holy_might_card.png-e158490f2e525d66622f938992cc6045.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://images/packed/card_portraits/prophet/aicardmod-chain_revelation_card.png"
-dest_files=["res://.godot/imported/aicardmod-chain_revelation_card.png-a5da939a5ce419abaddaae49409356bf.ctex"]
+source_file="res://images/packed/card_portraits/prophet/aicardmod-holy_might_card.png"
+dest_files=["res://.godot/imported/aicardmod-holy_might_card.png-e158490f2e525d66622f938992cc6045.ctex"]
 
 [params]
 

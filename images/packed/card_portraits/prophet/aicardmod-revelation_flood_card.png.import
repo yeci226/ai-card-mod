@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cd41nv1qglaev"
-path="res://.godot/imported/aicardmod-chain_revelation_card.png-a5da939a5ce419abaddaae49409356bf.ctex"
+uid="uid://b1jqknf556sbb"
+path="res://.godot/imported/aicardmod-revelation_flood_card.png-bd9f073b89fbd8775ed3d20239093db4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://images/packed/card_portraits/prophet/aicardmod-chain_revelation_card.png"
-dest_files=["res://.godot/imported/aicardmod-chain_revelation_card.png-a5da939a5ce419abaddaae49409356bf.ctex"]
+source_file="res://images/packed/card_portraits/prophet/aicardmod-revelation_flood_card.png"
+dest_files=["res://.godot/imported/aicardmod-revelation_flood_card.png-bd9f073b89fbd8775ed3d20239093db4.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cd41nv1qglaev"
-path="res://.godot/imported/aicardmod-chain_revelation_card.png-a5da939a5ce419abaddaae49409356bf.ctex"
+uid="uid://nf5imi1po05"
+path="res://.godot/imported/aicardmod-pilgrimage_road_card.png-0a393daecf06e5627834dbcf8ba10b12.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://images/packed/card_portraits/prophet/aicardmod-chain_revelation_card.png"
-dest_files=["res://.godot/imported/aicardmod-chain_revelation_card.png-a5da939a5ce419abaddaae49409356bf.ctex"]
+source_file="res://images/packed/card_portraits/prophet/aicardmod-pilgrimage_road_card.png"
+dest_files=["res://.godot/imported/aicardmod-pilgrimage_road_card.png-0a393daecf06e5627834dbcf8ba10b12.ctex"]
 
 [params]
 

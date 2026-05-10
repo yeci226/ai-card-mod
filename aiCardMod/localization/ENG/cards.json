@@ -218,8 +218,8 @@
     "AICARDMOD-SAINTESS_FORM_CARD.description": "Every 7 [gold]Revelation[/gold] triggers, gain {energyPrefix:energyIcons(1)} next turn.",
     "AICARDMOD-SAINTESS_FORM_CARD.upgraded_description": "Every 7 [gold]Revelation[/gold] triggers, gain {energyPrefix:energyIcons(1)} next turn.",
     "AICARDMOD-CELESTIAL_GATE_CARD.title": "Celestial Gate",
-    "AICARDMOD-CELESTIAL_GATE_CARD.description": "Deal {Damage:diff()} damage X times.\nGain {AICARDMOD-RevelationGain:diff()} [gold]Revelation[/gold] X times.\n[gold]Exhaust.[/gold]",
-    "AICARDMOD-CELESTIAL_GATE_CARD.upgraded_description": "Deal {Damage:diff()} damage X times.\nGain {AICARDMOD-RevelationGain:diff()} [gold]Revelation[/gold] X times.\n[gold]Exhaust.[/gold]",
+    "AICARDMOD-CELESTIAL_GATE_CARD.description": "Deal {Damage:diff()} damage X times.\nGain {AICARDMOD-RevelationGain:diff()} [gold]Revelation[/gold] X times.",
+    "AICARDMOD-CELESTIAL_GATE_CARD.upgraded_description": "Deal {Damage:diff()} damage X times.\nGain {AICARDMOD-RevelationGain:diff()} [gold]Revelation[/gold] X times.",
     "AICARDMOD-HOLY_CHALICE_CARD.title": "Holy Chalice",
     "AICARDMOD-HOLY_CHALICE_CARD.description": "Whenever you gain [gold]Revelation[/gold], gain {AICARDMOD-RevelationGain:diff()} additional.",
     "AICARDMOD-HOLY_CHALICE_CARD.upgraded_description": "Whenever you gain [gold]Revelation[/gold], gain {AICARDMOD-RevelationGain:diff()} additional.",
@@ -231,8 +231,8 @@
     "AICARDMOD-HOLY_CHOIR_CARD.upgraded_description": "[gold]Revelation[/gold] now deals damage to all enemies.",
     "AICARDMOD-SELECT_PROMPT": "Choose a card",
     "AICARDMOD-APOCALYPTIC_DELUGE_CARD.title": "Apocalyptic Deluge",
-    "AICARDMOD-APOCALYPTIC_DELUGE_CARD.description": "Deal damage to ALL enemies equal to your current [gold]Revelation[/gold], then reset [gold]Revelation[/gold] to 0.\n[gold]Exhaust[/gold].",
-    "AICARDMOD-APOCALYPTIC_DELUGE_CARD.upgraded_description": "Deal damage to ALL enemies equal to your current [gold]Revelation[/gold], then reset [gold]Revelation[/gold] to 0.\n[gold]Exhaust[/gold]. Costs 1.",
+    "AICARDMOD-APOCALYPTIC_DELUGE_CARD.description": "Deal damage to ALL enemies equal to your current [gold]Revelation[/gold], then reset [gold]Revelation[/gold] to 0.",
+    "AICARDMOD-APOCALYPTIC_DELUGE_CARD.upgraded_description": "Deal damage to ALL enemies equal to your current [gold]Revelation[/gold], then reset [gold]Revelation[/gold] to 0.",
     "AICARDMOD-HOLY_WRATH_CARD.title": "Holy Wrath",
     "AICARDMOD-HOLY_WRATH_CARD.description": "Deal {Damage:diff()} damage.\nIf the target has [gold]Misstep[/gold], deal double damage instead.",
     "AICARDMOD-HOLY_WRATH_CARD.upgraded_description": "Deal {Damage:diff()} damage.\nIf the target has [gold]Misstep[/gold], deal double damage instead.",
@@ -250,5 +250,8 @@
     "AICARDMOD-HOLY_JUDGMENT_HAND_CARD.upgraded_description": "Deal damage +5 equal to your [gold]Faith[/gold].\nLose [gold]Faith[/gold] equal to your hand size.\nIf this kills an enemy, regain the [gold]Faith[/gold] lost and return this card to hand at 0 cost.",
     "AICARDMOD-DIVINE_MANIFESTATION_CARD.title": "Divine Manifestation",
     "AICARDMOD-DIVINE_MANIFESTATION_CARD.description": "Gain [gold]Revelation[/gold] equal to your current [gold]Faith[/gold].",
-    "AICARDMOD-DIVINE_MANIFESTATION_CARD.upgraded_description": "Gain [gold]Revelation[/gold] equal to your current [gold]Faith[/gold].\n[gold]Cost 0.[/gold]"
+    "AICARDMOD-DIVINE_MANIFESTATION_CARD.upgraded_description": "Gain [gold]Revelation[/gold] equal to your current [gold]Faith[/gold].",
+    "AICARDMOD-FAITH_BURST_CARD.title": "Faith Burst",
+    "AICARDMOD-FAITH_BURST_CARD.description": "Exhaust all [gold]Faith[/gold]. Deal {AICARDMOD-DamagePerFaith:diff()} damage for each [gold]Faith[/gold] consumed.",
+    "AICARDMOD-FAITH_BURST_CARD.upgraded_description": "Exhaust all [gold]Faith[/gold]. Deal {AICARDMOD-DamagePerFaith:diff()} damage for each [gold]Faith[/gold] consumed."
 }

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cd41nv1qglaev"
-path="res://.godot/imported/aicardmod-chain_revelation_card.png-a5da939a5ce419abaddaae49409356bf.ctex"
+uid="uid://v7ldd51nweu2"
+path="res://.godot/imported/aicardmod-echo_smite_card.png-ba7c7e8dd65a079aca3ef31bb042e808.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://images/packed/card_portraits/prophet/aicardmod-chain_revelation_card.png"
-dest_files=["res://.godot/imported/aicardmod-chain_revelation_card.png-a5da939a5ce419abaddaae49409356bf.ctex"]
+source_file="res://images/packed/card_portraits/prophet/aicardmod-echo_smite_card.png"
+dest_files=["res://.godot/imported/aicardmod-echo_smite_card.png-ba7c7e8dd65a079aca3ef31bb042e808.ctex"]
 
 [params]
 

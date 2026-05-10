@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cd41nv1qglaev"
-path="res://.godot/imported/aicardmod-chain_revelation_card.png-a5da939a5ce419abaddaae49409356bf.ctex"
+uid="uid://66o5473k31ls"
+path="res://.godot/imported/aicardmod-holy_judgment_hand_card.png-9514973dba55995afb752da02f03bceb.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://images/packed/card_portraits/prophet/aicardmod-chain_revelation_card.png"
-dest_files=["res://.godot/imported/aicardmod-chain_revelation_card.png-a5da939a5ce419abaddaae49409356bf.ctex"]
+source_file="res://images/packed/card_portraits/prophet/aicardmod-holy_judgment_hand_card.png"
+dest_files=["res://.godot/imported/aicardmod-holy_judgment_hand_card.png-9514973dba55995afb752da02f03bceb.ctex"]
 
 [params]
 

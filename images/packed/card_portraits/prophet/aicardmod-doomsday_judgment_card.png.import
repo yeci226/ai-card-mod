@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cd41nv1qglaev"
-path="res://.godot/imported/aicardmod-chain_revelation_card.png-a5da939a5ce419abaddaae49409356bf.ctex"
+uid="uid://0kgfg5ltnu44"
+path="res://.godot/imported/aicardmod-doomsday_judgment_card.png-01f6457b309d0dd51ad8428610bd7c2b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://images/packed/card_portraits/prophet/aicardmod-chain_revelation_card.png"
-dest_files=["res://.godot/imported/aicardmod-chain_revelation_card.png-a5da939a5ce419abaddaae49409356bf.ctex"]
+source_file="res://images/packed/card_portraits/prophet/aicardmod-doomsday_judgment_card.png"
+dest_files=["res://.godot/imported/aicardmod-doomsday_judgment_card.png-01f6457b309d0dd51ad8428610bd7c2b.ctex"]
 
 [params]
 

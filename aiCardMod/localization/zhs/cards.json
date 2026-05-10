@@ -231,8 +231,8 @@
 	"AICARDMOD-HOLY_CHOIR_CARD.upgraded_description": "[gold]啟示[/gold]現在對所有敵人造成傷害。",
 	"AICARDMOD-SELECT_PROMPT": "選擇一張牌",
 	"AICARDMOD-APOCALYPTIC_DELUGE_CARD.title": "末世洪流",
-	"AICARDMOD-APOCALYPTIC_DELUGE_CARD.description": "對所有敵人造成等同當前[gold]啟示[/gold]值的傷害，然後[gold]啟示[/gold]歸零。\n[gold]消耗[/gold]。",
-	"AICARDMOD-APOCALYPTIC_DELUGE_CARD.upgraded_description": "對所有敵人造成等同當前[gold]啟示[/gold]值的傷害，然後[gold]啟示[/gold]歸零。\n[gold]消耗[/gold]。費用降至1。",
+	"AICARDMOD-APOCALYPTIC_DELUGE_CARD.description": "對所有敵人造成等同當前[gold]啟示[/gold]值的傷害，然後[gold]啟示[/gold]歸零。",
+	"AICARDMOD-APOCALYPTIC_DELUGE_CARD.upgraded_description": "對所有敵人造成等同當前[gold]啟示[/gold]值的傷害，然後[gold]啟示[/gold]歸零。",
 	"AICARDMOD-HOLY_WRATH_CARD.title": "聖戰怒火",
 	"AICARDMOD-HOLY_WRATH_CARD.description": "對目標造成{Damage:diff()}點傷害。\n若目標擁有[gold]失誤[/gold]，本次傷害翻倍。",
 	"AICARDMOD-HOLY_WRATH_CARD.upgraded_description": "對目標造成{Damage:diff()}點傷害。\n若目標擁有[gold]失誤[/gold]，本次傷害翻倍。",
@@ -246,9 +246,11 @@
 	"AICARDMOD-DIVINE_LIGHT_CARD.description": "獲得{AICARDMOD-RevelationGain:diff()}點[gold]啟示[/gold]。",
 	"AICARDMOD-DIVINE_LIGHT_CARD.upgraded_description": "獲得{AICARDMOD-RevelationGain:diff()}點[gold]啟示[/gold]。",
 	"AICARDMOD-HOLY_JUDGMENT_HAND_CARD.title": "神判之手",
-	"AICARDMOD-HOLY_JUDGMENT_HAND_CARD.description": "造成等同於你[gold]虔誠[/gold]層數的傷害。\n失去等同於手牌數量的[gold]虔誠[/gold]。\n若擊殺敵人，恢復失去的[gold]虔誠[/gold]並將此牌返回手牌（本回合費用為0）。",
-	"AICARDMOD-HOLY_JUDGMENT_HAND_CARD.upgraded_description": "造成等同於你[gold]虔誠[/gold]層數+5的傷害。\n失去等同於手牌數量的[gold]虔誠[/gold]。\n若擊殺敵人，恢復失去的[gold]虔誠[/gold]並將此牌返回手牌（本回合費用為0）。",
+	"AICARDMOD-HOLY_JUDGMENT_HAND_CARD.description": "造成等同於你[gold]虔誠[/gold]層數的傷害。\n失去等同於手牌數量的[gold]虔誠[/gold]。\n若擊殺敵人，恢復失去的[gold]虔誠[/gold]並將此牌返回手牌本回合費用為0。",
+	"AICARDMOD-HOLY_JUDGMENT_HAND_CARD.upgraded_description": "造成等同於你[gold]虔誠[/gold]層數+5的傷害。\n失去等同於手牌數量的[gold]虔誠[/gold]。\n若擊殺敵人，恢復失去的[gold]虔誠[/gold]並將此牌返回手牌本回合費用為0。",
 	"AICARDMOD-DIVINE_MANIFESTATION_CARD.title": "靈光顯現",
 	"AICARDMOD-DIVINE_MANIFESTATION_CARD.description": "獲得等同於你目前[gold]虔誠[/gold]層數的[gold]啟示[/gold]。",
-	"AICARDMOD-DIVINE_MANIFESTATION_CARD.upgraded_description": "獲得等同於你目前[gold]虔誠[/gold]層數的[gold]啟示[/gold]。\n[gold]費用改為0。[/gold]"
-}
+	"AICARDMOD-DIVINE_MANIFESTATION_CARD.upgraded_description": "獲得等同於你目前[gold]虔誠[/gold]層數的[gold]啟示[/gold]。",
+    "AICARDMOD-FAITH_BURST_CARD.title": "信仰迸發",
+    "AICARDMOD-FAITH_BURST_CARD.description": "消耗所有【虔誠】。每消耗1層【虔誠】，造成{AICARDMOD-DamagePerFaith:diff()}點傷害。",
+    "AICARDMOD-FAITH_BURST_CARD.upgraded_description": "消耗所有【虔誠】。每消耗1層【虔誠】，造成{AICARDMOD-DamagePerFaith:diff()}點傷害。"}

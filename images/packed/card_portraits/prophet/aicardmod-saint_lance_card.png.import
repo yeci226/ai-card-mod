@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cd41nv1qglaev"
-path="res://.godot/imported/aicardmod-chain_revelation_card.png-a5da939a5ce419abaddaae49409356bf.ctex"
+uid="uid://ddfwucpd2t4u"
+path="res://.godot/imported/aicardmod-saint_lance_card.png-bf1df5b842e804658321da9b5d5bd174.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://images/packed/card_portraits/prophet/aicardmod-chain_revelation_card.png"
-dest_files=["res://.godot/imported/aicardmod-chain_revelation_card.png-a5da939a5ce419abaddaae49409356bf.ctex"]
+source_file="res://images/packed/card_portraits/prophet/aicardmod-saint_lance_card.png"
+dest_files=["res://.godot/imported/aicardmod-saint_lance_card.png-bf1df5b842e804658321da9b5d5bd174.ctex"]
 
 [params]
 
