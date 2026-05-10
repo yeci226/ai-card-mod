@@ -25,7 +25,7 @@ public class TruthWordCard : CustomCardModel
     protected override IEnumerable<IHoverTip> ExtraHoverTips => [HoverTipFactory.FromPower<RevelationPower>()];
 
     public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new DynamicVar(RevelationPerCardKey, 1).WithTooltip(RevelationGainVar.LocKey)];
+    protected override IEnumerable<DynamicVar> CanonicalVars => [new DynamicVar(RevelationPerCardKey, 1)];
 
     public TruthWordCard() : base(energyCost, type, rarity, targetType, shouldShowInLibrary) { }
 
