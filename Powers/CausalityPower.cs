@@ -15,6 +15,9 @@ namespace AICardMod.Scripts;
 /// </summary>
 public class CausalityPower : CustomPowerModel
 {
+    public override string? CustomPackedIconPath => "res://aiCardMod/powers/causality.png";
+    public override string? CustomBigIconPath => "res://aiCardMod/powers/causality.png";
+
     public override PowerType Type => PowerType.Debuff;
     public override PowerStackType StackType => PowerStackType.Counter;
     public override int DisplayAmount => (int)Amount;

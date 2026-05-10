@@ -12,6 +12,9 @@ namespace AICardMod.Scripts;
 /// </summary>
 public class EchoBladePower : CustomPowerModel
 {
+    public override string? CustomPackedIconPath => "res://aiCardMod/powers/echo_blade.png";
+    public override string? CustomBigIconPath => "res://aiCardMod/powers/echo_blade.png";
+
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Counter;
     public override int DisplayAmount => (int)Amount;

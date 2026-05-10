@@ -11,6 +11,9 @@ namespace AICardMod.Scripts;
 /// </summary>
 public class PietyEndTurnPower : CustomPowerModel
 {
+    public override string? CustomPackedIconPath => "res://aiCardMod/powers/piety_end_turn.png";
+    public override string? CustomBigIconPath => "res://aiCardMod/powers/piety_end_turn.png";
+
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Counter;
     public override int DisplayAmount => (int)Amount;

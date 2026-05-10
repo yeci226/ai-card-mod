@@ -12,6 +12,9 @@ namespace AICardMod.Scripts;
 /// </summary>
 public class FinalRevelationLockPower : CustomPowerModel
 {
+    public override string? CustomPackedIconPath => "res://aiCardMod/powers/final_revelation_lock.png";
+    public override string? CustomBigIconPath => "res://aiCardMod/powers/final_revelation_lock.png";
+
     public override PowerType Type => PowerType.Debuff;
     public override PowerStackType StackType => PowerStackType.Counter;
 

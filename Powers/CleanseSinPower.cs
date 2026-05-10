@@ -9,6 +9,9 @@ namespace AICardMod.Scripts;
 /// </summary>
 public class CleanseSinPower : CustomPowerModel
 {
+    public override string? CustomPackedIconPath => "res://aiCardMod/powers/cleanse_sin.png";
+    public override string? CustomBigIconPath => "res://aiCardMod/powers/cleanse_sin.png";
+
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Counter;
     public override int DisplayAmount => (int)Amount;

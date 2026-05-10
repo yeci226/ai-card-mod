@@ -13,6 +13,9 @@ namespace AICardMod.Scripts;
 /// </summary>
 public class MisstepPower : CustomPowerModel
 {
+    public override string? CustomPackedIconPath => "res://aiCardMod/powers/misstep.png";
+    public override string? CustomBigIconPath => "res://aiCardMod/powers/misstep.png";
+
     public override PowerType Type => PowerType.Debuff;
     public override PowerStackType StackType => PowerStackType.Counter;
 

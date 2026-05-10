@@ -16,6 +16,9 @@ namespace AICardMod.Scripts;
 /// </summary>
 public class TemporaryStrengthPower : CustomPowerModel
 {
+    public override string? CustomPackedIconPath => "res://aiCardMod/powers/temporary_strength.png";
+    public override string? CustomBigIconPath => "res://aiCardMod/powers/temporary_strength.png";
+
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Counter;
 

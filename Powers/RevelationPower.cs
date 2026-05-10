@@ -18,6 +18,9 @@ namespace AICardMod.Scripts;
 /// </summary>
 public class RevelationPower : CustomPowerModel
 {
+    public override string? CustomPackedIconPath => "res://aiCardMod/powers/revelation.png";
+    public override string? CustomBigIconPath => "res://aiCardMod/powers/revelation.png";
+
     private const int DivineArrowDamage = 3;
     private static readonly string ArrowVfxPath = SceneHelper.GetScenePath("vfx/small_magic_missile");
 

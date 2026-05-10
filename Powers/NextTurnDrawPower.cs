@@ -11,6 +11,9 @@ namespace AICardMod.Scripts;
 /// </summary>
 public class NextTurnDrawPower : CustomPowerModel
 {
+    public override string? CustomPackedIconPath => "res://aiCardMod/powers/next_turn_draw.png";
+    public override string? CustomBigIconPath => "res://aiCardMod/powers/next_turn_draw.png";
+
     public override PowerType Type => Amount >= 0 ? PowerType.Buff : PowerType.Debuff;
     public override PowerStackType StackType => PowerStackType.Counter;
 

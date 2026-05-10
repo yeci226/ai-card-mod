@@ -15,6 +15,9 @@ namespace AICardMod.Scripts;
 /// </summary>
 public class NoAttackThisTurnPower : CustomPowerModel
 {
+    public override string? CustomPackedIconPath => "res://aiCardMod/powers/no_attack_this_turn.png";
+    public override string? CustomBigIconPath => "res://aiCardMod/powers/no_attack_this_turn.png";
+
     public override PowerType Type => PowerType.Debuff;
     public override PowerStackType StackType => PowerStackType.Counter;
 

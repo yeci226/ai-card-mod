@@ -13,6 +13,9 @@ namespace AICardMod.Scripts;
 /// </summary>
 public class CardsPlayedCounterPower : CustomPowerModel
 {
+    public override string? CustomPackedIconPath => "res://aiCardMod/powers/cards_played_counter.png";
+    public override string? CustomBigIconPath => "res://aiCardMod/powers/cards_played_counter.png";
+
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Counter;
 

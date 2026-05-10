@@ -15,6 +15,9 @@ namespace AICardMod.Scripts;
 /// </summary>
 public class DoomsdayJudgmentPower : CustomPowerModel
 {
+    public override string? CustomPackedIconPath => "res://aiCardMod/powers/doomsday_judgment.png";
+    public override string? CustomBigIconPath => "res://aiCardMod/powers/doomsday_judgment.png";
+
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Counter;
     public override int DisplayAmount => (int)Amount;

@@ -12,6 +12,9 @@ namespace AICardMod.Scripts;
 /// </summary>
 public class RevelationFocusPower : CustomPowerModel
 {
+    public override string? CustomPackedIconPath => "res://aiCardMod/powers/revelation_focus.png";
+    public override string? CustomBigIconPath => "res://aiCardMod/powers/revelation_focus.png";
+
     public override PowerType Type => PowerType.Debuff;
     public override PowerStackType StackType => PowerStackType.Counter;
     public override int DisplayAmount => (int)Amount;

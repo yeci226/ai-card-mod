@@ -13,6 +13,9 @@ namespace AICardMod.Scripts;
 /// </summary>
 public class TithePower : CustomPowerModel
 {
+    public override string? CustomPackedIconPath => "res://aiCardMod/powers/tithe.png";
+    public override string? CustomBigIconPath => "res://aiCardMod/powers/tithe.png";
+
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Single;
 
