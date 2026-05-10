@@ -40,6 +40,9 @@ public class ProphetCharacter : PlaceholderCharacterModel
     // 人物頭像2號
     public override string CustomIconPath => "res://aiCardMod/scenes/char_icon_prophet.tscn";
 
+    // 篝火立繪
+    public override string CustomRestSiteAnimPath => "res://aiCardMod/scenes/prophet_rest_site.tscn";
+
     // 角色選擇背景
     public override string CustomCharacterSelectBg => "res://aiCardMod/scenes/prophet_bg.tscn";
 

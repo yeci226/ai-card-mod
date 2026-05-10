@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://prophet_rest_site"]
+
+[ext_resource type="Texture2D" path="res://images/prophet_character.png" id="1_rest"]
+
+[node name="ProphetRestSite" type="Node2D"]
+
+[node name="Visuals" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(0, 0)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_rest")
