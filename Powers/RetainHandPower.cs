@@ -1,4 +1,4 @@
-using STS2RitsuLib.Abstracts;
+using BaseLib.Abstracts;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -11,9 +11,9 @@ namespace AICardMod.Scripts;
 /// 保留手牌（本回合）：在回合結束棄牌前，對所有手牌施加 Retain。
 /// 觸發後自動移除。
 /// </summary>
-public class RetainHandPower : ModPowerTemplate
+public class RetainHandPower : CustomPowerModel
 {
-    public override string? CustomIconPath => "res://aiCardMod/powers/retain_hand.png";
+    public override string? CustomPackedIconPath => "res://aiCardMod/powers/retain_hand.png";
 
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.None;
