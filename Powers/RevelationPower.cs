@@ -5,7 +5,6 @@ using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.ValueProps;
 using System.Linq;
@@ -22,7 +21,7 @@ public class RevelationPower : CustomPowerModel
     public override string? CustomBigIconPath => "res://aiCardMod/powers/revelation.png";
 
     private const int DivineArrowDamage = 3;
-    private static readonly string ArrowVfxPath = SceneHelper.GetScenePath("vfx/small_magic_missile");
+    private const string ArrowVfxPath = "res://scenes/vfx/small_magic_missile.tscn";
 
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Counter;
