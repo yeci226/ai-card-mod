@@ -10,9 +10,5 @@ public static class ProphetCardFactory
 {
     public static Task AddToHand<TCard>(PlayerChoiceContext choiceContext, Player player)
         where TCard : CustomCardModel, new() =>
-        CardPileCmd.AddGeneratedCardToCombat(
-            new TCard(),
-            PileType.Hand,
-            addedByPlayer: false,
-            CardPilePosition.Top);
+        CardPileCmd.AddDuringManualCardPlay(new TCard());
 }
