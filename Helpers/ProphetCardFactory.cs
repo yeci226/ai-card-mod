@@ -13,6 +13,6 @@ public static class ProphetCardFactory
         CardPileCmd.AddGeneratedCardToCombat(
             new TCard(),
             PileType.Hand,
-            addedByPlayer: true,
+            addedByPlayer: false,
             CardPilePosition.Top);
 }

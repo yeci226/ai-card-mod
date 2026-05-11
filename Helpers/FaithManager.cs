@@ -21,6 +21,9 @@ public static class FaithManager
         int amount,
         CustomCardModel? sourceCard = null)
     {
+        if (amount > 0)
+            VfxCmd.PlayOnCreature(owner, "vfx/vfx_buff_applied");
+
         await PowerCmd.Apply<FaithPower>(owner, amount, owner, sourceCard);
 
         if (amount < 0)

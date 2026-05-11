@@ -21,7 +21,10 @@ public class RevelationPower : CustomPowerModel
     public override string? CustomBigIconPath => "res://aiCardMod/powers/revelation.png";
 
     private const int DivineArrowDamage = 3;
-    private const string ArrowVfxPath = "vfx/vfx_attack_slash";
+    // 神聖箭矢：使用星光衝擊特效呈現神聖感
+    private const string ArrowVfxPath = "vfx/vfx_starry_impact";
+    // 啟示結算時的光暈（施放者身上）
+    private const string CastVfxPath  = "vfx/vfx_ghostly_power_up";
 
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Counter;
@@ -40,6 +43,8 @@ public class RevelationPower : CustomPowerModel
 
         if (arrowCount > 0 && enemies.Count > 0)
         {
+            // 啟示開始結算時，在先知身上播放光暈特效
+            VfxCmd.PlayOnCreature(Owner, CastVfxPath);
             int echoBlock = (int)(Owner.Powers?.OfType<RevelationEchoPower>().FirstOrDefault()?.Amount ?? 0m);
             int holyMight = (int)(Owner.Powers?.OfType<HolyMightPower>().FirstOrDefault()?.Amount ?? 0m);
             int doomsdayTurnGain = (int)(Owner.Powers?.OfType<DoomsdayJudgmentPower>().FirstOrDefault()?.Amount ?? 0m);
