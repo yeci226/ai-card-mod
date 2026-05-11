@@ -31,8 +31,16 @@ public class DivineWordCard : CustomCardModel
     /// 參考官方 Normality 做法：直接讀 PlayerCombatState.PlayPile，
     /// 不需要額外 Power 也不需要 AfterCardPlayed hook。
     /// </summary>
-    private int CardsPlayedThisTurn =>
-        Owner?.Creature?.Player?.PlayerCombatState?.PlayPile?.GetCards()?.Count() ?? 0;
+    private int CardsPlayedThisTurn
+    {
+        get
+        {
+            var player = Owner?.Creature?.Player;
+            var playPile = player?.PlayerCombatState?.PlayPile;
+            if (player == null || playPile == null) return 0;
+            return playPile.GetCards(player).Count();
+        }
+    }
 
     /// <summary>
     /// 預先宣告本卡需要的 VFX 場景（官方 FanOfKnives 做法）。
