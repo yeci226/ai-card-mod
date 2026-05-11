@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://prophet_rest_site"]
 
-[ext_resource type="Texture2D" path="res://images/prophet_character.png" id="1_rest"]
+[ext_resource type="Texture2D" uid="uid://bw2f5udqu0wms" path="res://images/standing.png" id="1_rest"]
 
 [node name="ProphetRestSite" type="Node2D"]
 

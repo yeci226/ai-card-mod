@@ -2,6 +2,10 @@ using BaseLib.Abstracts;
 using Godot;
 using MegaCrit.Sts2.Core.Entities.Characters;
 using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Models.CardPools;
+using MegaCrit.Sts2.Core.Models.PotionPools;
+using MegaCrit.Sts2.Core.Models.RelicPools;
+using MegaCrit.Sts2.Core.Nodes.Combat;
 
 namespace AICardMod.Scripts;
 
@@ -36,6 +40,16 @@ public class ProphetCharacter : PlaceholderCharacterModel
 
     // 人物頭像2號
     public override string CustomIconPath => "res://aiCardMod/scenes/char_icon_prophet.tscn";
+
+    // 篝火立繪
+    public override string CustomRestSiteAnimPath => "res://aiCardMod/scenes/prophet_rest_site.tscn";
+
+    // 商店立繪
+    public override string CustomMerchantAnimPath => "res://aiCardMod/scenes/prophet_merchant.tscn";
+
+    // 動畫狀態（戰鬥：Idle / Dead）
+    public override CreatureAnimator? SetupCustomAnimationStates(MegaSprite controller)
+        => SetupAnimationState(controller, idleName: "Idle", deadName: "Dead");
 
     // 角色選擇背景
     public override string CustomCharacterSelectBg => "res://aiCardMod/scenes/prophet_bg.tscn";

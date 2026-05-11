@@ -1,3 +1,4 @@
+using System;
 using BaseLib.Abstracts;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.Rewards;
@@ -23,7 +24,10 @@ public class TithePower : CustomPowerModel
     {
         var player = Owner.Player;
         if (player != null)
-            room.AddExtraReward(player, new GoldReward(Amount, player, false));
+        {
+            int goldGain = Math.Max(1, (int)Math.Round(player.Gold * 0.1f));
+            room.AddExtraReward(player, new GoldReward(goldGain, player, false));
+        }
         await Task.CompletedTask;
     }
 }
