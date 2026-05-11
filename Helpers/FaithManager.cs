@@ -1,5 +1,6 @@
 using BaseLib.Abstracts;
 using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Nodes.Vfx;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.ValueProps;
@@ -22,7 +23,7 @@ public static class FaithManager
         CustomCardModel? sourceCard = null)
     {
         if (amount > 0)
-            VfxCmd.PlayOnCreature(owner, "vfx/vfx_buff_applied");
+            await VfxCmd.PlayOnCreature(owner, NPowerAppliedBuffVfx.AssetPaths);
 
         await PowerCmd.Apply<FaithPower>(owner, amount, owner, sourceCard);
 
