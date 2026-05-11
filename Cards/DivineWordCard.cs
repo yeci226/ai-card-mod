@@ -35,10 +35,8 @@ public class DivineWordCard : CustomCardModel
     {
         get
         {
-            var player = Owner?.Creature?.Player;
-            var playPile = player?.PlayerCombatState?.PlayPile;
-            if (player == null || playPile == null) return 0;
-            return playPile.GetCards(player).Count();
+            var playPile = Owner?.Creature?.Player?.PlayerCombatState?.PlayPile;
+            return playPile?.Cards?.Count ?? 0;
         }
     }
 
