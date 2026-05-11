@@ -4,7 +4,6 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models.CardPools;
-using MegaCrit.Sts2.Core.Nodes.Vfx;
 using MegaCrit.Sts2.Core.ValueProps;
 
 namespace AICardMod.Scripts;
@@ -23,6 +22,10 @@ public class DivineWordCard : CustomCardModel
     private const TargetType targetType = TargetType.AnyEnemy;
     private const bool shouldShowInLibrary = true;
 
+    // VFX 路徑（官方格式 "vfx/vfx_xxx"）
+    private const string StarryImpactVfx = "vfx/vfx_starry_impact";
+    private const string SweepingBeamVfx = "vfx/vfx_sweeping_beam";
+
     /// <summary>
     /// 本回合已打出的牌數。
     /// 參考官方 Normality 做法：直接讀 PlayerCombatState.PlayPile，
@@ -32,10 +35,10 @@ public class DivineWordCard : CustomCardModel
         Owner?.Creature?.Player?.PlayerCombatState?.PlayPile?.GetCards()?.Count() ?? 0;
 
     /// <summary>
-    /// 預先宣告本卡需要的 VFX 資源（官方 FanOfKnives / Hellraiser 做法）。
+    /// 預先宣告本卡需要的 VFX 場景（官方 FanOfKnives 做法）。
     /// </summary>
-    protected override IEnumerable<IVfxAssetPaths>? ExtraRunAssetPaths =>
-        [NStarryImpactVfx.AssetPaths, NSweepingBeamVfx.AssetPaths];
+    protected override IEnumerable<string>? ExtraRunAssetPaths =>
+        [StarryImpactVfx, SweepingBeamVfx];
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
         [new DynamicVar(DmgPerCardKey, 3)];
@@ -48,19 +51,14 @@ public class DivineWordCard : CustomCardModel
     protected override PileType GetResultPileType() => PileType.Hand;
 
     /// <summary>
-    /// 出牌動畫 VFX — 官方 FanOfKnives / Inflame 做法。
-    /// 從先知身上播放掃射光束（NSweepingBeamVfx），命中時播放星光衝擊（NStarryImpactVfx）。
+    /// 出牌 VFX — 官方做法：接受 Creature? target 一個參數。
     /// </summary>
-    protected override async Task OnEnqueuePlayVfx(PlayerChoiceContext choiceContext, CardPlay cardPlay)
+    protected override async Task OnEnqueuePlayVfx(Creature? target)
     {
-        var target = cardPlay.Target;
-        if (target == null)
-            return;
-
-        // 先知身上：掃射光束起手動作
-        await VfxCmd.PlayOnCreature(Owner.Creature, NSweepingBeamVfx.AssetPaths);
-        // 敵方身上：星光衝擊落地
-        await VfxCmd.PlayOnCreature(target, NStarryImpactVfx.AssetPaths);
+        if (Owner?.Creature != null)
+            await VfxCmd.PlayOnCreature(Owner.Creature, SweepingBeamVfx);
+        if (target != null)
+            await VfxCmd.PlayOnCreature(target, StarryImpactVfx);
     }
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
@@ -69,7 +67,7 @@ public class DivineWordCard : CustomCardModel
         if (target == null)
             return;
 
-        // PlayPile 在 OnPlay 執行時已包含本卡，所以不需要 +1。
+        // PlayPile 在 OnPlay 執行時已包含本卡。
         int cardsPlayed = Math.Max(1, CardsPlayedThisTurn);
         int damage = cardsPlayed * DynamicVars[DmgPerCardKey].IntValue;
 
