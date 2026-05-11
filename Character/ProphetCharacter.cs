@@ -2,9 +2,6 @@ using BaseLib.Abstracts;
 using Godot;
 using MegaCrit.Sts2.Core.Entities.Characters;
 using MegaCrit.Sts2.Core.Models;
-using MegaCrit.Sts2.Core.Models.CardPools;
-using MegaCrit.Sts2.Core.Models.PotionPools;
-using MegaCrit.Sts2.Core.Models.RelicPools;
 
 namespace AICardMod.Scripts;
 
@@ -28,7 +25,7 @@ public class ProphetCharacter : PlaceholderCharacterModel
 
     // ── 場景路徑 ─────────────────────────────────────────────────────────────
 
-    // 戰鬥立繪（暫用 icon.svg，之後替換為真實圖片）
+    // 戰鬥立繪
     public override string CustomVisualPath => "res://aiCardMod/scenes/prophet_character.tscn";
 
     // 能量表盤
@@ -39,9 +36,6 @@ public class ProphetCharacter : PlaceholderCharacterModel
 
     // 人物頭像2號
     public override string CustomIconPath => "res://aiCardMod/scenes/char_icon_prophet.tscn";
-
-    // 篝火立繪
-    public override string CustomRestSiteAnimPath => "res://aiCardMod/scenes/prophet_rest_site.tscn";
 
     // 角色選擇背景
     public override string CustomCharacterSelectBg => "res://aiCardMod/scenes/prophet_bg.tscn";

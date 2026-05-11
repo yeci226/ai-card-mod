@@ -14,7 +14,6 @@ namespace AICardMod.Scripts;
 public class RetainHandPower : CustomPowerModel
 {
     public override string? CustomPackedIconPath => "res://aiCardMod/powers/retain_hand.png";
-
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.None;
 

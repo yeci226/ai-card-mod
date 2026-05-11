@@ -94,7 +94,6 @@ public class RevelationPower : CustomPowerModel
 
 
         int retained = (int)Math.Ceiling(totalAtTurnEnd * (Math.Max(0, retainPercent) / 100m));
-
         int delta = -totalAtTurnEnd + retained;
         var finalAmount = Amount + delta;
 
