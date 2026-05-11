@@ -37,7 +37,7 @@ public class DivineWordCard : CustomCardModel
     /// <summary>
     /// 預先宣告本卡需要的 VFX 場景（官方 FanOfKnives 做法）。
     /// </summary>
-    protected override IEnumerable<string>? ExtraRunAssetPaths =>
+    protected override IEnumerable<string> ExtraRunAssetPaths =>
         [StarryImpactVfx, SweepingBeamVfx];
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
@@ -53,7 +53,7 @@ public class DivineWordCard : CustomCardModel
     /// <summary>
     /// 出牌 VFX — 官方做法：接受 Creature? target 一個參數。
     /// </summary>
-    protected override async Task OnEnqueuePlayVfx(Creature? target)
+    public override async Task OnEnqueuePlayVfx(Creature? target)
     {
         if (Owner?.Creature != null)
             await VfxCmd.PlayOnCreature(Owner.Creature, SweepingBeamVfx);
