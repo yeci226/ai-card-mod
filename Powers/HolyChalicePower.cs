@@ -31,8 +31,8 @@ public class HolyChalicePower : CustomPowerModel
 
         if (target == Owner && canonicalPower is RevelationPower && amount > 0m && Amount > 0m)
         {
-            // 使用 fire-and-forget 方式追加（框架內常見做法）
-            _ = PowerCmd.Apply<RevelationPower>(Owner, Amount, Owner, null);
+            modifiedAmount += Amount;
+            return true;
         }
 
         return false;

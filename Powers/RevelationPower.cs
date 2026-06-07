@@ -21,8 +21,8 @@ public class RevelationPower : CustomPowerModel
     public override string? CustomBigIconPath => "res://aiCardMod/powers/revelation.png";
 
     private const int DivineArrowDamage = 3;
-    private const string StarryImpactVfx = "vfx/vfx_starry_impact";
-    private const string BuffAppliedVfx   = "vfx/vfx_buff_applied";
+    private const string StarryImpactVfx = MegaCrit.Sts2.Core.Commands.VfxCmd.flyingSlashPath;
+    // private const string BuffAppliedVfx = "vfx/vfx_buff_applied";
 
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Counter;
@@ -41,8 +41,8 @@ public class RevelationPower : CustomPowerModel
 
         if (arrowCount > 0 && enemies.Count > 0)
         {
-            // 啟示開始結算時，在先知身上播放 buff 獲得特效
-            await VfxCmd.PlayOnCreature(Owner, BuffAppliedVfx);
+            // 啟示開始結算時，在先知身上播放 buff 獲得特效 (使用原生的補血特效代替)
+            VfxCmd.PlayOnCreature(Owner, VfxCmd.healPath);
             int echoBlock = (int)(Owner.Powers?.OfType<RevelationEchoPower>().FirstOrDefault()?.Amount ?? 0m);
             int holyMight = (int)(Owner.Powers?.OfType<HolyMightPower>().FirstOrDefault()?.Amount ?? 0m);
             int doomsdayTurnGain = (int)(Owner.Powers?.OfType<DoomsdayJudgmentPower>().FirstOrDefault()?.Amount ?? 0m);
@@ -60,7 +60,7 @@ public class RevelationPower : CustomPowerModel
                 {
                     foreach (var enemy in enemies.Where(e => e.IsAlive))
                     {
-                        await VfxCmd.PlayOnCreature(enemy, StarryImpactVfx);
+                        VfxCmd.PlayOnCreature(enemy, StarryImpactVfx);
                         await CreatureCmd.Damage(choiceContext, enemy, arrowDamage, ValueProp.Move | ValueProp.Unpowered, Owner);
                     }
                 }
@@ -73,7 +73,7 @@ public class RevelationPower : CustomPowerModel
                     var target = Owner.Player?.RunState.Rng.CombatTargets.NextItem(targetPool);
                     if (target == null) break;
 
-                    await VfxCmd.PlayOnCreature(target, StarryImpactVfx);
+                    VfxCmd.PlayOnCreature(target, StarryImpactVfx);
                     await CreatureCmd.Damage(choiceContext, target, arrowDamage, ValueProp.Move | ValueProp.Unpowered, Owner);
                 }
 

@@ -1,24 +1,24 @@
 [gd_scene load_steps=4 format=3 uid="uid://b30q4b0mpbmog"]
 
 [ext_resource type="Texture2D" uid="uid://bw2f5udqu0wms" path="res://images/standing.png" id="1_alp8b"]
-[ext_resource type="Texture2D" path="res://images/dead.png" id="2_dead"]
+[ext_resource type="Texture2D" uid="uid://b1imfw6gfdkeo" path="res://images/dead.png" id="2_dead"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_prophet"]
 animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("1_alp8b")
-}],
-"loop": true,
-"name": &"Idle",
-"speed": 5.0
-}, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("2_dead")
 }],
 "loop": false,
 "name": &"Dead",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_alp8b")
+}],
+"loop": false,
+"name": &"Idle",
 "speed": 5.0
 }]
 
@@ -30,7 +30,6 @@ position = Vector2(20, -149)
 scale = Vector2(0.25, 0.25)
 sprite_frames = SubResource("SpriteFrames_prophet")
 animation = &"Idle"
-autoplay = "Idle"
 
 [node name="Bounds" type="Control" parent="."]
 unique_name_in_owner = true

@@ -16,45 +16,16 @@ using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models.CardPools;
 using System.Reflection;
 using System.Threading;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using System;
 
 namespace AICardMod.Scripts;
 
 [Pool(typeof(ProphetCardPool))]
-/// <summary>
-/// 名稱：神諭：靈感
-/// 描述：根據前綴、中綴、後綴設定生成衍生卡牌。可於模組設定切換為AI模式。
-/// </summary>
 public class AiCard : PortraitCardModel
 {
-    private sealed record TemplatePart(string Name, string Effect, int BaseValue);
-
-    private static readonly TemplatePart[] PrefixOptions =
-    [
-        new("守護", "BLOCK", 8),
-        new("聖炎", "DAMAGE", 8),
-        new("靈思", "DRAW", 1),
-        new("恩典", "HEAL", 5),
-        new("懲戒", "VULNERABLE", 1)
-    ];
-
-    private static readonly TemplatePart[] MiddleOptions =
-    [
-        new("祈言", "ENERGY", 1),
-        new("審判", "WEAK", 1),
-        new("庇護", "BLOCK", 6),
-        new("裁決", "DAMAGE", 6),
-        new("啟示", "DRAW", 1)
-    ];
-
-    private static readonly TemplatePart[] SuffixOptions =
-    [
-        new("之光", "DAMAGE", 5),
-        new("之幕", "BLOCK", 5),
-        new("之息", "HEAL", 4),
-        new("之誓", "STRENGTH", 1),
-        new("之痕", "FRAIL", 1)
-    ];
-
     private const int energyCost = 1;
     private const CardType type = CardType.Skill;
     private const CardRarity rarity = CardRarity.Rare;
@@ -83,376 +54,352 @@ public class AiCard : PortraitCardModel
             return;
         }
 
-        if (!AiCardModConfig.UseAiMode)
-        {
-            await GenerateFromTemplate(choiceContext);
-            return;
-        }
-
-        if (!IsAiConfigReady())
-        {
-            GD.PrintErr("[AICard] AI mode is enabled but API URL/model are not configured. Returning card to hand.");
-            await CardPileCmd.AddGeneratedCardToCombat(
-                this,
-                PileType.Hand,
-                addedByPlayer: true,
-                CardPilePosition.Top);
-            return;
-        }
-
-        // First play: ask player for request
-        var playerRequest = await AiInputDialog.ShowAsync();
-        if (string.IsNullOrWhiteSpace(playerRequest))
-        {
-            GD.Print("[AICard] Player cancelled, returning card to hand.");
-            await CardPileCmd.AddGeneratedCardToCombat(
-                this,
-                PileType.Hand,
-                addedByPlayer: true,
-                CardPilePosition.Top);
-            return;
-        }
-
         int piety = (int)(Owner.Creature.Powers?.OfType<FaithPower>().FirstOrDefault()?.Amount ?? 0m);
-        string pietyTier = GetPietyTier(piety);
-        GD.Print($"[AICard] Piety: {piety} ({pietyTier})");
 
-        GD.Print($"[AICard] Player request: \"{playerRequest}\"");
-        GD.Print("[AICard] Calling AI...");
-
-        var aiResponse = await OllamaClient.AskAsync(BuildPrompt(playerRequest, piety, pietyTier));
-        GD.Print($"[AICard] AI response:\n{aiResponse}");
-
-        ParseAiResponse(aiResponse, out var effectsList, out var cardName, out var isExhaust, out var isEthereal, out var cost);
-
-        GD.Print($"[AICard] Effects: {string.Join(", ", effectsList.Select(e => $"{e.Item1} {e.Item2}"))}");
-        GD.Print($"[AICard] Name: {cardName}, Cost: {cost}, Exhaust: {isExhaust}, Ethereal: {isEthereal}");
-
-        // Fallback if parsing still produced nothing useful.
-        if (effectsList.Count == 0 && !isExhaust && !isEthereal)
+        if (piety >= 3 && !_hasTransformed)
         {
-            GD.Print("[AICard] No effects parsed, using neutral fallback.");
-            effectsList.Add(("BLOCK", 8));
-            cardName = "庇護";
-            cost = 1;
+            await MegaCrit.Sts2.Core.Commands.PowerCmd.Apply<FaithPower>(Owner.Creature, -3, Owner.Creature, null);
+            GD.Print("[AICard] Consuming 3 faith.");
+            await TransformNonAiMode(choiceContext, piety);
         }
-
-        if (piety > 0)
+        else if (_hasTransformed)
         {
-            GD.Print($"[AICard] Consuming {piety} faith.");
-            await PowerCmd.Apply<FaithPower>(Owner.Creature, -piety, Owner.Creature, null);
+            // Placeholder for flow logic
         }
-
-        // Transform this card in-place and return it to hand.
-        _effectsList = new List<(string, int)>(effectsList);
-        _hasTransformed = true;
-        _cardNameSuffix = cardName;
-        _isCardExhaust = false;
-        _isCardEthereal = isEthereal;
-
-        var description = GenerateDescription(_effectsList, _isCardEthereal);
-        UpdateCardAppearance(description, _cardNameSuffix, cost);
-
-        await CardPileCmd.AddGeneratedCardToCombat(
-            this,
-            PileType.Hand,
-            addedByPlayer: true,
-            CardPilePosition.Top);
-
-        GD.Print($"[AICard] Card transformed in-place to '神諭 - {cardName}' and returned to hand.");
-    }
-
-    private async Task GenerateFromTemplate(PlayerChoiceContext choiceContext)
-    {
-        int availablePiety = (int)(Owner.Creature.Powers?.OfType<FaithPower>().FirstOrDefault()?.Amount ?? 0m);
-        int defaultPietySpend = Math.Clamp((int)Math.Round(AiCardModConfig.DefaultPietySpend), 0, Math.Max(0, availablePiety));
-
-        var selection = await TemplateCardDialog.ShowAsync(
-            PrefixOptions.Select(x => x.Name).ToArray(),
-            MiddleOptions.Select(x => x.Name).ToArray(),
-            SuffixOptions.Select(x => x.Name).ToArray(),
-            (int)Math.Round(AiCardModConfig.PrefixIndex),
-            (int)Math.Round(AiCardModConfig.MiddleIndex),
-            (int)Math.Round(AiCardModConfig.SuffixIndex),
-            defaultPietySpend,
-            Math.Max(0, availablePiety),
-            AiCardModConfig.GeneratedCardEthereal,
-            BuildTemplatePreview);
-
-        if (selection == null)
+        else
         {
-            await CardPileCmd.AddGeneratedCardToCombat(
-                this,
-                PileType.Hand,
-                addedByPlayer: true,
-                CardPilePosition.Top);
-            GD.Print("[AICard] Template selection cancelled, card returned to hand.");
-            return;
+            if (piety > 0)
+            {
+                GD.Print($"[AICard] Consuming {piety} faith.");
+                await PowerCmd.Apply<FaithPower>(Owner.Creature, -piety, Owner.Creature, null);
+            }
+
+            bool isAiMode = !string.IsNullOrWhiteSpace(AiCardModConfig.AiApiUrl);
+
+            if (isAiMode && IsAiConfigReady())
+            {
+                await TransformAiMode(choiceContext, piety);
+            }
+            else
+            {
+                await TransformNonAiMode(choiceContext, piety);
+            }
         }
-
-        int pietySpend = Math.Clamp(selection.PietySpend, 0, Math.Max(0, availablePiety));
-        var prefix = GetTemplatePart(PrefixOptions, selection.PrefixIndex);
-        var middle = GetTemplatePart(MiddleOptions, selection.MiddleIndex);
-        var suffix = GetTemplatePart(SuffixOptions, selection.SuffixIndex);
-
-        double scale = Math.Clamp(AiCardModConfig.EffectScale, 0.5, 2.5);
-        double pietyPoints = CalculatePietyPoints(pietySpend);
-        var effects = new List<(string effect, int value)>
-        {
-            (prefix.Effect, ScaleEffectValue(prefix.Effect, prefix.BaseValue, scale, pietyPoints)),
-            (middle.Effect, ScaleEffectValue(middle.Effect, middle.BaseValue, scale, pietyPoints)),
-            (suffix.Effect, ScaleEffectValue(suffix.Effect, suffix.BaseValue, scale, pietyPoints))
-        };
-
-        MergeEffects(effects);
-
-        _effectsList = effects;
-        _hasTransformed = true;
-        _cardNameSuffix = $"{prefix.Name}{middle.Name}{suffix.Name}";
-        _isCardExhaust = false;
-        _isCardEthereal = selection.Ethereal;
-
-        AiCardModConfig.PrefixIndex = selection.PrefixIndex;
-        AiCardModConfig.MiddleIndex = selection.MiddleIndex;
-        AiCardModConfig.SuffixIndex = selection.SuffixIndex;
-        AiCardModConfig.DefaultPietySpend = pietySpend;
-        AiCardModConfig.GeneratedCardEthereal = selection.Ethereal;
-
-        var description = GenerateDescription(_effectsList, _isCardEthereal);
-        UpdateCardAppearance(description, _cardNameSuffix, 0);
-
-        if (pietySpend > 0)
-        {
-            await PowerCmd.Apply<FaithPower>(Owner.Creature, -pietySpend, Owner.Creature, null);
-        }
-
-        await CardPileCmd.AddGeneratedCardToCombat(
-            this,
-            PileType.Hand,
-            addedByPlayer: true,
-            CardPilePosition.Top);
-
-        GD.Print($"[AICard] Template card '{_cardNameSuffix}' transformed in-place and returned to hand. Piety spent: {pietySpend}");
     }
 
     private static bool IsAiConfigReady() =>
         !string.IsNullOrWhiteSpace(AiCardModConfig.AiApiUrl) &&
         !string.IsNullOrWhiteSpace(AiCardModConfig.AiModel);
 
-    private static TemplatePart GetTemplatePart(TemplatePart[] options, double rawIndex)
+    // Non AI mode
+    private async Task TransformNonAiMode(PlayerChoiceContext choiceContext, int piety)
     {
-        int index = Math.Clamp((int)Math.Round(rawIndex), 0, options.Length - 1);
-        return options[index];
-    }
+        _effectsList.Clear();
 
-    private static (string title, string description, string affixText, string metaText) BuildTemplatePreview(
-        int prefixIndex,
-        int middleIndex,
-        int suffixIndex,
-        int pietySpend,
-        bool isEthereal)
-    {
-        var prefix = GetTemplatePart(PrefixOptions, prefixIndex);
-        var middle = GetTemplatePart(MiddleOptions, middleIndex);
-        var suffix = GetTemplatePart(SuffixOptions, suffixIndex);
-
-        double scale = Math.Clamp(AiCardModConfig.EffectScale, 0.5, 2.5);
-        double pietyPoints = CalculatePietyPoints(Math.Max(0, pietySpend));
-
-        var effects = new List<(string effect, int value)>
+        if (piety <= 2)
         {
-            (prefix.Effect, ScaleEffectValue(prefix.Effect, prefix.BaseValue, scale, pietyPoints)),
-            (middle.Effect, ScaleEffectValue(middle.Effect, middle.BaseValue, scale, pietyPoints)),
-            (suffix.Effect, ScaleEffectValue(suffix.Effect, suffix.BaseValue, scale, pietyPoints))
-        };
-
-        MergeEffects(effects);
-
-        string suffixName = $"{prefix.Name}{middle.Name}{suffix.Name}";
-        string title = $"{BaseCardTitle} - {suffixName}";
-        string description = GenerateDescription(effects, isEthereal);
-        string affixText = $"前綴：{prefix.Name}    中綴：{middle.Name}    後綴：{suffix.Name}";
-        string keywords = isEthereal ? "虛無" : "無";
-        string metaText = $"費用：0    關鍵字：{keywords}    虔誠投入：{Math.Max(0, pietySpend)}    虔誠轉點：{pietyPoints:0.##}";
-        return (title, description, affixText, metaText);
-    }
-
-    private static double CalculatePietyPoints(int pietySpend)
-    {
-        if (pietySpend <= 0) return 0;
-        if (pietySpend <= 4) return pietySpend * 0.5;
-        if (pietySpend <= 8) return 2 + (pietySpend - 4) * 0.35;
-        return 3.4 + (pietySpend - 8) * 0.2;
-    }
-
-    private static int ScaleEffectValue(string effect, int baseValue, double scale, double pietyPoints)
-    {
-        int scaled = (int)Math.Round(baseValue * scale, MidpointRounding.AwayFromZero);
-        int withBonus = scaled + (int)Math.Round(pietyPoints, MidpointRounding.AwayFromZero);
-
-        return effect.ToUpperInvariant() switch
+            _cardNameSuffix = "微小啟發";
+            _effectsList.Add(("BLOCK", 8));
+            _effectsList.Add(("DRAW", 1));
+        }
+        else if (piety <= 5)
         {
-            "DRAW" => Math.Clamp(withBonus, 1, 5),
-            "ENERGY" => Math.Clamp(withBonus, 1, 3),
-            "VULNERABLE" or "WEAK" or "FRAIL" => Math.Clamp(withBonus, 1, 6),
-            "STRENGTH" or "DEXTERITY" or "FOCUS" => Math.Clamp(withBonus, 1, 5),
-            _ => Math.Clamp(withBonus, 1, 99)
+            _cardNameSuffix = "盲目試煉";
+            _effectsList.Add(("MISSTEP_ALL", 2));
+            _effectsList.Add(("REVELATION", 4));
+        }
+        else if (piety <= 8)
+        {
+            _cardNameSuffix = "神聖洗禮";
+            _effectsList.Add(("BLOCK", 15));
+            _effectsList.Add(("HEAL", 5));
+            _effectsList.Add(("HOLY_MIGHT", 1));
+        }
+        else if (piety <= 11)
+        {
+            _cardNameSuffix = "狂熱異端";
+            _effectsList.Add(("DAMAGE_ALL", 10));
+            _effectsList.Add(("STRENGTH", 3));
+        }
+        else
+        {
+            _cardNameSuffix = "末日神諭";
+            _effectsList.Add(("ENERGY", 2));
+            _effectsList.Add(("DRAW", 3));
+            _effectsList.Add(("REVELATION", 12));
+        }
+
+        await FinalizeTransformation(choiceContext);
+    }
+
+    // AI mode
+    private async Task TransformAiMode(PlayerChoiceContext choiceContext, int piety)
+    {
+        var playerRequest = await AiInputDialog.ShowAsync();
+        if (string.IsNullOrWhiteSpace(playerRequest))
+        {
+            await TransformNonAiMode(choiceContext, piety);
+            return;
+        }
+
+        var aiResponse = await OllamaClient.AskAsync(BuildPrompt(playerRequest));
+        ParseAiResponse(aiResponse, out var selectedEffects, out var cardName);
+
+        if (selectedEffects.Count == 0)
+        {
+            selectedEffects.Add("BLOCK");
+            cardName = "恩典";
+        }
+
+        _cardNameSuffix = cardName;
+        _effectsList.Clear();
+
+        // Budget calculation
+        int totalBudget = 10 + (piety * 4);
+        int budgetPerEffect = totalBudget / selectedEffects.Count;
+
+        foreach (var eff in selectedEffects)
+        {
+            int value = CalculateValueFromBudget(eff, budgetPerEffect);
+            _effectsList.Add((eff, value));
+        }
+
+        await FinalizeTransformation(choiceContext);
+    }
+
+    private static int CalculateValueFromBudget(string effect, int budget)
+    {
+        return effect switch
+        {
+            "DRAW" => Math.Max(1, budget / 8),
+            "ENERGY" => Math.Max(1, budget / 12),
+            "HEAL" => Math.Max(1, budget / 3),
+            "STRENGTH" or "DEXTERITY" or "FOCUS" => Math.Max(1, budget / 5),
+            "VULNERABLE" or "WEAK" or "FRAIL" => Math.Max(1, budget / 4),
+            "MISSTEP_ALL" => Math.Max(1, budget / 6),
+            "REVELATION" => Math.Max(1, budget / 2),
+            "HOLY_MIGHT" => Math.Max(1, budget / 6),
+            "DAMAGE_ALL" => Math.Max(1, budget / 2),
+            _ => Math.Max(1, budget) // DAMAGE, BLOCK
         };
     }
 
-    private static void MergeEffects(List<(string effect, int value)> effects)
+    private async Task FinalizeTransformation(PlayerChoiceContext choiceContext)
     {
-        var merged = effects
-            .GroupBy(x => x.effect, StringComparer.OrdinalIgnoreCase)
-            .Select(g => (effect: g.Key.ToUpperInvariant(), value: g.Sum(x => x.value)))
-            .ToList();
+        // 建立真正的新卡牌來進行變化，使用 CombatState.CreateCard 以確保卡牌擁有 CombatState
+        var newCard = this.CombatState.CreateCard<AiCard>(this.Owner);
+        SetGeneratedCardId(newCard);
 
-        effects.Clear();
-        effects.AddRange(merged);
+        var titleField = typeof(MegaCrit.Sts2.Core.Models.CardModel).GetField("_titleLocString", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic);
+        if (titleField != null)
+        {
+            titleField.SetValue(newCard, new MegaCrit.Sts2.Core.Localization.LocString("cards", $"{newCard.Id.Entry}.title"));
+        }
+
+        newCard._hasTransformed = true;
+        newCard._effectsList = new List<(string effect, int value)>(_effectsList);
+        newCard._cardNameSuffix = _cardNameSuffix;
+        newCard._isCardExhaust = _isCardExhaust;
+        newCard._isCardEthereal = _isCardEthereal;
+
+        int energyCost = 1;
+        var description = GenerateDescription(newCard, newCard._effectsList, newCard._isCardEthereal, newCard._isCardExhaust);
+
+        newCard.UpdateCardAppearance(description, newCard._cardNameSuffix, energyCost);
+
+        // 為了避免打出區留下幽靈卡牌，我們在變化前先找到並隱藏原本的 NCard
+        var ghostNCard = MegaCrit.Sts2.Core.Nodes.Cards.NCard.FindOnTable(this);
+        if (ghostNCard != null)
+        {
+            ghostNCard.Visible = false;
+        }
+
+        // 觸發真正的變化，並展示橫向的彈出式特效 (此時會在畫面中央展示)
+        await MegaCrit.Sts2.Core.Commands.CardCmd.Transform(this, newCard, MegaCrit.Sts2.Core.Nodes.CommonUi.CardPreviewStyle.HorizontalLayout);
+
+        // 稍微等待較長的時間 (2.2秒)，讓變化動畫完整播放完畢，避免在變化途中就飛回手牌
+        await MegaCrit.Sts2.Core.Commands.Cmd.CustomScaledWait(2.2f, 2.2f);
+
+        // 變化完成後，將全新的卡牌飛回手牌中
+        await MegaCrit.Sts2.Core.Commands.CardPileCmd.Add(newCard, MegaCrit.Sts2.Core.Entities.Cards.PileType.Hand);
+
+        GD.Print($"[AICard] Instantly transformed and returned to hand: '神諭 - {_cardNameSuffix}'");
     }
-
-    private static readonly HashSet<string> KnownEffects = new(StringComparer.OrdinalIgnoreCase)
-    {
-        "DAMAGE", "BLOCK", "DRAW", "HEAL", "ENERGY", "STRENGTH", "DEXTERITY", "FOCUS", "GOLD",
-        "VULNERABLE", "WEAK", "FRAIL",
-        "PLAYER_WEAK", "PLAYER_VULNERABLE",
-        "COST", "CARD_EXHAUST", "CARD_ETHEREAL"
-    };
-
-    // These keywords carry no numeric value
-    private static readonly HashSet<string> NoValueEffects = new(StringComparer.OrdinalIgnoreCase)
-    {
-        "CARD_EXHAUST", "CARD_ETHEREAL"
-    };
-
-    // These are card-property keywords, not played effects
-    private static readonly HashSet<string> CardPropertyEffects = new(StringComparer.OrdinalIgnoreCase)
-    {
-        "COST", "CARD_EXHAUST", "CARD_ETHEREAL"
-    };
-
-    private static string GetPietyTier(int piety) => piety switch
-    {
-        < 0 => "ANGERED",
-        0 => "ANGERED",
-        <= 2 => "DISPLEASED",
-        <= 5 => "NEUTRAL",
-        <= 9 => "BLESSED",
-        _ => "DIVINE"
-    };
-
-    // TODO: Unicode comment repaired.
 
     private static void ParseAiResponse(
         string response,
-        out List<(string, int)> effects,
-        out string cardName,
-        out bool isExhaust,
-        out bool isEthereal,
-        out int cost)
+        out List<string> effects,
+        out string cardName)
     {
         effects = [];
-        cardName = "變�?";
-        isExhaust = false;
-        isEthereal = false;
-        cost = 1;
+        cardName = "變化";
 
         var lines = response.Split('\n', StringSplitOptions.RemoveEmptyEntries)
             .Select(l => l.Trim().TrimStart('-', '*', ' '))
             .Where(l => l.Length > 0)
             .ToList();
 
-        // The card name is the last non-effect line
         for (int i = lines.Count - 1; i >= 0; i--)
         {
-            if (!TryParseEffectLine(lines[i], out _, out _))
+            if (!KnownEffects.Contains(lines[i].ToUpperInvariant()))
             {
                 cardName = lines[i];
+                lines.RemoveAt(i);
                 break;
             }
         }
 
-        // Parse all effect lines
         foreach (var line in lines)
         {
-            if (!TryParseEffectLine(line, out var effectName, out var value)) continue;
-
-            switch (effectName)
+            var candidate = line.ToUpperInvariant();
+            if (KnownEffects.Contains(candidate))
             {
-                case "CARD_EXHAUST":
-                    isExhaust = true;
-                    break;
-                case "CARD_ETHEREAL":
-                    isEthereal = true;
-                    break;
-                case "COST":
-                    cost = Math.Clamp(value, 0, 5);
-                    break;
-                default:
-                    effects.Add((effectName, value));
-                    break;
+                effects.Add(candidate);
             }
         }
     }
 
-    private static bool TryParseEffectLine(string line, out string effectName, out int value)
+    private static readonly HashSet<string> KnownEffects = new(StringComparer.OrdinalIgnoreCase)
     {
-        effectName = "";
-        value = 1;
+        "DAMAGE", "BLOCK", "DRAW", "HEAL", "ENERGY", "STRENGTH", "DEXTERITY", "FOCUS", "GOLD",
+        "VULNERABLE", "WEAK", "FRAIL", "MISSTEP_ALL", "REVELATION", "HOLY_MIGHT", "DAMAGE_ALL"
+    };
 
-        var parts = line.Split(' ', StringSplitOptions.RemoveEmptyEntries);
-        if (parts.Length == 0) return false;
+    private static string BuildPrompt(string playerRequest) =>
+        $"You are an AI generating card effects for Slay the Spire 2.\n\n" +
+        $"Player request: \"{playerRequest}\"\n\n" +
+        $"RULES:\n" +
+        $"1. Output ONLY 1 to 3 effect keywords (one per line) from the list below, and finally a short Chinese card name (2-4 characters).\n" +
+        $"2. DO NOT output any numbers or explanations. The game will automatically calculate the balance.\n\n" +
+        $"Available effects:\n" +
+        $"  BLOCK\n" +
+        $"  DAMAGE\n" +
+        $"  DAMAGE_ALL\n" +
+        $"  DRAW\n" +
+        $"  HEAL\n" +
+        $"  ENERGY\n" +
+        $"  STRENGTH\n" +
+        $"  DEXTERITY\n" +
+        $"  VULNERABLE\n" +
+        $"  WEAK\n" +
+        $"  FRAIL\n" +
+        $"  MISSTEP_ALL\n" +
+        $"  REVELATION\n" +
+        $"  HOLY_MIGHT\n\n" +
+        $"Example output:\n" +
+        $"BLOCK\n" +
+        $"DRAW\n" +
+        $"庇護\n\n" +
+        $"Now output for the player's request. No extra text.";
 
-        var candidate = parts[0].ToUpperInvariant();
-        if (!KnownEffects.Contains(candidate)) return false;
-
-        effectName = candidate;
-
-        if (NoValueEffects.Contains(candidate))
-            return true;
-
-        if (parts.Length < 2) return false;
-        var numPart = new string(parts[1].TakeWhile(c => char.IsDigit(c) || c == '-').ToArray());
-        return int.TryParse(numPart, out value);
+    private static void AddOrUpdateDynamicVar(MegaCrit.Sts2.Core.Localization.DynamicVars.DynamicVarSet varSet, MegaCrit.Sts2.Core.Localization.DynamicVars.DynamicVar dynamicVar)
+    {
+        var dictField = typeof(MegaCrit.Sts2.Core.Localization.DynamicVars.DynamicVarSet).GetField("_vars", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
+        if (dictField?.GetValue(varSet) is System.Collections.Generic.Dictionary<string, MegaCrit.Sts2.Core.Localization.DynamicVars.DynamicVar> dict)
+        {
+            dict[dynamicVar.Name] = dynamicVar;
+        }
     }
 
-    // TODO: Unicode comment repaired.
+    private static readonly System.Collections.Generic.Dictionary<string, string> FallbackStrings = new()
+    {
+        { "AICARDMOD-AI_CARD.effect_ENERGY", "獲得{Energy:diff()}點[gold]能量[/gold]。" },
+        { "AICARDMOD-AI_CARD.effect_STRENGTH", "獲得{Strength:diff()}點[gold]力量[/gold]。" },
+        { "AICARDMOD-AI_CARD.effect_DAMAGE_ALL", "對所有敵人造成{Damage:diff()}點傷害。" },
+        { "AICARDMOD-AI_CARD.effect_HOLY_MIGHT", "獲得{HolyMight:diff()}點[gold]神聖之力[/gold]。" },
+        { "AICARDMOD-AI_CARD.effect_REVELATION", "獲得{AICARDMOD-RevelationGain:diff()}點[gold]啟示[/gold]。" },
+        { "AICARDMOD-AI_CARD.effect_EXHAUST", "[gold]消耗。[/gold]" },
+        { "AICARDMOD-AI_CARD.effect_ETHEREAL", "[gold]虛無。[/gold]" },
+        { "AICARDMOD-AI_CARD.effect_DEXTERITY", "獲得{Dexterity:diff()}點[gold]敏捷[/gold]。" },
+        { "AICARDMOD-AI_CARD.effect_FOCUS", "獲得{Focus:diff()}點[gold]專注[/gold]。" },
+        { "AICARDMOD-AI_CARD.effect_GOLD", "獲得{Gold:diff()}枚金幣。" },
+        { "AICARDMOD-AI_CARD.effect_VULNERABLE", "給予敵人{Vulnerable:diff()}層[gold]易傷[/gold]。" },
+        { "AICARDMOD-AI_CARD.effect_WEAK", "給予敵人{Weak:diff()}層[gold]虛弱[/gold]。" },
+        { "AICARDMOD-AI_CARD.effect_FRAIL", "給予敵人{Frail:diff()}層[gold]脆弱[/gold]。" },
+        { "AICARDMOD-AI_CARD.effect_MISSTEP_ALL", "給予所有敵人{AICARDMOD-MisstepGain:diff()}層[gold]失誤[/gold]。" },
+        { "AICARDMOD-AI_CARD.effect_DAMAGE", "造成{Damage:diff()}點傷害。" },
+        { "AICARDMOD-AI_CARD.effect_HEAL", "回復{Heal:diff()}點生命。" },
+        { "AICARDMOD-AI_CARD.effect_BLOCK", "獲得{Block:diff()}點[gold]格擋[/gold]。" },
+        { "AICARDMOD-AI_CARD.effect_DRAW", "抽{Cards:diff()}張牌。" }
+    };
 
-    private static string GenerateDescription(List<(string effect, int value)> effects, bool isEthereal)
+    private static string GenerateDescription(AiCard newCard, List<(string effect, int value)> effects, bool isEthereal, bool isExhaust)
     {
         var lines = new List<string>();
-        var keywordLines = new List<string>();
 
-        if (isEthereal)
-            keywordLines.Add("[gold]虛無[/gold]");
+        if (isEthereal) lines.Add(FallbackStrings["AICARDMOD-AI_CARD.effect_ETHEREAL"]);
+        if (isExhaust) lines.Add(FallbackStrings["AICARDMOD-AI_CARD.effect_EXHAUST"]);
 
         foreach (var (effectName, value) in effects)
         {
-            string line = effectName.ToUpperInvariant() switch
+            string locKey = $"AICARDMOD-AI_CARD.effect_{effectName.ToUpperInvariant()}";
+            string line = new MegaCrit.Sts2.Core.Localization.LocString("cards", locKey).GetFormattedText();
+            
+            // If the localization manager fails to find the key, it returns a string containing the key itself (or empty).
+            if (string.IsNullOrWhiteSpace(line) || line.Contains(locKey) || line.Contains("effect_"))
             {
-                "DAMAGE" => $"造成 {value} 點傷害。",
-                "BLOCK" => $"獲得 {value} 點格擋。",
-                "DRAW" => $"抽取 {value} 張卡牌。",
-                "HEAL" => $"恢復 {value} 點生命值。",
-                "ENERGY" => $"獲得 {value} 點能量。",
-                "STRENGTH" => $"獲得 {value} 層力量。",
-                "DEXTERITY" => $"獲得 {value} 層敏捷。",
-                "FOCUS" => $"獲得 {value} 層專注。",
-                "GOLD" => $"獲得 {value} 枚金幣。",
-                "VULNERABLE" => $"對敵人施加 {value} 層易傷。",
-                "WEAK" => $"對敵人施加 {value} 層虛弱。",
-                "FRAIL" => $"對敵人施加 {value} 層脆弱。",
-                "PLAYER_WEAK" => $"[red]你獲得 {value} 層虛弱。[/red]",
-                "PLAYER_VULNERABLE" => $"[red]你獲得 {value} 層易傷。[/red]",
-                _ => $"{effectName} {value}"
-            };
+                line = FallbackStrings.TryGetValue(locKey, out string fallback) ? fallback : $"Missing:{locKey}";
+            }
+
+            // Populate DynamicVars so the engine can format {VarName:diff()}
+            switch (effectName.ToUpperInvariant())
+            {
+                case "DAMAGE":
+                case "DAMAGE_ALL":
+                    newCard.DynamicVars.Damage.BaseValue = value;
+                    break;
+                case "BLOCK":
+                    newCard.DynamicVars.Block.BaseValue = value;
+                    break;
+                case "DRAW":
+                    newCard.DynamicVars.Cards.BaseValue = value;
+                    break;
+                case "HEAL":
+                    newCard.DynamicVars.Heal.BaseValue = value;
+                    break;
+                case "ENERGY":
+                    newCard.DynamicVars.Energy.BaseValue = value;
+                    break;
+                case "MISSTEP_ALL":
+                    AddOrUpdateDynamicVar(newCard.DynamicVars, new AICardMod.Scripts.MisstepGainVar(value));
+                    break;
+                case "REVELATION":
+                    AddOrUpdateDynamicVar(newCard.DynamicVars, new AICardMod.Scripts.RevelationGainVar(value));
+                    break;
+                case "HOLY_MIGHT":
+                    AddOrUpdateDynamicVar(newCard.DynamicVars, new MegaCrit.Sts2.Core.Localization.DynamicVars.DynamicVar("HolyMight", value));
+                    break;
+                case "STRENGTH":
+                    AddOrUpdateDynamicVar(newCard.DynamicVars, new MegaCrit.Sts2.Core.Localization.DynamicVars.DynamicVar("Strength", value));
+                    break;
+                case "DEXTERITY":
+                    AddOrUpdateDynamicVar(newCard.DynamicVars, new MegaCrit.Sts2.Core.Localization.DynamicVars.DynamicVar("Dexterity", value));
+                    break;
+                case "FOCUS":
+                    AddOrUpdateDynamicVar(newCard.DynamicVars, new MegaCrit.Sts2.Core.Localization.DynamicVars.DynamicVar("Focus", value));
+                    break;
+                case "GOLD":
+                    AddOrUpdateDynamicVar(newCard.DynamicVars, new MegaCrit.Sts2.Core.Localization.DynamicVars.DynamicVar("Gold", value));
+                    break;
+                case "VULNERABLE":
+                    AddOrUpdateDynamicVar(newCard.DynamicVars, new MegaCrit.Sts2.Core.Localization.DynamicVars.DynamicVar("Vulnerable", value));
+                    break;
+                case "WEAK":
+                    AddOrUpdateDynamicVar(newCard.DynamicVars, new MegaCrit.Sts2.Core.Localization.DynamicVars.DynamicVar("Weak", value));
+                    break;
+                case "FRAIL":
+                    AddOrUpdateDynamicVar(newCard.DynamicVars, new MegaCrit.Sts2.Core.Localization.DynamicVars.DynamicVar("Frail", value));
+                    break;
+                default:
+                    AddOrUpdateDynamicVar(newCard.DynamicVars, new MegaCrit.Sts2.Core.Localization.DynamicVars.DynamicVar(effectName, value));
+                    break;
+            }
+
             lines.Add(line);
         }
 
-        return string.Join("\n", keywordLines.Concat(lines));
+        return string.Join("\n", lines);
     }
-
-    // TODO: Unicode comment repaired.
 
     private void UpdateCardAppearance(string description, string nameSuffix, int cost)
     {
@@ -461,7 +408,7 @@ public class AiCard : PortraitCardModel
             var cardKey = Id.Entry;
             var fullTitle = $"{BaseCardTitle} - {nameSuffix}";
 
-            var table = LocManager.Instance.GetTable("cards");
+            var table = MegaCrit.Sts2.Core.Localization.LocManager.Instance.GetTable("cards");
             table.MergeWith(new Dictionary<string, string>
             {
                 [$"{cardKey}.title"] = fullTitle,
@@ -477,8 +424,6 @@ public class AiCard : PortraitCardModel
             GD.PrintErr($"[AICard] UpdateCardAppearance failed: {ex.Message}");
         }
     }
-
-    // TODO: Unicode comment repaired.
 
     private async Task ApplyEffects(List<(string effect, int value)> effects, PlayerChoiceContext choiceContext)
     {
@@ -501,66 +446,65 @@ public class AiCard : PortraitCardModel
                 if (dmgTarget != null)
                     await DamageCmd.Attack(value).FromCard(this).Targeting(dmgTarget).Execute(choiceContext);
                 break;
-
+            case "DAMAGE_ALL":
+                var enemies = Owner.Creature.CombatState?.HittableEnemies.Where(e => e.IsAlive).ToList() ?? [];
+                foreach (var enemy in enemies)
+                {
+                    await DamageCmd.Attack(value).FromCard(this).Targeting(enemy).Execute(choiceContext);
+                }
+                break;
             case "BLOCK":
                 await CreatureCmd.GainBlock(Owner.Creature, new BlockVar(value, ValueProp.Move), null);
                 break;
-
             case "DRAW":
                 await CardPileCmd.Draw(choiceContext, value, Owner);
                 break;
-
             case "HEAL":
                 await CreatureCmd.Heal(Owner.Creature, value);
                 break;
-
             case "ENERGY":
                 await PlayerCmd.GainEnergy(value, Owner);
                 break;
-
             case "GOLD":
                 Owner.Gold += value;
                 break;
-
             case "VULNERABLE":
                 var vulnTarget = GetRandomEnemy();
                 if (vulnTarget != null)
                     await PowerCmd.Apply<VulnerablePower>(vulnTarget, value, Owner.Creature, this);
                 break;
-
             case "WEAK":
                 var weakTarget = GetRandomEnemy();
                 if (weakTarget != null)
                     await PowerCmd.Apply<WeakPower>(weakTarget, value, Owner.Creature, this);
                 break;
-
             case "FRAIL":
                 var frailTarget = GetRandomEnemy();
                 if (frailTarget != null)
                     await PowerCmd.Apply<FrailPower>(frailTarget, value, Owner.Creature, this);
                 break;
-
             case "STRENGTH":
                 await PowerCmd.Apply<StrengthPower>(Owner.Creature, value, Owner.Creature, this);
                 break;
-
             case "DEXTERITY":
                 await PowerCmd.Apply<DexterityPower>(Owner.Creature, value, Owner.Creature, this);
                 break;
-
             case "FOCUS":
                 await PowerCmd.Apply<FocusPower>(Owner.Creature, value, Owner.Creature, this);
                 break;
-
-            // TODO: Unicode comment repaired.
-            case "PLAYER_WEAK":
-                await PowerCmd.Apply<WeakPower>(Owner.Creature, value, Owner.Creature, this);
+            case "MISSTEP_ALL":
+                var misstepEnemies = Owner.Creature.CombatState?.HittableEnemies.Where(e => e.IsAlive).ToList() ?? [];
+                foreach (var enemy in misstepEnemies)
+                {
+                    await PowerCmd.Apply<MisstepPower>(enemy, value, Owner.Creature, this);
+                }
                 break;
-
-            case "PLAYER_VULNERABLE":
-                await PowerCmd.Apply<VulnerablePower>(Owner.Creature, value, Owner.Creature, this);
+            case "REVELATION":
+                await PowerCmd.Apply<RevelationPower>(Owner.Creature, value, Owner.Creature, this);
                 break;
-
+            case "HOLY_MIGHT":
+                await PowerCmd.Apply<HolyMightPower>(Owner.Creature, value, Owner.Creature, this);
+                break;
             default:
                 GD.PrintErr($"[AICard] Unknown effect: {effectName}");
                 break;
@@ -574,31 +518,6 @@ public class AiCard : PortraitCardModel
         if (alive == null || alive.Count == 0) return null;
         return alive[GD.RandRange(0, alive.Count - 1)];
     }
-
-    private static string BuildPrompt(string playerRequest, int piety, string pietyTier) =>
-        $"You are designing a card effect for Slay the Spire 2.\n\n" +
-        $"Player request: \"{playerRequest}\"\n\n" +
-        $"RULES:\n" +
-        $"1. Grant EXACTLY what the player asked for.\n" +
-        $"2. Output ONLY effects (one per line), then a short Chinese card name (2-4 characters). No explanation.\n\n" +
-        $"Available effects:\n" +
-        $"  BLOCK X            - gain X block\n" +
-        $"  DAMAGE X           - deal X damage to random enemy\n" +
-        $"  DRAW X             - draw X cards\n" +
-        $"  HEAL X             - heal X HP\n" +
-        $"  ENERGY X           - gain X energy this turn\n" +
-        $"  STRENGTH X         - gain X Strength\n" +
-        $"  DEXTERITY X        - gain X Dexterity\n" +
-        $"  GOLD X             - gain X gold\n" +
-        $"  VULNERABLE X       - enemy gets X Vulnerable\n" +
-        $"  WEAK X             - enemy gets X Weak\n" +
-        $"  FRAIL X            - enemy gets X Frail\n" +
-        $"  PLAYER_WEAK X      - player gets X Weak (negative)\n" +
-        $"  PLAYER_VULNERABLE X- player gets X Vulnerable (negative)\n\n" +
-        $"Example - player asked \"80 block\":\n" +
-        $"BLOCK 80\n" +
-        $"堡壘\n\n" +
-        $"Now output for the player's request. No extra text.";
 
     protected override void OnUpgrade()
     {

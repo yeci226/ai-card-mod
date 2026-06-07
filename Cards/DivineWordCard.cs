@@ -1,6 +1,8 @@
 using BaseLib.Abstracts;
+using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models.CardPools;
@@ -23,8 +25,8 @@ public class DivineWordCard : CustomCardModel
     private const bool shouldShowInLibrary = true;
 
     // VFX 路徑（官方格式 "vfx/vfx_xxx"）
-    private const string StarryImpactVfx = "vfx/vfx_starry_impact";
-    private const string SweepingBeamVfx = "vfx/vfx_sweeping_beam";
+    // private const string StarryImpactVfx = "vfx/vfx_starry_impact";
+    // private const string SweepingBeamVfx = "vfx/vfx_sweeping_beam";
 
     /// <summary>
     /// 本回合已打出的牌數。
@@ -44,7 +46,7 @@ public class DivineWordCard : CustomCardModel
     /// 預先宣告本卡需要的 VFX 場景（官方 FanOfKnives 做法）。
     /// </summary>
     protected override IEnumerable<string> ExtraRunAssetPaths =>
-        [StarryImpactVfx, SweepingBeamVfx];
+        [];
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
         [new DynamicVar(DmgPerCardKey, 3)];
@@ -61,10 +63,6 @@ public class DivineWordCard : CustomCardModel
     /// </summary>
     public override async Task OnEnqueuePlayVfx(Creature? target)
     {
-        if (Owner?.Creature != null)
-            await VfxCmd.PlayOnCreature(Owner.Creature, SweepingBeamVfx);
-        if (target != null)
-            await VfxCmd.PlayOnCreature(target, StarryImpactVfx);
     }
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
